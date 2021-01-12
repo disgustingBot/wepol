@@ -31,9 +31,21 @@ Version: 1.1
 6.0) =load:
 6.1) =header:
 
+6.2) =MENUS:
+6.2.0) =nav_bar:
+6.2.1) =nav_categories:
+
+
+6.3) =SHOWCASES:
+6.3.3) =showcase3:
+
 6.4) =multiCards:
+6.4.0) =simpla:
+6.4.1) =mirror:
 
 6.6) =BUTTONS:
+
+6.12) =ticon:
 
 6.69) =redDot:
 6.99) =footer
@@ -222,9 +234,9 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 *{box-sizing:border-box;margin:0;padding:0}
-body{display:grid}
+body{display:grid;font-family: 'Montserrat', sans-serif;}
 img{object-fit:cover;width:100%;display:block}
-a{text-decoration:none}
+a{text-decoration:none;color:inherit;}
 ul,ol{list-style:none}
 .main {
   /* display: flex; */
@@ -314,12 +326,206 @@ ul,ol{list-style:none}
                             6.1) =header:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.header {}
+.header {
+  --logo_size:30px;
+
+  background: white;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  padding:0 var(--logo_size);
+  grid-gap:2rem;
+  left:0;
+  position:sticky;
+  top:0;
+  width: 100%;
+  z-index: 10;
+  transition:.4s;
+  box-shadow:var(--DP12);
+}
+.header.observed{
+  background: #2D50FA;
+}
+.header.observed .logo_svg  {color:white;}
+.header.observed .nav_bar   {color:white;}
+.header.observed .menu-item {opacity:1;}
+.header.observed .logo_special_part{opacity:1;}
+
+.logo{
+  /* display: grid; */
+}
+.logo_svg{
+  display: block;
+  width:auto;
+  padding:var(--logo_size) 0;
+  height:var(--logo_size);
+  color:#000F41;
+  box-sizing: unset;
+  transition:.4s;
+}
+.logo_special_part{
+  opacity:0;
+  transition:.4s;
+}
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.2) =MENUS:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.2.0) =nav_bar:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.nav_bar_menu{
+  display:grid;
+}
+.nav_bar{
+  align-items: center;
+  color:#333;
+  display:grid;
+  font-size: .7rem;
+  font-weight: 700;
+  grid-auto-flow: column;
+  grid-gap:.5rem;
+  justify-content: space-between;
+  margin:auto;
+  margin-right: 0;
+  text-transform: uppercase;
+}
+.nav_bar .menu-item{
+  opacity:0.55;
+}
+.nav_bar .current-menu-item{
+  opacity:1;
+}
+.nav_bar a,
+.nav_bar a:visited{
+  color:inherit;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.2.1) =nav_categories:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.nav_categories{
+  display:flex;
+  padding:1rem var(--lateral);
+  box-shadow:var(--DP8);
+}
+.nav_categories_item{
+  margin-right: 1rem;
+}
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.3) =SHOWCASES:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.3.3) =showcase3:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.showcase3{
+  grid-column:1/-1;
+  display:grid;
+  grid-gap:1rem;
+  grid-template-columns:1fr 1fr 1fr;
+  /* margin:var(--lateral); */
+}
+
+
+
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.4) =multiCards:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.4.0) =simpla:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.simpla:hover{box-shadow:var(--DP24)}
+.simpla{
+  display: grid;
+  grid-gap:.75rem;
+  /* text-align: center; */
+  /* margin-bottom:auto; */
+  box-shadow:var(--DP4);
+  position: relative;
+  background: white;
+  transition:.3s;
+  align-self: flex-start;
+  border-radius:6px;
+  overflow: hidden;
+}
+.simpla_img{
+  height:calc((100vw - 16px - var(--lateral) * 2 - (var(--num_1_2_4) - 1) * .5rem) / var(--num_1_2_4));
+}
+.simpla_caption{
+  display:grid;
+  grid-gap:.5rem;
+  padding:0 1rem 1rem 1rem;
+}
+.simpla_title {
+  /* margin-top:1rem; */
+  text-transform: uppercase;
+  color: var(--grey7);
+  /* text-align: left; */
+}
+.conocenos_team_cards {
+  padding-top: 5rem;
+}
+.conocenos_team_cards .simpla_title {
+  font-size: var(--font_size_6);
+  font-weight: normal;
+}
+.simpla_deco{
+  width:40%;
+  /* margin: auto; */
+  /* position: absolute; */
+  /* bottom: -1rem; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  height:3px;
+  background:red;
+  background:currentColor;
+}
+.simpla_txt{
+  color: var(--grey7);
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.4.1) =mirror:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.mirror:hover{box-shadow:var(--DP24)}
+.mirror{
+  display: grid;
+  border-radius: 6px;
+  box-shadow:var(--DP4);
+  grid-column: span 2;
+  overflow: hidden;
+  transition:.3s;
+}
+.mirror_title{
+  align-self: flex-end;
+  padding: 1rem;
+  color:white;
+  text-transform: uppercase;
+  padding-top: 3rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,.4) 0%, rgba(0,0,0,.8) 100%)
+}
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -327,18 +533,43 @@ ul,ol{list-style:none}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.12) =ticon:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.ticon{
+  display:grid;
+  grid-gap:1rem;
+  margin:2rem var(--lateral);
+  grid-template-columns: 1fr max-content;
+}
+
+
+
+
+
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.69) =redDot:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 #redDotExample{bottom:0}
+.redDot.header_activator{
+  --size:1rem;
+  top:0;
+  left:0;
+}
 .redDot {
+  --size:3rem;
+
   border-radius: 50%;
-  height: 3rem;
+  height:var(--size);
   position: absolute;
   right: 10vw;
-  width: 3rem!important;
+  width: var(--size);
   z-index:12;
 }
 .redDot.test{background:red}
