@@ -1,7 +1,6 @@
 <?php get_header(); ?>
 
 
-
 <?php
 $i = 0;
 $categories = get_categories( array(
@@ -20,11 +19,20 @@ $categories = get_categories( array(
 </nav>
 
 
+<div class="front_head">
+  <h1 class="front_head_title">Título Blog</h1>
+  <div class="front_head_deco"></div>
+  <p class="front_head_text">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
+</div>
+
+
+
 <?php foreach( $categories as $category ) { ?>
   <section class="ticon">
     <h1><?php echo $category->name; ?></h1>
 
     <a href="<?php echo get_term_link($category->term_id); ?>">Ver más -></a>
+    <div class="ticon_deco"></div>
     <?php // var_dump($category); ?>
 
     <div class="showcase3">
@@ -40,10 +48,10 @@ $categories = get_categories( array(
         while($blog->have_posts()){$blog->the_post();
           $arg = array(
             'image' => "https://picsum.photos/600/40$i",
-            'color' => False,
             'excerpt' => False,
+            'classes' => 'featured',
           );
-          mirror_card($arg);
+          simpla_card($arg);
           $i+=1;
         } wp_reset_query();
 
@@ -57,7 +65,6 @@ $categories = get_categories( array(
         while($blog->have_posts()){$blog->the_post();
           $arg = array(
             'image' => "https://picsum.photos/600/40$i",
-            'color' => 'red',
             'excerpt' => False,
           );
           simpla_card($arg);
