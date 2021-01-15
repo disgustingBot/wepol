@@ -19,8 +19,8 @@ $categories = get_categories( array(
 </nav>
 
 
-<div class="front_head">
-  <h1 class="front_head_title">Título Blog</h1>
+<div class="front_head top_block">
+  <h1 class="front_head_title">Artículos, información y consejos útiles para crear tus propias encuestas. Investigación de mercados por Internet. Aprende a realizar una encuesta online.</h1>
   <div class="front_head_deco"></div>
   <p class="front_head_text">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
 </div>
@@ -28,10 +28,9 @@ $categories = get_categories( array(
 
 
 <?php foreach( $categories as $category ) { ?>
-  <section class="ticon">
-    <h1><?php echo $category->name; ?></h1>
+  <section class="ticon top_block">
+    <h3 class="ticon_title"><?php echo $category->name; ?></h3>
 
-    <a href="<?php echo get_term_link($category->term_id); ?>">Ver más -></a>
     <div class="ticon_deco"></div>
     <?php // var_dump($category); ?>
 
@@ -72,6 +71,7 @@ $categories = get_categories( array(
         } wp_reset_query();
         ?>
       </div>
+      <a href="<?php echo get_term_link($category->term_id); ?>">Ver más -></a>
   </section>
 <?php } ?>
 
