@@ -19,6 +19,9 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
 	<view id="load" class="load">
 			<div class="circle"></div>
 	</view>
+  <div class="all_icons" style="display:none">
+    <?php include 'assets/all_icons.php' ?>
+  </div>
   <div class="redDot header_activator"></div>
   <header class="header Obse" id="header" data-observe=".header_activator">
     <a href="<?php echo site_url(); ?>" class="logo">
@@ -33,5 +36,13 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       'menu_class' => 'nav_bar',
     );
     ?>
-    <menu class="nav_bar_menu"><?php wp_nav_menu($args); ?></menu>
+    <menu class="nav_bar_menu">
+      <?php wp_nav_menu($args); ?>
+    </menu>
+
+    <button class="burger" onclick="altClassFromSelector('mobile_menu_active', '#header')">
+      <div class="burgerBar"></div>
+      <div class="burgerBar"></div>
+      <div class="burgerBar"></div>
+    </button>
   </header>

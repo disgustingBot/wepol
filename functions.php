@@ -96,6 +96,8 @@ function excerpt($charNumber){
    register_nav_menu('nav_bar',__( 'Header' ));
    // register_nav_menu('navBarMobile',__( 'Header Mobile' ));
    // register_nav_menu('contactMenu',__( 'Contact Menu' ));
+   register_nav_menu('footer_info',__( 'Footer More Info' ));
+   register_nav_menu('footer_support',__( 'Footer Support' ));
    // add_post_type_support( 'page', 'excerpt' );
  }
  add_action( 'init', 'register_menus' );
