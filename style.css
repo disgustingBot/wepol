@@ -87,12 +87,13 @@ FIN DE MAPA DE CONTENIDOS */
   /* COLORS */
   /* Al editar colores siempre usar HEX y nunca
   dejar espacio entre los dos puntos y el color */
-  --color1:#000;
+  --color1:#000F41;
   --color2:#FFF;
   --color3:red;
 
   --brand_color_1:#000F41;
-  --brand_color_2:#2480FA;
+  --brand_color_2:#2D50FA;
+  --brand_color_3:#FF009B;
 
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
@@ -217,6 +218,13 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
     /* ?FOOTER */
   }
+
+  h1{font-size:3rem;line-height:3.5rem}
+  h2{font-size:2.5rem;line-height:3rem}
+  h3{font-size:1.75rem;line-height:2.25rem}
+  h4{font-size:1.375rem;line-height:1.875rem}
+  h5{font-size:1rem;line-height:1.75rem}
+  h6{font-size:.875rem;line-height:1.5rem}
 }
 
 /* ---------------------------------------------------------------------------
@@ -268,6 +276,8 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?FOOTER */
     --footer_info_GTC:1fr 1fr 1fr;
   }
+
+  p, ul, ol {font-size: 18px;line-height: 1.5;}
 }
 
 
@@ -281,6 +291,15 @@ FIN DE MAPA DE CONTENIDOS */
     /* ?HEADER */
     /* ?FOOTER */
   }
+
+  h1{font-size:4rem;line-height:4.5rem}
+  h2{font-size:3rem;line-height:3.5rem}
+  h3{font-size:2rem;line-height:2.5rem}
+  h4{font-size:1.25rem;line-height:2rem}
+  h5{font-size:1rem;line-height:1.75rem}
+  h6{font-size:.875rem;line-height:1.5rem}
+
+  p, ul, ol{font-size: 18px;line-height: 1.78;}
 }
 
 /* ---------------------------------------------------------------------------
@@ -323,21 +342,40 @@ body{display:grid;font-family: 'Montserrat', sans-serif;}
 img{object-fit:cover;width:100%;display:block}
 a{text-decoration:none;color:inherit;}
 ul,ol{list-style:none}
-.main {
-  /* display: flex; */
-  /* flex-direction: column; */
-}
-.main p,
-.main a,
-.main h1,
+
+
+
+h1{font-size:2rem;line-height:2.5rem}
+h2{font-size:1.5rem;line-height:2rem}
+h3{font-size:1.25rem;line-height:1.75rem}
+h4{font-size:1.125rem;line-height:1.75rem}
+h5{font-size:.875rem;line-height:1.5rem}
+h6{font-size:.75rem;line-height:1.25rem}
+
+.main h1 {margin:24px 0}
 .main h2,
 .main h3,
 .main h4,
-.main h5,
-.main h6,
-.main ul,
-.main li{margin:unset;padding:unset}
-.main ul,.main ol{list-style:unset}
+.main h5, {margin:32px 0}
+.main p {margin: 16px 0;}
+.main p, ul, ol {font-size: 16px;line-height: 1.78}
+
+.main ul, ol {padding-left: 40px}
+.main ol {list-style-type: decimal; }
+.main ul {list-style-type: circle;}
+.main li {margin-bottom: 12px}
+
+.main hr {margin:0.5em 0}
+.main a{color: #007faa;text-decoration: none;}
+
+
+
+
+
+
+
+
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -373,6 +411,8 @@ ul,ol{list-style:none}
   flex-grow: 1;
   /* margin: var(--margin); */
 }
+
+.top_block {padding-top: calc(var(--dist) * 2)!important}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                               6) =COMPONENTES:
@@ -770,9 +810,12 @@ ul,ol{list-style:none}
 --------------------------------------------------------------------------- */
 .ticon{
   display:grid;
-  grid-gap:1rem;
+  grid-gap:var(--dist);
   padding:2rem var(--lateral);
   grid-template-columns:var(--ticon_GTC);
+}
+.ticon_title{
+  color: var(--brand_color_1);
 }
 .ticon:nth-child(2n){
   background: var(--brand_color_1);
@@ -780,10 +823,13 @@ ul,ol{list-style:none}
 }
 .ticon_deco{
   grid-column:1/-1;
-  background:var(--brand_color_2);
-  width:60%;
+  background:var(--brand_color_1);
+  width:40%;
   height:2px;
 }
+.ticon:nth-child(2n) .ticon_title{color: white}
+.ticon:nth-child(2n) .ticon_deco{background: var(--brand_color_3)}
+
 
 
 /* ---------------------------------------------------------------------------
@@ -803,7 +849,7 @@ ul,ol{list-style:none}
 .front_head_deco{
   width:50%;
   height:2px;
-  background: red;
+  background: var(--brand_color_2);
   margin:auto;
 }
 

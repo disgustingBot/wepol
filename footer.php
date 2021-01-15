@@ -1,5 +1,5 @@
 
-  <div class="interfoot">
+  <div class="interfoot top_block">
     <div class="interfoot_element little_cta">
       <h5 class="little_cta_title">Crea tu encuesta online ahora</h5>
       <a href="" class="btn little_cta_link">Crear encuesta -></a>
