@@ -42,7 +42,7 @@ Version: 1.1
 
 6.4) =multiCards:
 6.4.0) =simpla:
-6.4.1) =mirror:
+6.4.1) =shiny:
 
 6.6) =BUTTONS:
 6.6.0) =btn:
@@ -50,12 +50,14 @@ Version: 1.1
 
 6.12) =ticon:
 
+6.23) =mateput:
 6.24) =front_head:
 6.25) =interfoot:
 6.26) =little_cta:
 6.27) =formative:
 
 6.56) =two_one:
+6.57) =gliter:
 
 6.60) =pagination:
 
@@ -82,7 +84,7 @@ FIN DE MAPA DE CONTENIDOS */
   que hacer facilmente diferentes versiones de la pagina */
 
   --lateral:30px;
-  --dist:30px;
+  --dist:40px;
 
   /* COLORS */
   /* Al editar colores siempre usar HEX y nunca
@@ -235,6 +237,7 @@ FIN DE MAPA DE CONTENIDOS */
 @media screen and (min-width: 768px) {
   :root {
     --sizeR: calc(calc(var(--sizeRc) * 1px) + (var(--sizeRd) - var(--sizeRc)) * ((100vw - 768px) / (1200 - 768)));
+    --lateral:2rem;
     --onlyDesktopG:grid;
     --onlyDesktopF:flex;
     --onlyMobileF:none;
@@ -288,6 +291,7 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media screen and (min-width: 992px) {
   :root {
+    --lateral:3rem;
     /* ?HEADER */
     /* ?FOOTER */
   }
@@ -309,7 +313,6 @@ FIN DE MAPA DE CONTENIDOS */
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
   :root {
-    --lateral:4rem;
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
@@ -707,26 +710,39 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.4.1) =mirror:
+                          6.4.1) =shiny:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-.mirror:hover{box-shadow:var(--DP24)}
-.mirror{
+.shiny:hover{color:var(--grey0)}
+.shiny:hover .shiny_amg{box-shadow:var(--DP4);}
+.shiny{
+  align-items: center;
   display: grid;
-  border-radius: 6px;
-  box-shadow:var(--DP4);
-  grid-column: span 2;
-  overflow: hidden;
+  color:var(--grey6);
+  grid-template-columns: min-content 1fr;
+  grid-gap:.5rem;
   transition:.3s;
   align-self: flex-start;
 }
-.mirror_title{
-  align-self: flex-end;
-  padding: 1rem;
-  color:white;
-  text-transform: uppercase;
-  padding-top: 3rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,.4) 0%, rgba(0,0,0,.8) 100%)
+.shiny_deco{
+  height:var(--size);
+  width:3px;
+}
+.shiny_amg{
+  --size:60px;
+
+  border-radius: 3px;
+  box-shadow:var(--DP1);
+  overflow: hidden;
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:min-content:
+}
+.shiny_img{
+  height:var(--size);
+  width: var(--size);
+}
+.shiny_title{
 }
 
 
@@ -829,6 +845,81 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .ticon:nth-child(2n) .ticon_title{color: white}
 .ticon:nth-child(2n) .ticon_deco{background: var(--brand_color_3)}
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.23) =mateput:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.mateput{
+  width: 50%;
+  position: relative;
+  --mateputHeight:40px;
+  height:var(--mateputHeight);
+  overflow: hidden;
+  width: var(--filterBarSearchWidth);
+}
+
+.filterBar .mateput{
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.mateput input{
+  background:none;
+  border:none;
+  color:#000;
+  font-size:16px!important;
+  height: 100%;
+  padding-top:calc(var(--mateputHeight) * 2 / 5);
+  outline: none;
+  width: 100%;
+}
+
+.mateputLabel{
+  border-bottom: 2px solid #666;
+  bottom:0;
+  color:#333;
+  font-size:15px!important;
+  height: 100%;
+  left:0;
+  pointer-events: none;
+  position: absolute;
+  width:100%;
+}
+
+.mateputLabel::after{
+  border-bottom:2px solid var(--brand_color_2);
+  content:'';
+  position: absolute;
+  left: 0;
+  bottom:-2px;
+  height:100%;
+  width: 100%;
+  transform: translateX(-100%);
+  transition: .3s ease-in-out;
+}
+
+.mateputName{
+  position: absolute;
+  bottom:5px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.mateput input:focus + .mateputLabel .mateputName,
+.mateput input.alt + .mateputLabel .mateputName{
+  transform:translateY(-110%) scale(.8);
+  font-size: 14px!important;
+  color:var(--primaryColor);
+}
+
+.mateput input:focus + .mateputLabel::after,
+.mateput input.alt + .mateputLabel::after{
+  transform: translateX(0);
+}
 
 
 
@@ -944,16 +1035,49 @@ h6{font-size:.75rem;line-height:1.25rem}
   grid-gap:var(--dist);
 }
 
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.57) =gliter:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.gliter{
+  display:grid;
+  grid-gap:var(--dist);
+  grid-auto-rows:min-content;
+  margin-bottom:auto;
+  position:sticky;
+  top: calc(var(--logo_size) * 3 + 2rem);
+}
+.gliter_car{
+  display:grid;
+  grid-gap:1rem;
+}
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.60) =pagination:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+
 .pagination{
-  grid-column: 1/-1;
-  margin:auto;
+  grid-column:1/-1;
+  display:grid;
+  grid-auto-flow:column;
+  grid-gap:.5rem;
+  margin: auto;
 }
+.paginationLink:hover{box-shadow:var(--DP2)}
+.pagination_link:hover{box-shadow:var(--DP2)}
+.paginationLink,
+.pagination_link{
+  cursor: pointer;
+  box-shadow:var(--DP1);
+  transition:.3s;
+  padding:.3rem .5rem;
+  border-radius:4px;
+}
+.paginationCurrent{padding:.3rem .5rem}
 
 
 /* ---------------------------------------------------------------------------

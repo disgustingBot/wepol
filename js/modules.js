@@ -350,3 +350,23 @@ const cardSetup = () => {console.log('holaaa')
 		})
 	});
 }
+
+
+
+
+
+
+
+
+// mateput controller
+// TODO: mejorar esto a clases y POO
+const startMateput = () =>{
+	const updateRequired=e=>{if(e.value==''){e.classList.remove('alt')}else{e.classList.add('alt')}}
+	if(d.querySelectorAll('.mateputInput')){
+		mateput=d.querySelectorAll('.mateputInput');
+		mateput.forEach(e=>{
+			updateRequired(e);
+			e.addEventListener('input',()=>{updateRequired(e)});
+		});
+	}
+}

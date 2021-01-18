@@ -15,7 +15,7 @@ function lattte_setup(){
 
 
   // register our main script but do not enqueue it yet
-  wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery') );
+  wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery'), NULL, microtime(), true );
   // now the most interesting part
   // we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
   // you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
