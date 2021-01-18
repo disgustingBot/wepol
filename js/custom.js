@@ -13,6 +13,7 @@ w.onload=()=>{
   // Modules setup
 	growUpController.setup()
 	obseController.setup()
+  carouselController.setup();
   startMateput();
   d.getElementById("load").style.top="-100vh";
 }
@@ -132,7 +133,7 @@ const test_API = async () =>{
   let data = await response.json();
   c.log(data);
 }
-test_API();
+// test_API();
 
 
 
