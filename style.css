@@ -58,6 +58,9 @@ Version: 1.1
 6.26) =little_cta:
 6.27) =formative:
 
+6.30) =sin_cabeza:
+6.31) =sin_container:
+
 6.56) =two_one:
 6.57) =gliter:
 
@@ -370,7 +373,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 .main hr {margin:0.5em 0}
 .main a{color: #007faa;text-decoration: none;}
-
+.main_img {margin-bottom:var(--dist)}
 
 
 
@@ -458,7 +461,10 @@ h6{font-size:.75rem;line-height:1.25rem}
   --logo_size:18px;
 
   background: white;
-  padding:0 var(--logo_size);
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  padding:0 var(--lateral);
+  grid-gap:2rem;
   left:0;
   position:sticky;
   top:0;
@@ -702,6 +708,24 @@ h6{font-size:.75rem;line-height:1.25rem}
   overflow: hidden;
   color: var(--grey5);
 }
+.simpla_share{
+  position: relative;
+  display:grid;
+  /* justify-content: center; */
+  margin:0 0 auto auto;
+  font-size: .6rem;
+  padding:.5rem;
+  z-index: 2;
+}
+.simpla_share_icon{
+  margin:auto;
+  width:25px;
+  height:25px;
+}
+.simpla_share_txt{font-size:inherit}
+.simpla_amg{
+  display:grid;
+}
 .simpla_img{
   height:calc((100vw - 16px - var(--lateral) * 2 - (var(--num_2_3) - 1) * .75rem) * .6 / var(--num_2_3));
 }
@@ -736,6 +760,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 .simpla_author,
 .simpla_foot{color: inherit;font-size:inherit}
 
+
 .simpla_foot{
   display:grid;
   justify-content: space-between;
@@ -744,14 +769,16 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .simpla_r_time{
   display:grid;
+  align-items: center;
   grid-auto-flow: column;
   grid-gap:.3rem;
   align-items: center;
 }
 .simpla_r_time svg{
+  --size:.9rem;
   /* margin:auto; */
-  width: .9rem;
-  height:.9rem;
+  width: var(--size);
+  height:var(--size);
 }
 
 /* ---------------------------------------------------------------------------
@@ -1141,6 +1168,34 @@ h6{font-size:.75rem;line-height:1.25rem}
   text-align: left;
 }
 
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.30) =sin_cabeza:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.sin_cabeza{
+  padding:1rem var(--lateral);
+}
+
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.31) =sin_container:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.sin_container{
+  display: grid;
+  padding:1rem var(--lateral);
+  grid-gap:var(--dist);
+  grid-template-columns: 2fr 1fr;
+}
+.sin_container .gliter_car{
+  margin:auto;
+  margin-top:0;
+}
+
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                           6.56) =two_one:
@@ -1163,13 +1218,22 @@ h6{font-size:.75rem;line-height:1.25rem}
   grid-gap:var(--dist);
   grid-auto-rows:min-content;
   margin-bottom:auto;
-  position:sticky;
-  top: calc(var(--logo_size) * 3 + 2rem);
+  /* position:sticky; */
+  /* top: calc(var(--logo_size) * 3 + 2rem); */
 }
 .gliter_car{
   display:grid;
   grid-gap:1rem;
 }
+
+
+
+.gliter .simpla_r_time{
+  margin:auto;
+  margin-left:0;
+}
+.gliter .simpla_r_time svg{--size:30px;}
+.gliter .simpla_r_time p{font-size:30px}
 
 
 /* ---------------------------------------------------------------------------
