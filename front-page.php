@@ -1,6 +1,42 @@
 <?php get_header(); ?>
 
 
+<?php
+$i = 0;
+$categories = get_categories( array(
+    'orderby' => 'name',
+    'order'   => 'ASC'
+) );
+?>
+<nav class="nav_categories Carousel">
+  <div class="nav_categories_container Element">
+  <?php
+  $i = 0;
+  foreach( $categories as $category ) {
+    // algoritmo:
+    // empezar abriendo un element
+    // cada iteracion chequear el resto de $i / 4,
+    if ( $i != 0 and $i % 4 == 0) {
+      // si el resto es cero, cerrar el element y abrir otro
+      echo '</div> <div class="nav_categories_container Element">';
+    }
+    ?>
+      <p class="nav_categories_item">
+        <a href="<?php echo get_term_link($category->term_id); ?>">
+          <?php echo $category->name; ?>
+        </a>
+      </p>
+    <?php
+    $i += 1;
+     ?>
+  <?php } ?>
+</div>
+<!-- <button class="prenex prenex_prev prevButton" id=""></button> -->
+<p class="menu-item prenex prenex_next nextButton" id="">Más categorías</p>
+
+</nav>
+
+
 <div class="front_head top_block">
   <h1 class="front_head_title">Artículos, información y consejos útiles para crear tus propias encuestas. Investigación de mercados por Internet. Aprende a realizar una encuesta online.</h1>
   <div class="front_head_deco"></div>
@@ -17,7 +53,7 @@ $categories = get_categories( array(
 ) );
 foreach( $categories as $category ) { ?>
   <section class="ticon top_block">
-    <h3 class="ticon_title"><?php echo $category->name; ?></h3>
+    <h5 class="ticon_title"><?php echo $category->name; ?></h5>
 
     <div class="ticon_deco"></div>
     <?php // var_dump($category); ?>

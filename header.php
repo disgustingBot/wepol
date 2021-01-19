@@ -24,27 +24,29 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
   </div>
   <div class="redDot header_activator"></div>
   <header class="header Obse" id="header" data-observe=".header_activator">
-    <a href="<?php echo site_url(); ?>" class="logo">
-      <?php include 'assets/logo_horizontal.svg' ?>
-    </a>
-    <?php
-    $args = array(
-      'theme_location' => 'nav_bar',
-      'depth' => 0,
-      'container'	=> false,
-      'fallback_cb' => false,
-      'menu_class' => 'nav_bar',
-    );
-    ?>
-    <menu class="nav_bar_menu">
-      <?php wp_nav_menu($args); ?>
-    </menu>
+    <div class="header_elements_container">
+      <a href="<?php echo site_url(); ?>" class="logo">
+        <?php include 'assets/logo_horizontal.svg' ?>
+      </a>
+      <?php
+      $args = array(
+        'theme_location' => 'nav_bar',
+        'depth' => 0,
+        'container'	=> false,
+        'fallback_cb' => false,
+        'menu_class' => 'nav_bar',
+      );
+      ?>
+      <menu class="nav_bar_menu">
+        <?php wp_nav_menu($args); ?>
+      </menu>
 
-    <button class="burger" onclick="altClassFromSelector('mobile_menu_active', '#header')">
-      <div class="burgerBar"></div>
-      <div class="burgerBar"></div>
-      <div class="burgerBar"></div>
-    </button>
+      <button class="burger" onclick="altClassFromSelector('mobile_menu_active', '#header')">
+        <div class="burgerBar"></div>
+        <div class="burgerBar"></div>
+        <div class="burgerBar"></div>
+      </button>
+    </div>
   </header>
 
 

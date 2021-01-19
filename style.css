@@ -473,6 +473,13 @@ h6{font-size:.75rem;line-height:1.25rem}
   transition:.4s;
   box-shadow:var(--DP4);
 }
+.header_elements_container {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-gap:2rem;
+  max-width: 1000px;
+  margin: auto;
+}
 .header.observed{
   --logo_size:30px;
   /* background: #2D50FA; */
@@ -541,6 +548,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   padding: var(--nav_menu_padding);
   /* padding: calc(var(--logo_size) * 3) 0 1rem 0; */
   top:0;
+  left: 0;
   transition: background .3s .3s, clip-path .4s, color .5s;
   width: var(--nav_menu_width);
   clip-path: var(--nav_menu_clip_path);
@@ -548,7 +556,8 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .nav_bar{
   align-items: center;
-  grid-gap: .5rem;
+  /* grid-gap: .5rem; */
+  /* grid-gap: 28px; */
   display:grid;
   font-size:var(--nav_bar_font_size);
   grid-auto-flow: var(--row_768_column);
@@ -575,6 +584,10 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 .nav_bar .menu-item{
   opacity:0.55;
+  font-size: 12px !important;
+  padding: 0 14px;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
 }
 .nav_bar .current-menu-item{
   opacity:1;
@@ -590,11 +603,21 @@ h6{font-size:.75rem;line-height:1.25rem}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .nav_categories{
-  display:flex;
+  display: flex;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* grid-gap: 1rem; */
   padding:1rem var(--lateral);
   box-shadow:var(--DP2);
   background:var(--brand_color_1);
   color:white;
+}
+.nav_categories_container {
+  display:flex;
+  width: 100%;
+}
+.nav_categories_container.inactive {
+  display: none;
 }
 .nav_categories_item{
   margin-right: 1rem;
@@ -870,11 +893,11 @@ h6{font-size:.75rem;line-height:1.25rem}
 .ticon_deco{
   grid-column:1/-1;
   background:var(--brand_color_1);
-  width:40%;
-  height:2px;
+  width:100%;
+  height: 1px;
 }
-.ticon:nth-child(2n) .ticon_title{color: white}
-.ticon:nth-child(2n) .ticon_deco{background: var(--brand_color_3)}
+.ticon:nth-child(2n) .ticon_title{color: white;}
+.ticon:nth-child(2n) .ticon_deco{background: white;}
 
 
 
