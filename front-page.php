@@ -16,7 +16,7 @@ $categories = get_categories( array(
     // algoritmo:
     // empezar abriendo un element
     // cada iteracion chequear el resto de $i / 4,
-    if ( $i != 0 and $i % 4 == 0) {
+    if ( $i != 0 and $i % 3 == 0) {
       // si el resto es cero, cerrar el element y abrir otro
       echo '</div> <div class="nav_categories_container rowcol1 Element">';
     }
@@ -72,6 +72,7 @@ $categories = get_categories( array(
             'image' => "https://picsum.photos/600/40$i",
             'excerpt' => False,
             'classes' => 'featured',
+            'categories' => array($category),
           );
           simpla_card($arg);
           $i+=1;
@@ -88,6 +89,7 @@ $categories = get_categories( array(
           $arg = array(
             'image' => "https://picsum.photos/600/40$i",
             'excerpt' => False,
+            'categories' => array($category),
           );
           simpla_card($arg);
           $i+=1;

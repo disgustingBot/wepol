@@ -462,7 +462,6 @@ h6{font-size:.75rem;line-height:1.25rem}
 
   background: white;
   display: grid;
-  grid-template-columns: min-content 1fr;
   padding:0 var(--lateral);
   grid-gap:2rem;
   left:0;
@@ -477,8 +476,8 @@ h6{font-size:.75rem;line-height:1.25rem}
   display: grid;
   grid-template-columns: min-content 1fr;
   grid-gap:2rem;
-  max-width: 1000px;
-  margin: auto;
+  /* max-width: 1000px; */
+  /* margin: auto; */
 }
 .header.observed{
   --logo_size:30px;
@@ -711,18 +710,20 @@ h6{font-size:.75rem;line-height:1.25rem}
 .simpla_share{
   position: relative;
   display:grid;
-  /* justify-content: center; */
-  margin:0 0 auto auto;
-  font-size: .6rem;
-  padding:.5rem;
+  padding: 2px;
   z-index: 2;
+  background: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 1rem 1rem auto auto;
 }
 .simpla_share_icon{
   margin:auto;
-  width:25px;
-  height:25px;
+  width:15px;
+  height:15px;
 }
-.simpla_share_txt{font-size:inherit}
+/* .simpla_share_txt{font-size:inherit} */
 .simpla_amg{
   display:grid;
 }
@@ -754,12 +755,14 @@ h6{font-size:.75rem;line-height:1.25rem}
   grid-auto-flow:column;
   font-size: 13px;
   justify-content: space-between;
+  grid-gap: .5rem;
 }
 .simpla_date,
 .simpla_cat,
 .simpla_author,
 .simpla_foot{color: inherit;font-size:inherit}
 
+.simpla_cat{text-align: right;}
 
 .simpla_foot{
   display:grid;
