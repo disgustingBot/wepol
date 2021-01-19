@@ -1,26 +1,6 @@
 <?php get_header(); ?>
 
-<?php
-$term = get_queried_object();
-?>
-
-
-<?php
-$i = 0;
-$categories = get_categories( array(
-    'orderby' => 'name',
-    'order'   => 'ASC'
-) );
-?>
-<nav class="nav_categories">
-  <?php foreach( $categories as $category ) { ?>
-    <p class="nav_categories_item">
-      <a href="<?php echo get_term_link($category->term_id); ?>">
-        <?php echo $category->name; ?>
-      </a>
-    </p>
-  <?php } ?>
-</nav>
+<?php $term = get_queried_object(); ?>
 
 
 <div class="front_head">
@@ -45,33 +25,28 @@ $categories = get_categories( array(
     $args = array(
       'posts_per_page' => 1,
       'post__in'       => $stickies,
-      'category__and'  => $category->term_id, //must use category id for this field
+      'category__and'  => $term->term_id, //must use category id for this field
       'ignore_sticky_posts' => 1,
     );
     $blog=new WP_Query($args);
     while($blog->have_posts()){$blog->the_post();
       $arg = array(
-        'image' => "https://picsum.photos/600/40$i",
-        'excerpt' => False,
         'classes' => 'featured',
       );
       simpla_card($arg);
-      $i+=1;
     } wp_reset_query();
 
     $args = array(
       'posts_per_page' => 10,
       'cycle' => 'blog',
+      'post__not_in'   => $stickies,
+      'category__and' => $term->term_id, //must use category id for this field
+      'ignore_sticky_posts' => 1,
     );
     $blog=new WP_Query($args);
     wp_localize_script( 'main', 'blog', array('query'=>json_encode($blog->query_vars),) );
     while($blog->have_posts()){$blog->the_post();
-      $arg = array(
-        'image' => "https://picsum.photos/600/40$i",
-        'color' => 'red',
-      );
-      simpla_card($arg);
-      $i+=1;
+      simpla_card();
     } wp_reset_query();
     echo ajax_paginator_2($blog); ?>
   </div>
@@ -81,40 +56,15 @@ $categories = get_categories( array(
 
   <aside class="gliter"  data-cycle-container="blog">
 
-        <div class="mateput">
-          <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
-          <label for="mateputNombre" class="mateputLabel">
-            <span class="mateputName">Buscar</span>
-          </label>
-        </div>
-
-    <div class="gliter_car">
-
-      <?php
-      $term = get_category_by_slug('aumentar-participacion');
-      ?>
-      <h3><?php echo $term->name; ?></h3>
-      <?php
-      $args = array(
-        'posts_per_page' => 3,
-        'category_name' => 'aumentar-participacion'
-      );
-
-      $posts = get_posts( $args );
-      foreach ( $posts as $post ){ setup_postdata( $post );
-
-        $arg = array(
-          'image' => "https://picsum.photos/600/40$i",
-          'color' => 'var(--brand_color_2)'
-        );
-        shiny_card($arg);
-        $i+=1;
-      } wp_reset_postdata(); ?>
+    <div class="mateput">
+      <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
+      <label for="mateputNombre" class="mateputLabel">
+        <span class="mateputName">Buscar</span>
+      </label>
     </div>
 
+    <?php include 'gliter_car.php'; ?>
 
-
-    <!-- <h3>y mas cosas</h3> -->
   </aside>
 
 </div>
