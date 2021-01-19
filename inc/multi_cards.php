@@ -1,25 +1,37 @@
 
 <?php function simpla_card ($args = array()) {
-    if(!isset($args['classes'] )){ $args['classes']  = False; }
-    if(!isset($args['author'] )){ $args['author']  = get_the_author(); }
-    if(!isset($args['date']   )){ $args['date']    = get_the_date(); }
-    if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
-    if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
-    if(!isset($args['image']  )){ $args['image']   = get_the_post_thumbnail_url(); }
-    if(!isset($args['r_time'] )){ $args['r_time']  = reading_time(); }
+    if(!isset($args['classes']   )){ $args['classes']     = False; }
+    if(!isset($args['author']    )){ $args['author']      = get_the_author(); }
+    if(!isset($args['date']      )){ $args['date']        = get_the_date(); }
+    if(!isset($args['title']     )){ $args['title']       = get_the_title(); }
+    if(!isset($args['link']      )){ $args['link']        = get_the_permalink(); }
+    if(!isset($args['image']     )){ $args['image']       = get_the_post_thumbnail_url(); }
+    if(!isset($args['r_time']    )){ $args['r_time']      = reading_time(); }
+    if(!isset($args['categories'])){ $args['categories']  = get_categories(); }
     ?>
 
     <article class="simpla <?php if($args['classes']){echo $args['classes'];} ?>">
         <?php if($args['image'] != false){ ?>
-            <a href="<?php echo $args['link']; ?>" class="simpla_amg">
-                <img class="simpla_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="">
-            </a>
+          <div class="simpla_share rowcol1">
+            <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <use xlink:href="#share_svg"></use>
+            </svg>
+            <p class="simpla_share_txt">Compartir</p>
+
+          </div>
+          <a href="<?php echo $args['link']; ?>" class="simpla_amg rowcol1">
+            <img class="simpla_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="">
+          </a>
         <?php } ?>
         <div class="simpla_caption">
           <?php if($args['date'] != false){ ?>
             <div class="simpla_date_cat">
               <p class="simpla_date"><?php echo $args['date']; ?></p>
-              <p class="simpla_cat"><?php echo 'categoria'; ?></p>
+              <p class="simpla_cat">
+                <?php foreach ($args['categories'] as $key => $value) { ?>
+                  <a href="<?php echo get_term_link($value->term_id); ?>"><?php _e($value->name, 'latte') ?></a>
+                <?php } ?>
+              </p>
 
             </div>
           <?php } ?>
