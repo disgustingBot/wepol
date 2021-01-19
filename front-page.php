@@ -1,24 +1,6 @@
 <?php get_header(); ?>
 
 
-<?php
-$i = 0;
-$categories = get_categories( array(
-    'orderby' => 'name',
-    'order'   => 'ASC'
-) );
-?>
-<nav class="nav_categories">
-  <?php foreach( $categories as $category ) { ?>
-    <p class="nav_categories_item">
-      <a href="<?php echo get_term_link($category->term_id); ?>">
-        <?php echo $category->name; ?>
-      </a>
-    </p>
-  <?php } ?>
-</nav>
-
-
 <div class="front_head top_block">
   <h1 class="front_head_title">Artículos, información y consejos útiles para crear tus propias encuestas. Investigación de mercados por Internet. Aprende a realizar una encuesta online.</h1>
   <div class="front_head_deco"></div>
@@ -27,7 +9,13 @@ $categories = get_categories( array(
 
 
 
-<?php foreach( $categories as $category ) { ?>
+<?php
+$i = 0;
+$categories = get_categories( array(
+    'orderby' => 'name',
+    'order'   => 'ASC'
+) );
+foreach( $categories as $category ) { ?>
   <section class="ticon top_block">
     <h3 class="ticon_title"><?php echo $category->name; ?></h3>
 
@@ -46,9 +34,8 @@ $categories = get_categories( array(
         $blog=new WP_Query($args);
         while($blog->have_posts()){$blog->the_post();
           $arg = array(
-            'image' => "https://picsum.photos/600/40$i",
-            'excerpt' => False,
             'classes' => 'featured',
+            'categories' => array($category),
           );
           simpla_card($arg);
           $i+=1;
@@ -63,8 +50,7 @@ $categories = get_categories( array(
         $blog=new WP_Query($args);
         while($blog->have_posts()){$blog->the_post();
           $arg = array(
-            'image' => "https://picsum.photos/600/40$i",
-            'excerpt' => False,
+            'categories' => array($category),
           );
           simpla_card($arg);
           $i+=1;

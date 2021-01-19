@@ -46,3 +46,22 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       <div class="burgerBar"></div>
     </button>
   </header>
+
+
+
+  <?php
+  $i = 0;
+  $categories = get_categories( array(
+      'orderby' => 'name',
+      'order'   => 'ASC'
+  ) );
+  ?>
+  <nav class="nav_categories">
+    <?php foreach( $categories as $category ) { ?>
+      <p class="nav_categories_item">
+        <a href="<?php echo get_term_link($category->term_id); ?>">
+          <?php echo $category->name; ?>
+        </a>
+      </p>
+    <?php } ?>
+  </nav>
