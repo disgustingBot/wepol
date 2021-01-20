@@ -48,3 +48,43 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       </button>
     </div>
   </header>
+
+  <?php
+  $i = 0;
+  $categories = get_categories( array(
+      'orderby' => 'name',
+      'order'   => 'ASC'
+  ) );
+  ?>
+  <nav class="nav_categories Carousel">
+    <div class="nav_categories_container rowcol1 Element">
+    <?php
+    $i = 0;
+    foreach( $categories as $category ) {
+      // algoritmo:
+      // empezar abriendo un element
+      // cada iteracion chequear el resto de $i / 4,
+      if ( $i != 0 and $i % 3 == 0) {
+        // si el resto es cero, cerrar el element y abrir otro
+        echo '</div> <div class="nav_categories_container rowcol1 Element">';
+      }
+      ?>
+        <p class="nav_categories_item">
+          <a href="<?php echo get_term_link($category->term_id); ?>">
+            <?php echo $category->name; ?>
+          </a>
+        </p>
+      <?php
+      $i += 1;
+       ?>
+    <?php } ?>
+  </div>
+  <!-- <button class="prenex prenex_prev prevButton" id=""></button> -->
+  <p class="menu-item prenex prenex_next nextButton more_btn" id="">
+    <span>Más categorías</span>
+    <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+      <use xlink:href="#arrow_right"></use>
+    </svg>
+  </p>
+
+  </nav>

@@ -738,7 +738,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .simpla_title {
   /* color: var(--grey3); */
-  font-size:1rem;
+  /* font-size:1rem; */
 }
 .conocenos_team_cards {
   padding-top: 5rem;
@@ -957,9 +957,8 @@ h6{font-size:.75rem;line-height:1.25rem}
   transform: scaleX(0);
 }
 
-.ticon:nth-child(2n) .more_btn_2::after {
-  background: white;
-}
+.ticon:nth-child(2n) .more_btn_2::after{background: white}
+.ticon:nth-child(2n) .more_btn_2{color: white}
 
 
 /* ---------------------------------------------------------------------------

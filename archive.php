@@ -6,7 +6,7 @@
 <div class="front_head">
   <h1 class="front_head_title"><?php echo $term->name; ?></h1>
   <div class="front_head_deco"></div>
-  <p class="front_head_text">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
+  <p class="front_head_subtitle">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
 </div>
 
 
