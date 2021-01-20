@@ -36,11 +36,11 @@
             </div>
           <?php } ?>
           <?php if($args['title'] != false){ ?>
-            <h4 class="simpla_title">
+            <h5 class="simpla_title">
               <a href="<?php echo $args['link']; ?>">
                 <?php echo $args['title']; ?>
               </a>
-            </h4>
+            </h5>
           <?php } ?>
           <?php if($args['author'] != false or $args['r_time'] != false){ ?>
             <div class="simpla_foot">
