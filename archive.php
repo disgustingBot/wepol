@@ -56,15 +56,18 @@
 
   <aside class="gliter"  data-cycle-container="blog">
 
-    <div class="mateput">
-      <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
-      <label for="mateputNombre" class="mateputLabel">
-        <span class="mateputName">Buscar</span>
-      </label>
-    </div>
+        <div class="mateput">
+          <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
+          <label for="mateputNombre" class="mateputLabel">
+            <span class="mateputName">Buscar</span>
+          </label>
+        </div>
 
-    <?php include 'gliter_car.php'; ?>
+        <?php include 'gliter_car.php'; ?>
 
+
+
+    <!-- <h3>y mas cosas</h3> -->
   </aside>
 
 </div>
