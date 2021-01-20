@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-
 <?php
 $i = 0;
 $categories = get_categories( array(
@@ -69,6 +68,7 @@ $categories = get_categories( array(
             'classes' => 'featured',
           );
           simpla_card($arg);
+          // var_dump(wp_get_post_categories(get_the_ID()));
           $i+=1;
         } wp_reset_query();
 

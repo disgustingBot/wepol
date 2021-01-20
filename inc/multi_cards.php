@@ -7,7 +7,9 @@
     if(!isset($args['link']      )){ $args['link']        = get_the_permalink(); }
     if(!isset($args['image']     )){ $args['image']       = get_the_post_thumbnail_url(); }
     if(!isset($args['r_time']    )){ $args['r_time']      = reading_time(); }
-    if(!isset($args['categories'])){ $args['categories']  = get_categories(); }
+    if(!isset($args['categories'])){ $args['categories']  = get_categories(array(
+      'include' => wp_get_post_categories(get_the_ID())
+      )); }
     ?>
 
     <article class="simpla <?php if($args['classes']){echo $args['classes'];} ?>">
@@ -17,6 +19,7 @@
               <use xlink:href="#share_svg"></use>
             </svg>
             <p class="simpla_share_txt">Compartir</p>
+
 
           </div>
           <a href="<?php echo $args['link']; ?>" class="simpla_amg rowcol1">
