@@ -1,28 +1,33 @@
 
   <div class="interfoot top_block">
     <div class="interfoot_element little_cta">
-      <h5 class="little_cta_title">Crea tu encuesta online ahora</h5>
-      <a href="" class="btn little_cta_link">Crear encuesta -></a>
+      <h3 class="little_cta_title">Crea tu encuesta<br>online ahora</h3>
+      <a href="" class="btn little_cta_link">
+        <span>Crear encuesta</span>
+        <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+          <use xlink:href="#arrow_right"></use>
+        </svg>
+      </a>
     </div>
     <div class="interfoot_deco"></div>
-    <div class="interfoot_element formative">
-      <h5 class="formative_title">O contacta con nuestro equipo de analistas.</h5>
-      <input class="formative_input" type="text" placeholder="Nombre*">
-      <input class="formative_input" type="text" placeholder="E-mail*">
+    <form class="interfoot_element formative">
+      <h3 class="formative_title">O contacta con nuestro equipo de analistas.</h3>
+      <input class="formative_input" type="text" placeholder="Nombre*" required>
+      <input class="formative_input" type="text" placeholder="E-mail*" required>
       <input class="formative_input" type="text" placeholder="Área">
-      <textarea class="formative_input formative_textarea" name="" placeholder="Comentarios" cols="30" rows="10"></textarea>
+      <textarea class="formative_input formative_textarea" name="" placeholder="Comentarios"></textarea>
       <div class="formative_foot">
-        <label class="formative_check" for="termcond">
-          <input type="checkbox" name="termcond" value="">
-          <p>Acepto <a href="">Términos y condiciones</a> de la web</p>
-        </label>
-        <label class="formative_check" for="termcond">
-          <input type="checkbox" name="termcond" value="">
-          <p>Acepto la <a href="">Política de Privacidad</a></p>
-        </label>
-        <button class="btn">Enviar</button>
+        <div class="formative_check" for="termcond">
+          <input id="acceptance_terms" type="checkbox" name="termcond" value="" required>
+          <label for="acceptance_terms">Acepto <a href="">Términos y condiciones</a> de la web</label>
+        </div>
+        <div class="formative_check" for="termcond">
+          <input id="acceptance_privacy" type="checkbox" name="termcond" value="" required>
+          <label for="acceptance_privacy">Acepto la <a href="">Política de Privacidad</a></label>
+        </div>
+        <input type="submit" class="btn" value="Enviar">
       </div>
-    </div>
+    </form>
   </div>
 
   <footer class="footer" id="footer">
