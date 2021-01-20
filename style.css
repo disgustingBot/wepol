@@ -935,6 +935,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   margin: auto 0 auto auto;
   position: relative;
   font-size: 18px;
+  color: var(--brand_color_1);
 }
 .more_btn_2 svg {
   height: 12px;
@@ -943,7 +944,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 .more_btn_2::after {
   content: ' ';
   width: 100%;
-  height: 2px;
+  height: 1px;
   background: var(--brand_color_1);
   position: absolute;
   bottom: -2px;
