@@ -7,9 +7,7 @@
     if(!isset($args['link']      )){ $args['link']        = get_the_permalink(); }
     if(!isset($args['image']     )){ $args['image']       = get_the_post_thumbnail_url(); }
     if(!isset($args['r_time']    )){ $args['r_time']      = reading_time(); }
-    if(!isset($args['categories'])){ $args['categories']  = get_categories(array(
-      'include' => wp_get_post_categories(get_the_ID())
-      )); }
+    if(!isset($args['categories'])){ $args['categories']  = get_categories(array('include' => wp_get_post_categories(get_the_ID()))); }
     ?>
 
     <article class="simpla <?php if($args['classes']){echo $args['classes'];} ?>">

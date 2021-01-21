@@ -37,7 +37,7 @@ $categories = get_categories( array(
             'image' => "https://picsum.photos/600/40$i",
             'excerpt' => False,
             'classes' => 'featured',
-            'categories' => array($category),
+            // 'categories' => array($category),
           );
           simpla_card($arg);
           // var_dump(wp_get_post_categories(get_the_ID()));
@@ -55,7 +55,7 @@ $categories = get_categories( array(
           $arg = array(
             'image' => "https://picsum.photos/600/40$i",
             'excerpt' => False,
-            'categories' => array($category),
+            // 'categories' => array($category),
           );
           simpla_card($arg);
           $i+=1;
