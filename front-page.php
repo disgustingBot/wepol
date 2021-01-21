@@ -9,11 +9,11 @@ $categories = get_categories( array(
 ?>
 
 <hgroup class="front_head top_block">
+  <?php echo standard_svg('logo_squared', 'logo_bg'); ?>
   <h1 class="front_head_title">Artículos, información y consejos útiles para crear tus propias encuestas.</h1>
   <div class="front_head_deco"></div>
-  <h2 class="front_head_subtitle">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit.</h2>
+  <h2 class="front_head_subtitle">Blog de encuesta.com, herramienta para crear encuestas online.</h2>
 </hgroup>
-
 
 
 <?php foreach( $categories as $category ) { ?>
@@ -21,7 +21,6 @@ $categories = get_categories( array(
     <h4 class="ticon_title"><?php echo $category->name; ?></h4>
 
     <div class="ticon_deco"></div>
-    <?php // var_dump($category); ?>
 
     <div class="showcase3">
         <?php

@@ -79,12 +79,9 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
        ?>
     <?php } ?>
   </div>
-  <!-- <button class="prenex prenex_prev prevButton" id=""></button> -->
-  <p class="menu-item prenex prenex_next nextButton more_btn" id="">
+  <p class="menu-item prenex prenex_next nextButton more_btn">
     <span>Más categorías</span>
-    <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
-      <use xlink:href="#arrow_right"></use>
-    </svg>
+    <?php echo standard_svg('arrow_right', 'more_btn_svg'); ?>
   </p>
 
   </nav>
