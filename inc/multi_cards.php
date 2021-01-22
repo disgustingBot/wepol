@@ -12,7 +12,7 @@
 
     <article class="simpla <?php if($args['classes']){echo $args['classes'];} ?>">
         <?php if($args['image'] != false){ ?>
-          <div class="simpla_share rowcol1" onclick="altClassFromSelector('visible', '#social_sharing_container')">
+          <div class="simpla_share rowcol1" onclick="altClassFromSelector('visible', '.post-<?php echo get_the_ID(); ?> .social_sharing_container')">
             <?php include 'social_sharing.php'; ?>
             <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
               <use xlink:href="#share_svg"></use>
