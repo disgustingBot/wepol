@@ -9,7 +9,7 @@ $categories = get_categories( array(
 ?>
 
 <hgroup class="front_head top_block">
-  <?php echo standard_svg('logo_squared', 'logo_bg'); ?>
+  <?php // echo standard_svg('logo_squared', 'logo_bg'); ?>
   <h1 class="front_head_title">Artículos, información y consejos útiles para crear tus propias encuestas.</h1>
   <div class="front_head_deco"></div>
   <h2 class="front_head_subtitle">Blog de encuesta.com, herramienta para crear encuestas online.</h2>
