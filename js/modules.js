@@ -195,28 +195,27 @@ class Obse {
 		// TODO: quitar la propiedad "values" y reemplazar por nueva implementacion
 		this.j = 1;
 		this.id = element.id;
-		this.observe = d.querySelector(element.dataset.observe);
+		this.observe = [...d.querySelectorAll(element.dataset.observe)];
 		this.unobserve = element.dataset.unobserve;
+		if(element.dataset.detectionSize){
+			this.root_size = element.dataset.detectionSize
+		} else {
+			this.root_size = "0px 0px 0px 0px"
+		}
 		// console.log(this.observe);
 		// console.log(this.unobserve);
 
-		this.options = { root: null, threshold: 1, rootMargin: "0px 0px 0px 0px" };
+		this.options = { root: null, threshold: 1, rootMargin: this.root_size };
 		this.observer = new IntersectionObserver(function(entries, observer){
 			entries.forEach(entry => {
-				// const x = d.querySelector('#'+this.id);
+				// console.log(entry.target)
+				let clase = entry.target.dataset.clase ? entry.target.dataset.clase : 'observed';
+
 				if(entry.isIntersecting){
-					// if(!reverse){
-					element.classList.add('observed')
-					// } else {
-						// x.classList.remove('observed')
-						// }
+					element.classList.add(clase)
 					if(this.unobserve=='true'){observer.unobserve(entry.target)}
 				} else {
-				// if(!reverse){
-					element.classList.remove('observed')
-					// } else {
-						// x.classList.add('observed')
-						// }
+					element.classList.remove(clase)
 				}
 			})
 		}, this.options);
@@ -227,9 +226,9 @@ class Obse {
 
 	activate(){
 		// console.log()
-		// d.querySelectorAll(observado).forEach(e => {
-			this.observer.observe(this.observe);
-		// })
+		this.observe.forEach(element => {
+			this.observer.observe(element);
+		})
 	}
 }
 
