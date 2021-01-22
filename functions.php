@@ -32,7 +32,7 @@ add_action('wp_enqueue_scripts', 'lattte_setup');
 // Adding Theme Support
 
 function gp_init() {
-  // add_theme_support('post-thumbnails');
+  add_theme_support('post-thumbnails');
   add_theme_support('title-tag');
   add_theme_support('html5',
     array('comment-list', 'comment-form', 'search-form')

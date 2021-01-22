@@ -14,17 +14,22 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class('Obse'); ?> data-observe=".header_activator">
 
+  <?php
+  $categories = get_categories( array(
+      'orderby' => 'name',
+      'order'   => 'ASC'
+  ) );
+  ?>
 	<view id="load" class="load">
 			<div class="circle"></div>
 	</view>
   <div class="all_icons" style="display:none">
     <?php include 'assets/all_icons.php' ?>
   </div>
-  <div class="redDot header_activator"></div>
-  <header class="header Obse" id="header" data-observe=".header_activator">
-    <div class="header_elements_container">
+  <div class="redDot header_activator" data-clase="header_big"></div>
+  <header class="header" id="header">
       <a href="<?php echo site_url(); ?>" class="logo">
         <?php include 'assets/logo_horizontal.svg' ?>
       </a>
@@ -39,6 +44,16 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       ?>
       <menu class="nav_bar_menu">
         <?php wp_nav_menu($args); ?>
+        <nav class="nav_bar_cat onlyMobileG">
+
+        <?php foreach( $categories as $category ) { ?>
+          <p class="nav_categories_item">
+            <a href="<?php echo get_term_link($category->term_id); ?>">
+              <?php echo $category->name; ?>
+            </a>
+          </p>
+        <?php } ?>
+        </nav>
       </menu>
 
       <button class="burger" onclick="altClassFromSelector('mobile_menu_active', '#header')">
@@ -46,17 +61,9 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
         <div class="burgerBar"></div>
         <div class="burgerBar"></div>
       </button>
-    </div>
   </header>
 
-  <?php
-  $i = 0;
-  $categories = get_categories( array(
-      'orderby' => 'name',
-      'order'   => 'ASC'
-  ) );
-  ?>
-  <nav class="nav_categories Carousel">
+  <nav class="nav_categories Carousel onlyDesktopG">
     <div class="nav_categories_container rowcol1 Element">
     <?php
     $i = 0;

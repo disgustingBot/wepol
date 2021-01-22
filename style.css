@@ -78,7 +78,7 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 
-:root {
+body {
   font-size: var(--sizeR);
   /* ---------------------------------------------------------------------------
   ------------------------------------------------------------------------------
@@ -90,6 +90,7 @@ FIN DE MAPA DE CONTENIDOS */
 
   --lateral:30px;
   --dist:40px;
+  --scrollbar_width:4px;
 
   /* COLORS */
   /* Al editar colores siempre usar HEX y nunca
@@ -159,19 +160,19 @@ FIN DE MAPA DE CONTENIDOS */
   --onlyMobileG:grid;
 
   --absolute_768_static:absolute;
-  --row_768_column:row;
+  --row_992_column:row;
   /* ?HEADER */
+  --logo_size:18px;
 
   /* ?nav_bar */
 
 
-  --nav_menu_clip_path:circle(20px at calc(100vw - 16px - 1.5rem) calc(15px + .5rem + 10px));
+  --nav_menu_clip_path:circle(20px at calc(100vw - var(--scrollbar_width) - var(--lateral) - 15px) calc((var(--logo_size) * 3 - 20px) / 2 + 10px));
   --nav_menu_clip_path_open:circle(calc(100vmax * 1.42) at calc(100vw - 16px - 2rem) calc(2rem));
   --nav_menu_height:100vh;
   --nav_menu_width: 100%;
   --nav_bar_font_size:.8rem;
 
-  --logo_size:18px;
   --nav_menu_padding: calc(var(--logo_size) * 3) 0 1rem 0;
 
   /* ?simpla */
@@ -192,6 +193,15 @@ FIN DE MAPA DE CONTENIDOS */
   /* ?FOOTER */
   --footer_info_GTC:1fr;
 }
+
+body.header_big {
+  --logo_size: 30px;
+}
+@media (hover: none) {
+   body{
+     --scrollbar_width:0px;
+   }
+}
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
                             2) =MEDIA QUERIES:
@@ -205,7 +215,7 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 @media screen and (min-width: 360px) {
-  :root {
+  body {
   /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - 400px) / (1024 - 400))); */
   --sizeR: calc(calc(var(--sizeRa) * 1px) + (var(--sizeRb) - var(--sizeRa)) * ((100vw - 360px) / (768 - 360)));
 
@@ -220,7 +230,7 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 @media screen and (min-width: 576px) {
-  :root {
+  body {
     /* ?HEADER */
     /* ?FOOTER */
   }
@@ -239,30 +249,16 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 @media screen and (min-width: 768px) {
-  :root {
+  body {
     --sizeR: calc(calc(var(--sizeRc) * 1px) + (var(--sizeRd) - var(--sizeRc)) * ((100vw - 768px) / (1200 - 768)));
-    --lateral:4rem;
-    --onlyDesktopG:grid;
-    --onlyDesktopF:flex;
-    --onlyMobileF:none;
-    --onlyMobileG:none;
+    /* --lateral:calc((100vw - 16px - 768px) / 2); */
+    --lateral:3rem;
+
 
     --grid_2_3:1fr 1fr 1fr;
     --num_2_3:3;
-    --absolute_768_static:static;
-    --row_768_column:column;
 
     /* ?HEADER */
-
-    /* ?nav_bar */
-
-
-    --nav_menu_clip_path:unset;
-    --nav_menu_clip_path_open:unset;
-    --nav_menu_height:unset;
-    --nav_menu_width: unset;
-    --nav_bar_font_size:.8rem;
-    --nav_menu_padding: 0;
 
     /* ?simpla */
     --simpla_featured_GC:2 / span 2;
@@ -293,9 +289,27 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 @media screen and (min-width: 992px) {
-  :root {
-    --lateral:9rem;
+  body {
+    /* --lateral:4rem; */
+    --lateral:calc((100vw - 16px - 768px) / 2);
+    --onlyDesktopG:grid;
+    --onlyDesktopF:flex;
+    --onlyMobileF:none;
+    --onlyMobileG:none;
+    --absolute_768_static:static;
+    --row_992_column:column;
     /* ?HEADER */
+
+
+    /* ?nav_bar */
+    --nav_menu_clip_path:unset;
+    --nav_menu_clip_path_open:unset;
+    --nav_menu_height:unset;
+    --nav_menu_width: unset;
+    --nav_bar_font_size:.8rem;
+    --nav_menu_padding: 0;
+
+
     /* ?FOOTER */
   }
 
@@ -315,7 +329,7 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
-  :root {
+  body {
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
@@ -344,6 +358,19 @@ FIN DE MAPA DE CONTENIDOS */
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 *{box-sizing:border-box;margin:0;padding:0}
+*::-webkit-scrollbar-track{
+	border-radius:calc(var(--scrollbar_width) / 2);
+	background-color: transparent;
+}
+*::-webkit-scrollbar{
+	width: var(--scrollbar_width);
+  position:relative;
+  background-color: transparent;
+}
+*::-webkit-scrollbar-thumb{
+	border-radius:calc(var(--scrollbar_width) / 2);
+	background-color:var(--brand_color_1);
+}
 body{display:grid;font-family: 'Montserrat', sans-serif;}
 img{object-fit:cover;width:100%;display:block}
 a{text-decoration:none;color:inherit;}
@@ -373,6 +400,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 .main hr {margin:0.5em 0}
 .main a{color: #007faa;text-decoration: none;}
+.main img {object-fit: contain;}
 .main_img {margin-bottom:var(--dist)}
 
 
@@ -457,8 +485,9 @@ h6{font-size:.75rem;line-height:1.25rem}
                             6.1) =header:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+body{}
 .header {
-  --logo_size:18px;
+
 
   background: white;
   display: grid;
@@ -471,22 +500,14 @@ h6{font-size:.75rem;line-height:1.25rem}
   z-index: 10;
   transition:.4s;
   box-shadow:var(--DP4);
-}
-.header_elements_container {
-  display: grid;
   grid-template-columns: min-content 1fr;
-  grid-gap:2rem;
+}
+/* .header_elements_container { */
+  /* display: grid; */
+  /* grid-gap:2rem; */
   /* max-width: 1000px; */
   /* margin: auto; */
-}
-.header.observed{
-  --logo_size:30px;
-  /* background: #2D50FA; */
-}
-/* .header.observed .logo_svg  {color:white;}
-.header.observed .nav_bar   {color:white;}
-.header.observed .menu-item {opacity:1;}
-.header.observed .logo_special_part{opacity:1;} */
+/* } */
 
 .logo{
   /* display: grid; */
@@ -517,24 +538,6 @@ h6{font-size:.75rem;line-height:1.25rem}
                           6.2.0) =nav_bar:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
-/* .nav_bar_menu{
-  display:grid;
-}
-.nav_bar{
-  align-items: center;
-  color:#333;
-  display:grid;
-  font-size: .7rem;
-  font-weight: 700;
-  grid-auto-flow: column;
-  grid-gap:.5rem;
-  justify-content: space-between;
-  margin:auto;
-  margin-right: 0;
-  text-transform: uppercase;
-} */
-
-
 
 .nav_bar_menu {
   background:white;
@@ -548,18 +551,18 @@ h6{font-size:.75rem;line-height:1.25rem}
   /* padding: calc(var(--logo_size) * 3) 0 1rem 0; */
   top:0;
   left: 0;
-  transition: background .3s .3s, clip-path .4s, color .5s;
+  transition: background .3s .3s, clip-path .4s, color .5s, padding .3s;
   width: var(--nav_menu_width);
   clip-path: var(--nav_menu_clip_path);
   z-index:1;
 }
 .nav_bar{
   align-items: center;
-  /* grid-gap: .5rem; */
+  grid-gap: .5rem;
   /* grid-gap: 28px; */
   display:grid;
   font-size:var(--nav_bar_font_size);
-  grid-auto-flow: var(--row_768_column);
+  grid-auto-flow: var(--row_992_column);
   grid-auto-columns: max-content;
   justify-content: center;
   text-shadow:inherit;
@@ -568,13 +571,22 @@ h6{font-size:.75rem;line-height:1.25rem}
   width:100%;
 }
 .mobile_menu_active .nav_bar_menu {
+  background:var(--brand_color_1);
+  color:white;
 
+  transition: background .5s 0s, clip-path .5s, color .5s, padding .3s;
   clip-path: var(--nav_menu_clip_path_open);
 }
 
+.mobile_menu_active .logo_svg  {color:white;}
+.mobile_menu_active .nav_bar   {color:white;}
+.mobile_menu_active .menu-item {opacity:1;}
+.mobile_menu_active .logo_special_part{opacity:1;}
+.mobile_menu_active .burgerBar{background:white;}
 
-
-
+.nav_bar_cat{
+  margin:auto;
+}
 
 
 
@@ -584,7 +596,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 .nav_bar .menu-item{
   opacity:0.55;
   font-size: 12px !important;
-  padding: 0 14px;
+  /* padding: 0 14px; */
   font-weight: 600 !important;
   letter-spacing: 2px !important;
 }
@@ -602,12 +614,14 @@ h6{font-size:.75rem;line-height:1.25rem}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .nav_categories{
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr max-content;
   padding:1rem var(--lateral);
   box-shadow:var(--DP2);
   background:var(--brand_color_1);
   color:white;
+  position: relative;
+  z-index:1;
 }
 .nav_categories_container {
   display:flex;
@@ -1069,6 +1083,36 @@ h6{font-size:.75rem;line-height:1.25rem}
                           6.24) =front_head:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
+.logo_bg{
+  position:fixed;
+  z-index:-1;
+  /* margin:calc(var(--logo_size) * 3) var(--lateral) 1rem  var(--lateral); */
+  left:1rem;
+  top:calc(var(--logo_size) * 3 + 2rem);
+  transform:translateX(0);
+  width:5rem;
+  max-height:calc(100vh - var(--logo_size) * 3);
+  margin:auto;
+  opacity:.17;
+  transition:.7s;
+
+
+
+
+  /* transform:translateX(-50%);
+  top:calc(var(--logo_size) * 3);
+  left:50%;
+  width:calc(100% - 16px - var(--lateral) * 2); */
+
+}
+.logo_bg.observed{
+  /* background: red; */
+  transform:translateX(-50%);
+  top:calc(var(--logo_size) * 3);
+  left:50%;
+  width:calc(100% - 16px - var(--lateral) * 2);
+}
+
 .front_head{
   display:grid;
   text-align: center;
@@ -1107,6 +1151,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .interfoot_element{
   border-radius: 4px;
+  background: white;
   box-shadow: var(--DP2);
 }
 
@@ -1305,6 +1350,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   grid-gap:2rem;
   min-height: 300px;
   padding: 80px var(--lateral) 1rem var(--lateral);
+  z-index: 1;
 }
 .footer_logo{
   width:100px;
