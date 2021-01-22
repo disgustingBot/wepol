@@ -4,9 +4,9 @@
 <!-- colocar aqui el bloque del encabezado -->
 <!-- <h1>single.php</h1> -->
 
-<div class="sin_cabeza">
+<div class="sin_cabeza top_block">
   <h1 class="sin_cabeza_title"><?php the_title(); ?></h1>
-  <p class="sin_cabeza_date">30 de Diciembre de 2020</p>
+  <p class="sin_cabeza_date"><?php echo get_the_date(); ?></p>
 </div>
 
 <div class="sin_container">
@@ -18,15 +18,22 @@
     </section>
 
     <aside class="gliter"  data-cycle-container="blog">
+      <?php
+
+      $categories = get_categories(array('include' => wp_get_post_categories(get_the_ID())));
+      ?>
+      <?php foreach ($categories as $category) {
+        echo '<h6 class="single_category"><a href="' .  get_term_link($category) . '">' . $category->name . '</a></h6>';
+      } ?>
 
 
       <div class="simpla_r_time">
-        <p><?php echo reading_time(); ?>’</p>
+        <p><span class="simpla_r_time_txt">Tiempo de lectura:</span> <?php echo reading_time(); ?>’</p>
         <?php include get_template_directory() . '/assets/clock.svg' ?>
       </div>
 
       <?php the_excerpt(); ?>
-      <p class="simpla_author">Por -<?php the_author(); ?>-</p>
+      <p class="post_author"><i>Por <?php the_author(); ?></i></p>
 
       <div class="mateput">
         <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>

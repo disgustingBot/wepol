@@ -35,7 +35,6 @@ Version: 1.1
 6.2.0) =nav_bar:
 6.2.1) =nav_categories:
 
-
 6.3) =SHOWCASES:
 6.3.2) =showcase2:
 6.3.3) =showcase3:
@@ -67,6 +66,9 @@ Version: 1.1
 6.60) =pagination:
 
 6.69) =redDot:
+
+6.70) =social_sharing:
+
 6.99) =footer
 
 FIN DE MAPA DE CONTENIDOS */
@@ -89,8 +91,10 @@ body {
   que hacer facilmente diferentes versiones de la pagina */
 
   --lateral:30px;
-  --dist:40px;
+
+  --dist:30px;
   --scrollbar_width:4px;
+
 
   /* COLORS */
   /* Al editar colores siempre usar HEX y nunca
@@ -99,9 +103,10 @@ body {
   --color2:#FFF;
   --color3:red;
 
-  --brand_color_1:#000F41;
-  --brand_color_2:#2D50FA;
-  --brand_color_3:#FF009B;
+  --brand_color_1:    #000F41;
+  --brand_color_2:    #2D50FA;
+  --brand_color_2_20: #D5DCFE;
+  --brand_color_3:    #FF009B;
 
   /* --color4:#EBE1C8; */
   /* --color5:#F5F0DC; */
@@ -720,6 +725,7 @@ body{}
   border-radius:6px;
   overflow: hidden;
   color: var(--grey5);
+  position: relative;
 }
 .simpla_share{
   position: relative;
@@ -731,7 +737,16 @@ body{}
   width: 30px;
   height: 30px;
   margin: 1rem 1rem auto auto;
+  cursor: pointer;
+  transition: .25s;
+  background: white;
+  color: var(--brand_color_1);
 }
+.simpla_share:hover{
+  background: var(--brand_color_1);
+  color: white;
+}
+
 .simpla_share_icon{
   margin:auto;
   width:15px;
@@ -790,9 +805,12 @@ body{}
   grid-auto-flow: column;
   grid-gap:.3rem;
   align-items: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: bold;
 }
 .simpla_r_time svg{
-  --size:.9rem;
+  --size: 1.125rem;
   /* margin:auto; */
   width: var(--size);
   height:var(--size);
@@ -1118,7 +1136,7 @@ body{}
   text-align: center;
   padding:var(--dist) var(--lateral);
   grid-gap:var(--dist);
-  min-height: 70vh;
+  grid-auto-rows: min-content;
 }
 .front_head_title{
   font-weight: bolder;
@@ -1127,7 +1145,7 @@ body{}
   width:50%;
   height:2px;
   background: var(--brand_color_2);
-  margin:auto;
+  margin:0 auto;
 }
 
 
@@ -1224,7 +1242,10 @@ body{}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .sin_cabeza{
-  padding:1rem var(--lateral);
+  padding: var(--dist) var(--lateral);
+  display: grid;
+  grid-gap: var(--dist);
+  font-weight: bold;
 }
 
 
@@ -1236,13 +1257,19 @@ body{}
 --------------------------------------------------------------------------- */
 .sin_container{
   display: grid;
-  padding:1rem var(--lateral);
+  padding: 0 var(--lateral) var(--dist) var(--lateral);
   grid-gap:var(--dist);
   grid-template-columns: 2fr 1fr;
 }
 .sin_container .gliter_car{
   margin:auto;
   margin-top:0;
+}
+.gliter .single_category{
+  padding: calc(var(--dist) / 2);
+  background: var(--brand_color_2_20);
+  width: max-content;
+  border-radius: 20px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1264,7 +1291,7 @@ body{}
 --------------------------------------------------------------------------- */
 .gliter{
   display:grid;
-  grid-gap:var(--dist);
+  grid-gap: calc(var(--dist) * 2 / 3);
   grid-auto-rows:min-content;
   margin-bottom:auto;
   /* position:sticky; */
@@ -1281,8 +1308,8 @@ body{}
   margin:auto;
   margin-left:0;
 }
-.gliter .simpla_r_time svg{--size:30px;}
-.gliter .simpla_r_time p{font-size:30px}
+/* .gliter .simpla_r_time svg{--size:30px;} */
+/* .gliter .simpla_r_time p{font-size:30px} */
 
 
 /* ---------------------------------------------------------------------------
@@ -1307,6 +1334,7 @@ body{}
   transition:.3s;
   padding:.3rem .5rem;
   border-radius:4px;
+  
 }
 .paginationCurrent{padding:.3rem .5rem}
 
@@ -1333,6 +1361,57 @@ body{}
   z-index:12;
 }
 .redDot.test{background:red}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.70) =social_sharing:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+
+.social_sharing_container{
+  position: absolute;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+  padding: calc(var(--dist) / 2);
+  background: white;
+  top: -50%;
+  left: -215px;
+  box-shadow: var(--DP1);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  cursor: default;
+  transition: .25s;
+  transform: translateX(10%);
+}
+.social_sharing_container.visible {
+  pointer-events: unset;
+  opacity: 1;
+  transform: translateX(0);
+}
+.social_sharing_svg{
+  --size: 25px;
+  width: var(--size);
+  height: var(--size);
+  display: block;
+}
+.dialogue_pointer{
+  --size: 25px;
+  --width: calc(var(--size) / 1.41);
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  width: var(--width);
+  height: var(--size);
+  position: absolute;
+  top: 50%;
+  background: inherit;
+  right: calc(var(--width) * -1 + 1px);
+  transform: translateY(-50%);
+}
+
+
+
+
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
