@@ -9,15 +9,25 @@ $categories = get_categories( array(
 ?>
 
 <hgroup class="front_head top_block">
-  <?php echo standard_svg('logo_squared', 'logo_bg'); ?>
+  <?php // echo standard_svg('logo_squared', 'logo_bg'); ?>
+
+  <svg class="logo_bg Obse" data-observe=".logo_bg_activator" data-unobserve="false" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+    <use xlink:href="#logo_squared"></use>
+  </svg>
+  <div class="redDot logo_bg_activator"></div>
   <h1 class="front_head_title">Artículos, información y consejos útiles para crear tus propias encuestas.</h1>
   <div class="front_head_deco"></div>
   <h2 class="front_head_subtitle">Blog de encuesta.com, herramienta para crear encuestas online.</h2>
 </hgroup>
 
-
+<?php
+$index = 0;
+ ?>
 <?php foreach( $categories as $category ) { ?>
   <section class="ticon top_block">
+    <?php if ($index % 2 == 1){ ?>
+      <!-- <div class="redDot test logo_bg_activator" data-detection-size="-150px 0px -150px 0px" data-clase="blue"></div> -->
+    <?php } ?>
     <h4 class="ticon_title"><?php echo $category->name; ?></h4>
 
     <div class="ticon_deco"></div>
@@ -69,6 +79,7 @@ $categories = get_categories( array(
         </svg>
       </a>
   </section>
+  <?php $index+=1; ?>
 <?php } ?>
 
 
