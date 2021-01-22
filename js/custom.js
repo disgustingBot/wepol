@@ -47,29 +47,32 @@ alternates a class from a selector of choice, for example:
 <div class="someButton" onclick="altClassFromSelector('activ', '#navBar')"></div>
 */
 const altClassFromSelector = ( clase, selector, dont_remove = false )=>{
-  const x = d.querySelector(selector);
-  // if there is a main class removes all other classes
-  if(dont_remove){
-    x.classList.forEach( item =>{
-      if( dont_remove.findIndex( element => element == item) == -1 && item!=clase ){
-        x.classList.remove(item);
-      }
-    });
-  }
+  const elementos = [...d.querySelectorAll(selector)];
+  elementos.forEach(elemento => {
+    // const x = d.querySelector(selector);
+    // if there is a main class removes all other classes
+    if(dont_remove){
+      elemento.classList.forEach( item =>{
+        if( dont_remove.findIndex( element => element == item) == -1 && item!=clase ){
+          elemento.classList.remove(item);
+        }
+      });
+    }
 
-  if(x.classList.contains(clase)){
-		if(dont_remove){
-			if( dont_remove.findIndex( element => element == clase) == -1 ){
-				x.classList.remove(clase)
-			}
-		} else {
-			x.classList.remove(clase)
-		}
-  }else{
-		if(clase){
-			x.classList.add(clase)
-		}
-  }
+    if(elemento.classList.contains(clase)){
+      if(dont_remove){
+        if( dont_remove.findIndex( element => element == clase) == -1 ){
+          elemento.classList.remove(clase)
+        }
+      } else {
+        elemento.classList.remove(clase)
+      }
+    }else{
+      if(clase){
+        elemento.classList.add(clase)
+      }
+    }
+  })
 }
 
 
