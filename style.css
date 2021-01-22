@@ -1334,7 +1334,7 @@ body{}
   transition:.3s;
   padding:.3rem .5rem;
   border-radius:4px;
-  
+
 }
 .paginationCurrent{padding:.3rem .5rem}
 
@@ -1376,19 +1376,21 @@ body{}
   padding: calc(var(--dist) / 2);
   background: white;
   top: -50%;
-  left: -215px;
+  /* left: -215px; */
+  left:0;
   box-shadow: var(--DP1);
   border-radius: 4px;
   pointer-events: none;
   opacity: 0;
   cursor: default;
   transition: .25s;
-  transform: translateX(10%);
+  transform: translateX(-50%);
+  z-index: -1;
 }
 .social_sharing_container.visible {
   pointer-events: unset;
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(calc(-100% - 18px));
 }
 .social_sharing_svg{
   --size: 25px;

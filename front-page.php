@@ -48,7 +48,7 @@ $index = 0;
           $arg = array(
             'image' => "https://picsum.photos/600/40$i",
             'excerpt' => False,
-            'classes' => 'featured',
+            'classes' => 'featured post-'.get_the_ID(),
             // 'categories' => array($category),
           );
           simpla_card($arg);
@@ -67,6 +67,7 @@ $index = 0;
           $arg = array(
             'image' => "https://picsum.photos/600/40$i",
             'excerpt' => False,
+            'classes' => "post-".get_the_ID(),
             // 'categories' => array($category),
           );
           simpla_card($arg);
