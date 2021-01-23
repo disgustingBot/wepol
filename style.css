@@ -296,7 +296,7 @@ body.header_big {
 @media screen and (min-width: 992px) {
   body {
     /* --lateral:4rem; */
-    --lateral:calc((100vw - 16px - 768px) / 2);
+    --lateral:calc((100vw - var(--scrollbar_width) - 768px) / 2);
     --onlyDesktopG:grid;
     --onlyDesktopF:flex;
     --onlyMobileF:none;
@@ -335,6 +335,7 @@ body.header_big {
 --------------------------------------------------------------------------- */
 @media  screen and (min-width: 1200px) {
   body {
+    --lateral:calc((100vw - var(--scrollbar_width) - 992px) / 2);
     --sizeR: calc(var(--sizeRd) * 1px);
 
     /* ?HEADER */
@@ -563,7 +564,7 @@ body{}
 }
 .nav_bar{
   align-items: center;
-  grid-gap: .5rem;
+  grid-gap: 1rem;
   /* grid-gap: 28px; */
   display:grid;
   font-size:var(--nav_bar_font_size);
@@ -1334,7 +1335,7 @@ body{}
   transition:.3s;
   padding:.3rem .5rem;
   border-radius:4px;
-  
+
 }
 .paginationCurrent{padding:.3rem .5rem}
 
