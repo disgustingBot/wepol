@@ -32,7 +32,7 @@
         <?php include get_template_directory() . '/assets/clock.svg' ?>
       </div>
 
-      <?php the_excerpt(); ?>
+      <p class="post_excerpt"><?php the_excerpt(); ?></p>
       <p class="post_author"><i>Por <?php the_author(); ?></i></p>
 
       <div class="mateput">
