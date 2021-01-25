@@ -14,7 +14,7 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
-<body <?php body_class('Obse'); ?> data-observe=".header_activator">
+<body <?php body_class('Obse'); ?> data-observe=".body_activator" data-obse-area="0px 0px -50% 0px">
 
   <?php
   $categories = get_categories( array(
@@ -28,11 +28,16 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
   <div class="all_icons" style="display:none">
     <?php include 'assets/all_icons.php' ?>
   </div>
-  <div class="redDot header_activator" data-clase="header_big"></div>
-  <header class="header" id="header">
-      <a href="<?php echo site_url(); ?>" class="logo">
+  <!-- <div class="redDot body_activator" data-clase="header_big"></div> -->
+  <!-- <div class="redDot body_activator" data-clase="header_deployed"></div> -->
+  <header class="header Obse" id="header" data-observe=".header_activator">
+      <a class="logo" href="<?php echo site_url(); ?>">
         <?php include 'assets/logo_horizontal.svg' ?>
       </a>
+      <?php
+      // esto es el por qué hay que poner ; al final de la linea
+      // si queres convinar las siguientes etiquetas de php dará error
+      ?>
       <?php
       $args = array(
         'theme_location' => 'nav_bar',
