@@ -15,7 +15,6 @@ $categories = get_categories( array(
 <div class="front_head top_block">
   <?php // echo standard_svg('logo_squared', 'logo_bg'); ?>
 
-  <?php include 'assets/logo_squared_bg_white.svg' ?>
   <div class="redDot logo_bg_activator"></div>
 
   <!-- <svg class="logo_bg Obse" data-observe=".logo_bg_activator" data-unobserve="false" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 300 280">
@@ -34,6 +33,7 @@ $categories = get_categories( array(
       </svg>
     </a>
   </div>
+  <?php include 'assets/logo_squared_bg_white.svg' ?>
 
 </div>
 

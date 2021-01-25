@@ -182,8 +182,13 @@ body {
 
   --nav_menu_padding: calc(var(--logo_size) * 3) 0 1rem 0;
 
+  /* ?front_head */
+  --front_head_GTC:1fr;
+  --fron_head_height: calc(100vh - var(--logo_size) * 3);
+
   /* ?simpla */
   --simpla_featured_GC:span 2;
+  --simpla_date_cat_GAF:row;
 
   /* ?ticon */
 
@@ -270,8 +275,15 @@ body {
 
     /* ?HEADER */
 
+
+    /* ?front_head */
+    --front_head_GTC:2fr 1fr;
+
+
     /* ?simpla */
     --simpla_featured_GC:2 / span 2;
+    --simpla_date_cat_GAF:column;
+
 
     /* ?ticon */
 
@@ -318,6 +330,10 @@ body {
     --nav_menu_width: unset;
     --nav_bar_font_size:.8rem;
     --nav_menu_padding: 0;
+
+
+      /* ?front_head */
+      --fron_head_height: calc(100vh - var(--logo_size) * 7);
 
 
     /* ?FOOTER */
@@ -572,8 +588,8 @@ h6{font-size:.75rem;line-height:1.25rem}
 --------------------------------------------------------------------------- */
 .logo_bg{
   /* position:relative; */
-  grid-row:1;
-  grid-column: 2;
+  /* grid-row:1; */
+  /* grid-column: 2; */
   margin: auto;
   /* margin-left: 0; */
   z-index:1;
@@ -809,6 +825,8 @@ h6{font-size:.75rem;line-height:1.25rem}
   overflow: hidden;
   color: var(--grey5);
   position: relative;
+  --simpla_aspect_ratio:calc(3/4);
+  --simpla_width:calc((100vw - var(--scrollbar_width) - var(--lateral) * 2 - (var(--num_2_3) - 1) * 1.5rem) / var(--num_2_3));
 }
 .simpla_share{
   position: relative;
@@ -840,7 +858,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   display:grid;
 }
 .simpla_img{
-  height:calc((100vw - 16px - var(--lateral) * 2 - (var(--num_2_3) - 1) * .75rem) * .6 / var(--num_2_3));
+  height:calc(var(--simpla_aspect_ratio) * var(--simpla_width));
 }
 .simpla_caption{
   grid-template-rows:min-content 1fr min-content;
@@ -864,7 +882,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .simpla_date_cat{
   display:grid;
-  grid-auto-flow:column;
+  grid-auto-flow:var(--simpla_date_cat_GAF);
   font-size: 13px;
   justify-content: space-between;
   grid-gap: .5rem;
@@ -1200,12 +1218,13 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 .front_head{
   /* background: red; */
-  grid-column:1;
-  grid-row: 1;
+  /* grid-column:1; */
+  /* grid-row: 1; */
   /* width:66%; */
-  height:calc(100vh - var(--logo_size) * 7);
+  /* height:calc(100vh - var(--logo_size) * 7); */
+  min-height:var(--fron_head_height);
   display:grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns:var(--front_head_GTC);
   /* margin:auto; */
   /* margin-right: 0; */
   /* text-align: right; */
@@ -1218,6 +1237,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .container_al_pedo{
   display: grid;
+  grid-gap:1.5rem;
 }
 .front_head_title{
   font-weight: bolder;
