@@ -18,6 +18,22 @@ w.onload=()=>{
   d.getElementById("load").style.top="-100vh";
 }
 
+window.CSS.registerProperty({
+  name: '--logo_size',
+  syntax: ' <length>',
+  inherits: false,
+  initialValue: 'black',
+});
+
+
+
+
+
+
+
+
+
+
 
 async function ajax2(formData, url = lt_data.ajaxurl) {
 	try{

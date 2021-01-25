@@ -8,6 +8,7 @@ include 'facebook.svg';
 include 'email.svg';
 include 'twitter.svg';
 include 'whatsapp.svg';
+include 'logo_squared_bg_white.svg';
 
 
  ?>

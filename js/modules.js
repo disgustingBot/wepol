@@ -97,14 +97,14 @@ class GrowUp {
 
 	init(){
 		this.observer = new MutationObserver( (mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes') {
-                            if (mutation.target.className.includes('observed')) {
-                                console.log(mutation.target.className)
-                                this.grow();
-                            }
-                }
-            });
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes') {
+          if (mutation.target.className.includes('observed')) {
+              console.log(mutation.target.className)
+              this.grow();
+          }
+        }
+      });
 		});
 		this.observer.observe(this.element, this.config);
 	}
@@ -197,15 +197,12 @@ class Obse {
 		this.id = element.id;
 		this.observe = [...d.querySelectorAll(element.dataset.observe)];
 		this.unobserve = element.dataset.unobserve;
-		if(element.dataset.detectionSize){
-			this.root_size = element.dataset.detectionSize
-		} else {
-			this.root_size = "0px 0px 0px 0px"
-		}
-		// console.log(this.observe);
-		// console.log(this.unobserve);
+		this.root_size = element.dataset.obseArea ? element.dataset.obseArea : "0px 0px 0px 0px";
 
-		this.options = { root: null, threshold: 1, rootMargin: this.root_size };
+		// console.log('data for: ', element);
+		// console.log(element.dataset, this.root_size);
+
+		this.options = { root: null, threshold: 0.0001, rootMargin: this.root_size };
 		this.observer = new IntersectionObserver(function(entries, observer){
 			entries.forEach(entry => {
 				// console.log(entry.target)
