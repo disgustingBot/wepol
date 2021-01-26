@@ -9,7 +9,7 @@
   <p class="sin_cabeza_date"><?php echo get_the_date(); ?></p>
 </div>
 
-<div class="sin_container">
+<div class="two_one">
 
   <?php while(have_posts()){the_post(); ?>
     <section class="main">
@@ -17,14 +17,16 @@
       <?php the_content(); ?>
     </section>
 
-    <aside class="gliter"  data-cycle-container="blog">
+    <aside class="gliter">
       <?php
-
       $categories = get_categories(array('include' => wp_get_post_categories(get_the_ID())));
-      ?>
-      <?php foreach ($categories as $category) {
-        echo '<h6 class="single_category"><a href="' .  get_term_link($category) . '">' . $category->name . '</a></h6>';
-      } ?>
+      foreach ($categories as $category) { ?>
+        <h6 class="single_category">
+          <a href="<?php echo get_term_link($category); ?>">
+            <?php echo $category->name; ?>
+          </a>
+        </h6>
+      <?php } ?>
 
 
       <div class="simpla_r_time">
@@ -32,15 +34,8 @@
         <?php include get_template_directory() . '/assets/clock.svg' ?>
       </div>
 
-      <p class="post_excerpt"><?php the_excerpt(); ?></p>
+      <div class="post_excerpt"><?php the_excerpt(); ?></div>
       <p class="post_author"><i>Por <?php the_author(); ?></i></p>
-
-      <div class="mateput">
-        <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
-        <label for="mateputNombre" class="mateputLabel">
-          <span class="mateputName">Buscar</span>
-        </label>
-      </div>
 
       <?php include 'gliter_car.php'; ?>
 

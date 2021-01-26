@@ -257,6 +257,8 @@ function lt_pagination_2() {
 		// run the loop
 		while($my_query->have_posts()){$my_query->the_post();
 			// usar la tarjeta apropiada
+			// TODO: escape and sanitize the input from user
+			// this is totally not safe php
 			call_user_func($card);
 
 		}

@@ -20,9 +20,15 @@ w.onload=()=>{
 
 window.CSS.registerProperty({
   name: '--logo_size',
-  syntax: ' <length>',
+  syntax: '<length>',
   inherits: false,
-  initialValue: 'black',
+  initialValue: '20px',
+});
+window.CSS.registerProperty({
+  name: '--brand_color_1',
+  syntax: '<color>',
+  inherits: false,
+  initialValue: '#000F41',
 });
 
 

@@ -14,17 +14,10 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
-<body <?php body_class('Obse'); ?> data-observe=".body_activator" data-obse-area="0px 0px -50% 0px">
+<body <?php body_class('Obse'); ?> data-observe=".body_activator" data-obse-area="-49% 0px -50% 0px">
 
-  <?php
-  $categories = get_categories( array(
-      'orderby' => 'name',
-      'order'   => 'ASC'
-  ) );
-  ?>
-	<view id="load" class="load">
-			<div class="circle"></div>
-	</view>
+	<view id="load" class="load"></view>
+
   <div class="all_icons" style="display:none">
     <?php include 'assets/all_icons.php' ?>
   </div>
@@ -34,24 +27,24 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       <a class="logo" href="<?php echo site_url(); ?>">
         <?php include 'assets/logo_horizontal.svg' ?>
       </a>
-      <?php
-      // esto es el por qué hay que poner ; al final de la linea
-      // si queres convinar las siguientes etiquetas de php dará error
-      ?>
-      <?php
-      $args = array(
-        'theme_location' => 'nav_bar',
-        'depth' => 0,
-        'container'	=> false,
-        'fallback_cb' => false,
-        'menu_class' => 'nav_bar',
-      );
-      ?>
       <menu class="nav_bar_menu">
-        <?php wp_nav_menu($args); ?>
+        <?php
+        $args = array(
+          'theme_location' => 'nav_bar',
+          'depth' => 0,
+          'container'	=> false,
+          'fallback_cb' => false,
+          'menu_class' => 'nav_bar',
+        );
+        wp_nav_menu($args); ?>
         <nav class="nav_bar_cat onlyMobileG">
 
-        <?php foreach( $categories as $category ) { ?>
+        <?php
+        $categories = get_categories( array(
+            'orderby' => 'name',
+            'order'   => 'ASC'
+        ));
+        foreach( $categories as $category ) { ?>
           <p class="nav_categories_item">
             <a href="<?php echo get_term_link($category->term_id); ?>">
               <?php echo $category->name; ?>
