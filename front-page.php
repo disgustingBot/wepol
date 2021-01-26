@@ -59,7 +59,7 @@ $index = 0;
         $blog=new WP_Query($args);
         while($blog->have_posts()){$blog->the_post();
           $arg = array(
-            'image' => "https://picsum.photos/600/40$i",
+            // 'image' => "https://picsum.photos/600/40$i",
             'excerpt' => False,
             'classes' => 'featured post-'.get_the_ID(),
             // 'categories' => array($category),
@@ -78,7 +78,7 @@ $index = 0;
         $blog=new WP_Query($args);
         while($blog->have_posts()){$blog->the_post();
           $arg = array(
-            'image' => "https://picsum.photos/600/40$i",
+            // 'image' => "https://picsum.photos/600/40$i",
             // 'excerpt' => False,
             'classes' => "post-".get_the_ID(),
             // 'categories' => array($category),

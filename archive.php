@@ -41,11 +41,11 @@
     $blog=new WP_Query($args);
     while($blog->have_posts()){$blog->the_post();
       $arg = array(
-        'image' => "https://picsum.photos/600/40$i",
+        // 'image' => "https://picsum.photos/600/40$i",
         'classes' => 'featured post-'.get_the_ID(),
       );
       simpla_card($arg);
-      $i+=1;
+      // $i+=1;
     } wp_reset_query();
 
     $args = array(
@@ -59,11 +59,11 @@
     wp_localize_script( 'main', 'blog', array('query'=>json_encode($blog->query_vars),) );
     while($blog->have_posts()){$blog->the_post();
       $arg = array(
-        'image' => "https://picsum.photos/600/40$i",
+        // 'image' => "https://picsum.photos/600/40$i",
         'classes' => "post-".get_the_ID(),
       );
       simpla_card($arg);
-      $i+=1;
+      // $i+=1;
     } wp_reset_query();
     echo ajax_paginator_2($blog); ?>
   </div>
