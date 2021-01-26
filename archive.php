@@ -4,14 +4,24 @@
 
 
 <div class="front_head">
-  <h1 class="front_head_title"><?php echo $term->name; ?></h1>
-  <div class="front_head_deco"></div>
-  <p class="front_head_subtitle">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
+  <div class="container_al_pedo">
+    <h1 class="front_head_title"><?php echo $term->name; ?></h1>
+    <div class="front_head_deco"></div>
+    <p class="front_head_subtitle">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
+  </div>
+  <?php include 'assets/logo_squared_bg_white.svg' ?>
 </div>
 
 
 
 <div class="two_one">
+
+  <div class="mateput"  data-cycle-container="blog">
+    <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
+    <label for="mateputNombre" class="mateputLabel">
+      <span class="mateputName">Buscar</span>
+    </label>
+  </div>
   <!-- para hacer un cyclo paginable filtrable y/o buscable -->
   <!-- el cyclo debe estar contenido en una etiqueta que SOLO contenga el cyclo -->
   <!-- colocar en esa etiqueta data-card y data-cycle -->
@@ -63,16 +73,7 @@
 
   <aside class="gliter"  data-cycle-container="blog">
 
-        <div class="mateput">
-          <input class="mateputInput Searcher" id="mateputNombre" type="text" name="nombre" autocomplete="off" required>
-          <label for="mateputNombre" class="mateputLabel">
-            <span class="mateputName">Buscar</span>
-          </label>
-        </div>
-
-        <?php include 'gliter_car.php'; ?>
-
-
+    <?php include 'gliter_car.php'; ?>
 
     <!-- <h3>y mas cosas</h3> -->
   </aside>
