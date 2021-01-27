@@ -1121,6 +1121,9 @@ h6{font-size:.75rem;line-height:1.25rem}
   grid-template-rows:repeat(4, min.content);
   transition:.5s;
 }
+.ticon:nth-child(2) {
+  padding-top: 0;
+}
 .ticon_title{
   color: var(--brand_color_1);
 }
