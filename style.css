@@ -45,6 +45,8 @@ Version: 1.1
 6.4.0) =simpla:
 6.4.1) =shiny:
 
+6.5) =telector:
+
 6.6) =BUTTONS:
 6.6.0) =btn:
 6.6.1) =burger:
@@ -54,7 +56,7 @@ Version: 1.1
 6.12) =ticon:
 
 6.23) =mateput:
-6.24) =front_head:
+6.24) =fead:
 6.25) =interfoot:
 6.26) =little_cta:
 6.27) =formative:
@@ -186,9 +188,9 @@ body {
 
   --nav_menu_padding: calc(var(--logo_size) * 3) 0 1rem 0;
 
-  /* ?front_head */
-  --front_head_GTC:1fr;
-  --fron_head_height: calc(100vh - var(--logo_size) * 3);
+  /* ?fead */
+  --fead_GTC:1fr;
+  --fead_height: calc(100vh - var(--logo_size) * 3);
 
   /* ?simpla */
   --simpla_featured_GC:span 2;
@@ -287,8 +289,8 @@ body {
     /* ?HEADER */
 
 
-    /* ?front_head */
-    --front_head_GTC:1fr 1fr;
+    /* ?fead */
+    --fead_GTC:1fr 1fr;
 
 
     /* ?simpla */
@@ -350,8 +352,8 @@ body {
     --nav_menu_padding: 0;
 
 
-      /* ?front_head */
-      --fron_head_height: calc(100vh - var(--logo_size) * 7);
+      /* ?fead */
+      --fead_height: calc(100vh - var(--logo_size) * 7);
 
 
     /* ?FOOTER */
@@ -617,6 +619,8 @@ h6{font-size:.75rem;line-height:1.25rem}
 .logo_bg{
   /* position: absolute; */
   align-self:center;
+  grid-column: 2;
+  grid-row:1;
   transform:translateX(0);
   --size:calc((100vw - var(--scrollbar_width)) / 6);
   margin:var(--size);
@@ -628,15 +632,15 @@ h6{font-size:.75rem;line-height:1.25rem}
   /* width:calc(50vw - var(--scrollbar_width) - var(--lateral) * 2); */
   z-index:1;
 }
-.dark_theme .logo_bg{
+/* .dark_theme .logo_bg{
   color:white;
-}
+} */
 .observed.logo_bg{
 }
-.dark_theme .logo_alt_color{opacity:1}
+/* .dark_theme .logo_alt_color{opacity:1}
 .logo_alt_color{
   opacity:0;
-}
+} */
 
 
 /* ---------------------------------------------------------------------------
@@ -970,6 +974,35 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
+                          6.5) =telector:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.telector{
+  position:absolute;
+  top:0;
+  right:var(--lateral);
+  /* right:calc(var(--lateral) + 3rem); */
+  z-index: 8;
+}
+.telector_icon{
+  --size:40px;
+  background: white;
+  color:var(--brand_color_1);
+  padding:10px;
+  border:1px solid var(--grey8);
+  border-top:none;
+  border-radius: 0 0 50% 50%;
+  height:var(--size);
+  width: var(--size);
+}
+.telector_icon.moon{
+  background: var(--brand_color_1);
+  color:white;
+}
+
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
                           6.6) =BUTTONS:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
@@ -1219,53 +1252,63 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
-                          6.24) =front_head:
+                          6.24) =fead:
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .front_main{
   display:grid;
+  position: relative;
   /* grid-template-columns: 1fr  */
   /* grid-template-rows:repeat(4, min-content); */
 }
 
-.front_head{
+.fead{
+
+  --fead_clip_path:circle(20px at calc(100vw - var(--scrollbar_width) - var(--lateral) - 20px) calc(20px));
+  --fead_clip_path_open:circle(calc(100vmax * 1.42) at calc(100vw - 16px - 2rem) calc(2rem));
+
+  grid-column:1;
+  grid-row:1;
   padding: 0;
   /* background: red; */
-  /* grid-column:1; */
   position: relative;
-  /* grid-row: 1; */
-  /* width:66%; */
-  /* height:calc(100vh - var(--logo_size) * 7); */
-  min-height:var(--fron_head_height);
+  min-height:var(--fead_height);
   display:grid;
-  grid-template-columns:var(--front_head_GTC);
-  /* margin:auto; */
-  /* margin-right: 0; */
-  /* text-align: right; */
-  /* padding:var(--dist) var(--lateral); */
-  /* padding-left:var(--lateral); */
-  /* grid-gap:var(--dist); */
-  /* grid-template-rows:1fr min-content 1fr; */
+  grid-template-columns:var(--fead_GTC);
   grid-auto-rows: min-content;
   align-content: center;
+  z-index: 0;
 }
-.container_al_pedo{
+.fead:nth-child(3){
+  z-index: 1;
+  background: var(--brand_color_1);
+  color:white;
+  clip-path:var(--fead_clip_path);
+  opacity:0;
+  transition: opacity .1s 1s, clip-path 1s;
+}
+.dark_theme .fead:nth-child(3){
+  clip-path:var(--fead_clip_path_open);
+  opacity:1;
+  transition: opacity .1s, clip-path 1s .1s;
+}
+.fead_caption{
   display: grid;
   margin: auto;
   grid-gap: 1.5rem;
   margin-left: var(--lateral);
 }
-.front_head_title{
+.fead_title{
   font-weight: bolder;
 }
-.front_head_deco{
+.fead_deco{
   width:50%;
   height:2px;
   background: var(--brand_color_2);
   margin:0 auto;
   margin-left:0;
 }
-.front_head .front_head_btn{
+.fead .fead_btn{
   /* margin:0 auto; */
   margin-left:0;
 }
