@@ -458,15 +458,16 @@ h4{font-size:1.125rem;line-height:1.75rem}
 h5{font-size:.875rem;line-height:1.5rem}
 h6{font-size:.75rem;line-height:1.25rem}
 
-.main h1 {margin:24px 0}
-.main h2,
+.main h2 {margin-top:2rem}
 .main h3,
-.main h4,
-.main h5, {margin:32px 0}
+.main h4 {margin-top:1.75rem}
+.main h5 {margin-top:1.5rem}
+.main h6 {margin-top:1.25rem}
+
 .main p {margin: 16px 0;}
 .main p, ul, ol {font-size: 16px;line-height: 1.78}
 
-.main ul, ol {padding-left: 40px}
+.main ul, ol {padding-left: 40px; margin: 16px 0;}
 .main ol {list-style-type: decimal; }
 .main ul {list-style-type: circle;}
 .main li {margin-bottom: 12px}
@@ -476,7 +477,14 @@ h6{font-size:.75rem;line-height:1.25rem}
 .main img {object-fit: contain;}
 .main_img {margin-bottom:var(--dist)}
 
+.main blockquote {
+  border-left: 4px solid var(--brand_color_1);
+  padding-left: 16px;
+}
 
+.main iframe {
+  width: 100%;
+}
 
 
 
