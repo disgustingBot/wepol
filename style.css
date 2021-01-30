@@ -155,6 +155,7 @@ body {
   /* !PREGUNTA: cual es el tamaño minimo de letra? */
 
   --grid_1_2_3:1fr;
+  --grid_1_2:1fr;
   --num_1_2_3:1;
 
   --sizeR: calc(var(--sizeRa) * 1px);
@@ -179,7 +180,7 @@ body {
   --logo_size:20px;
 
   /* ?nav_bar */
-  --nav_bar_menu_GTC:1fr 2fr;
+  --nav_bar_menu_GTC:1fr 1fr;
   --nav_menu_clip_path:circle(20px at calc(100vw - var(--scrollbar_width) - var(--lateral) - 15px) calc((var(--logo_size) * 3 - 20px) / 2 + 10px));
   --nav_menu_clip_path_open:circle(calc(100vmax * 1.42) at calc(100vw - 16px - 2rem) calc(2rem));
   --nav_menu_height:100vh;
@@ -192,7 +193,7 @@ body {
   --fead_GTC:1fr;
   --fead_height: calc(100vh - var(--logo_size) * 3);
   --feed_caption_margin_right:var(--lateral);
-  --logo_bg_size:calc(100vw / 3);
+  --logo_bg_size:calc((100vw - var(--scrollbar_width)) / 3);
   --logo_bg_margin:var(--logo_bg_size);
   --logo_bg_GC:1;
 
@@ -219,6 +220,7 @@ body {
 
   /* ?FOOTER */
   --footer_info_GTC:1fr;
+  --footer_GTC:1fr;
 
 
   transition: --logo_size 1s;
@@ -262,9 +264,11 @@ body {
 @media screen and (min-width: 576px) {
   body {
     --grid_1_2_3:1fr 1fr;
+    --grid_1_2:1fr 1fr;
     --num_1_2_3:2;
     /* ?HEADER */
     /* ?FOOTER */
+    --footer_info_GTC:1fr 1fr 1fr;
   }
 
   h1{font-size:3rem;line-height:3.5rem}
@@ -327,7 +331,7 @@ body {
     --formative_width:60%;
 
     /* ?FOOTER */
-    --footer_info_GTC:1fr 1fr 1fr;
+    --footer_GTC:min-content 1fr;
   }
 
   p, ul, ol {font-size: 18px;line-height: 1.5;}
@@ -661,6 +665,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   background:white;
   clip-path: var(--nav_menu_clip_path);
   display: grid;
+  grid-gap:.5rem;
   grid-template-columns:var(--nav_bar_menu_GTC);
   height: var(--nav_menu_height);
   left: 0;
@@ -703,6 +708,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 .nav_bar_cat{
   margin:auto;
+  grid-gap:.5rem;
 }
 
 
@@ -788,10 +794,11 @@ width: auto;
 --------------------------------------------------------------------------- */
 .showcase2{
   /* grid-column:1/-1; */
+  place-content: flex-start;
   display:grid;
   grid-gap:1.5rem;
   /* grid-template-columns:var(--grid_1_2_3); */
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:var(--grid_1_2);
   grid-auto-flow: dense;
   /* margin:var(--lateral); */
 }
@@ -1019,9 +1026,12 @@ width: auto;
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .telector{
-  position:absolute;
+  position:sticky;
+  height:0;
+  margin:auto;
+  margin-right:var(--lateral);
   top:0;
-  right:var(--lateral);
+  top: calc(var(--logo_size) * 3);
   /* right:calc(var(--lateral) + 3rem); */
   z-index: 8;
 }
@@ -1320,7 +1330,7 @@ width: auto;
   align-content: center;
   z-index: 0;
 }
-.fead:nth-child(3){
+.fead:nth-child(2){
   z-index: 1;
   background: var(--brand_color_1);
   color:white;
@@ -1328,7 +1338,7 @@ width: auto;
   opacity:0;
   transition: opacity .1s 1s, clip-path 1s;
 }
-.dark_theme .fead:nth-child(3){
+.dark_theme .fead:nth-child(2){
   clip-path:var(--fead_clip_path_open);
   opacity:1;
   transition: opacity .1s, clip-path 1s .1s;
@@ -1510,7 +1520,7 @@ width: auto;
 --------------------------------------------------------------------------- */
 .gliter{
   display:grid;
-  grid-gap: calc(var(--dist) * 2 / 3);
+  grid-gap: calc(var(--dist) * 1.5);
   grid-auto-rows:min-content;
   margin-bottom:auto;
   /* position:sticky; */
@@ -1659,7 +1669,7 @@ width: auto;
   background-size: cover;
   color:white;
   display:grid;
-  grid-template-columns:min-content 1fr;
+  grid-template-columns:var(--footer_GTC);
   grid-gap:2rem;
   min-height: 300px;
   padding: 80px var(--lateral) 1rem var(--lateral);
@@ -1675,14 +1685,19 @@ width: auto;
   grid-gap:1rem;
   padding:1rem 0;
   text-transform:uppercase;
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 .footer_subtitle{
   opacity: 0.7;
 }
 .footer_nav .menu-item{
   margin:.7rem 0;
-  font-size:.7rem;
+  font-size:16px;
+  line-height:22px;
+}
+.footer_txt{
+  font-size:  inherit!important;
+  line-height:inherit!important;
 }
 .footer_tel{
   display:grid;

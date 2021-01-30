@@ -80,14 +80,14 @@
     ?>
 
     <div class="shiny">
-        <?php if($args['image'] != false){ ?>
-            <a class="shiny_amg" href="<?php echo $args['link']; ?>">
-              <?php if($args['color'] != false){ ?>
-                <div class="shiny_deco" style="background:<?php echo $args['color']; ?>"></div>
-              <?php } ?>
-              <img class="shiny_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="">
-            </a>
-        <?php } ?>
+        <a class="shiny_amg" href="<?php echo $args['link']; ?>">
+          <?php if($args['color'] != false){ ?>
+            <div class="shiny_deco" style="background:<?php echo $args['color']; ?>"></div>
+          <?php } ?>
+          <?php if($args['image'] != false){ ?>
+            <img class="shiny_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="">
+          <?php } ?>
+        </a>
         <?php if($args['title'] != false){ ?>
           <h6 class="shiny_title">
             <a href="<?php echo $args['link']; ?>">

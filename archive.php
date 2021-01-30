@@ -2,15 +2,53 @@
 
 <?php $term = get_queried_object(); ?>
 
+<main class="front_main">
 
-<div class="front_head">
-  <div class="container_al_pedo">
-    <h1 class="front_head_title"><?php echo $term->name; ?></h1>
-    <div class="front_head_deco"></div>
-    <p class="front_head_subtitle">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
+
+<div class="fead">
+  <div class="fead_caption">
+    <h1 class="fead_title"><?php echo $term->name; ?></h1>
+    <div class="fead_deco"></div>
+    <p class="fead_subtitle">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
+
+    <a class="fead_btn btn little_cta_link" href="">
+      <span>Crear encuesta</span>
+      <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+        <use xlink:href="#arrow_right"></use>
+      </svg>
+    </a>
   </div>
-  <?php include 'assets/logo_squared_bg_white.svg' ?>
+  <?php include 'assets/logo_squared_bg_color.svg'; ?>
 </div>
+
+<div class="fead">
+  <div class="fead_caption">
+    <h1 class="fead_title"><?php echo $term->name; ?></h1>
+    <div class="fead_deco"></div>
+    <p class="fead_subtitle">Descripción corta que sea coherente con el meta description de la web, consectetur adipiscing elit. Nulla luctus urna vel massa tristique commodo. Curabitur ut sagittis mi.</p>
+
+    <a class="fead_btn btn little_cta_link" href="">
+      <span>Crear encuesta</span>
+      <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+        <use xlink:href="#arrow_right"></use>
+      </svg>
+    </a>
+  </div>
+  <?php include 'assets/logo_squared_bg_white.svg'; ?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -32,6 +70,8 @@
     <?php
 
     $stickies = get_option( 'sticky_posts' );
+    $featured_id = 0;
+    // var_dump($stickies);
     $args = array(
       'posts_per_page' => 1,
       'post__in'       => $stickies,
@@ -39,19 +79,21 @@
       'ignore_sticky_posts' => 1,
     );
     $blog=new WP_Query($args);
-    while($blog->have_posts()){$blog->the_post();
-      $arg = array(
-        // 'image' => "https://picsum.photos/600/40$i",
-        'classes' => 'featured post-'.get_the_ID(),
-      );
-      simpla_card($arg);
-      // $i+=1;
-    } wp_reset_query();
+    if($blog->have_posts()){
+
+      while($blog->have_posts()){$blog->the_post();
+      $featured_id = get_the_ID();
+        $arg = array(
+          'classes' => 'featured post-'.get_the_ID(),
+        );
+        simpla_card($arg);
+      } wp_reset_query();
+    }
 
     $args = array(
       'posts_per_page' => 10,
       'cycle' => 'blog',
-      'post__not_in'   => $stickies,
+      'post__not_in'   => array($featured_id),
       'category__and' => $term->term_id, //must use category id for this field
       'ignore_sticky_posts' => 1,
     );
@@ -82,6 +124,7 @@
 
 
 
+</main>
 
 
 
