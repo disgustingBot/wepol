@@ -44,6 +44,7 @@ Version: 1.1
 6.4) =multiCards:
 6.4.0) =simpla:
 6.4.1) =shiny:
+6.4.2) =banin:
 
 6.5) =telector:
 
@@ -153,8 +154,8 @@ body {
   --sizeRa:16;--sizeRb:18;--sizeRc:18;--sizeRd:20;
   /* !PREGUNTA: cual es el tamaño minimo de letra? */
 
-  --grid_2_3:1fr 1fr;
-  --num_2_3:2;
+  --grid_1_2_3:1fr;
+  --num_1_2_3:1;
 
   --sizeR: calc(var(--sizeRa) * 1px);
 
@@ -178,23 +179,26 @@ body {
   --logo_size:20px;
 
   /* ?nav_bar */
-
-
+  --nav_bar_menu_GTC:1fr 2fr;
   --nav_menu_clip_path:circle(20px at calc(100vw - var(--scrollbar_width) - var(--lateral) - 15px) calc((var(--logo_size) * 3 - 20px) / 2 + 10px));
   --nav_menu_clip_path_open:circle(calc(100vmax * 1.42) at calc(100vw - 16px - 2rem) calc(2rem));
   --nav_menu_height:100vh;
   --nav_menu_width: 100%;
   --nav_bar_font_size:.8rem;
 
-  --nav_menu_padding: calc(var(--logo_size) * 3) 0 1rem 0;
+  --nav_menu_padding: calc(var(--logo_size) * 3) var(--lateral) 1rem var(--lateral);
 
   /* ?fead */
   --fead_GTC:1fr;
   --fead_height: calc(100vh - var(--logo_size) * 3);
+  --feed_caption_margin_right:var(--lateral);
+  --logo_bg_size:calc(100vw / 3);
+  --logo_bg_margin:var(--logo_bg_size);
+  --logo_bg_GC:1;
 
   /* ?simpla */
-  --simpla_featured_GC:span 2;
-  --simpla_date_cat_GAF:row;
+  --simpla_featured_GC:unset;
+  --simpla_date_cat_GTC:1fr;
 
   /* ?ticon */
 
@@ -257,6 +261,8 @@ body {
 --------------------------------------------------------------------------- */
 @media screen and (min-width: 576px) {
   body {
+    --grid_1_2_3:1fr 1fr;
+    --num_1_2_3:2;
     /* ?HEADER */
     /* ?FOOTER */
   }
@@ -283,25 +289,30 @@ body {
     --only_under_768_G:none;
 
 
-    --grid_2_3:1fr 1fr 1fr;
-    --num_2_3:3;
+    --grid_1_2_3:1fr 1fr 1fr;
+    --num_1_2_3:3;
 
     /* ?HEADER */
 
 
     /* ?fead */
     --fead_GTC:1fr 1fr;
+    --feed_caption_margin_right:0;
+    --logo_bg_size:calc((100vw - var(--scrollbar_width)) / 6);
+    --logo_bg_margin:auto;
+    --logo_bg_GC:2;
+
 
 
     /* ?simpla */
     --simpla_featured_GC:2 / span 2;
-    --simpla_date_cat_GAF:column;
+    --simpla_date_cat_GTC:min-content 1fr;
 
 
     /* ?ticon */
 
     /* ?two_one */
-    --two_one_GTC:2fr 1fr;
+    --two_one_GTC:2.5fr 1fr;
     --two_one_search_column:2;
     --two_one_gliter_row:1;
 
@@ -344,6 +355,7 @@ body {
 
 
     /* ?nav_bar */
+    --nav_bar_menu_GTC:1fr;
     --nav_menu_clip_path:unset;
     --nav_menu_clip_path_open:unset;
     --nav_menu_height:unset;
@@ -617,30 +629,20 @@ h6{font-size:.75rem;line-height:1.25rem}
 ------------------------------------------------------------------------------
 --------------------------------------------------------------------------- */
 .logo_bg{
-  /* position: absolute; */
   align-self:center;
-  grid-column: 2;
+  grid-column:var(--logo_bg_GC);
   grid-row:1;
   transform:translateX(0);
-  --size:calc((100vw - var(--scrollbar_width)) / 6);
-  margin:var(--size);
+  /* --size:calc((100vw - var(--scrollbar_width)) / 6); */
+  --size:var(--logo_bg_size);
+  /* margin:var(--size); */
+  margin:var(--logo_bg_margin);
   width: var(--size);
-  /* top: var(--size); */
-  /* right: calc(var(--size) / 3); */
   height:auto;
+  max-height: calc((100vh - var(--logo_size) * 7) / 3);
   transition:1s;
-  /* width:calc(50vw - var(--scrollbar_width) - var(--lateral) * 2); */
   z-index:1;
 }
-/* .dark_theme .logo_bg{
-  color:white;
-} */
-.observed.logo_bg{
-}
-/* .dark_theme .logo_alt_color{opacity:1}
-.logo_alt_color{
-  opacity:0;
-} */
 
 
 /* ---------------------------------------------------------------------------
@@ -657,19 +659,18 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 .nav_bar_menu {
   background:white;
+  clip-path: var(--nav_menu_clip_path);
   display: grid;
+  grid-template-columns:var(--nav_bar_menu_GTC);
   height: var(--nav_menu_height);
+  left: 0;
   margin: auto;
   margin-right:0;
-  position: var(--absolute_768_static);
-
   padding: var(--nav_menu_padding);
-  /* padding: calc(var(--logo_size) * 3) 0 1rem 0; */
+  position: var(--absolute_768_static);
   top:0;
-  left: 0;
   transition: background .3s .3s, clip-path .4s, color .5s, padding .3s;
   width: var(--nav_menu_width);
-  clip-path: var(--nav_menu_clip_path);
   z-index:1;
 }
 .nav_bar{
@@ -680,10 +681,10 @@ h6{font-size:.75rem;line-height:1.25rem}
   font-size:var(--nav_bar_font_size);
   grid-auto-flow: var(--row_992_column);
   grid-auto-columns: max-content;
-  justify-content: center;
+  /* justify-content: center; */
   text-shadow:inherit;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   width:100%;
 }
 .mobile_menu_active .nav_bar_menu {
@@ -705,14 +706,11 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 
 
-
-
-
-
 .nav_bar .menu-item{
   opacity:0.55;
   font-size: 12px !important;
   /* padding: 0 14px; */
+width: auto;
   font-weight: 600 !important;
   letter-spacing: 2px !important;
 }
@@ -738,10 +736,13 @@ h6{font-size:.75rem;line-height:1.25rem}
   background:var(--brand_color_1);
   color:white;
   position: relative;
-  z-index:1;
+  z-index:2;
 }
 .nav_categories_container {
-  display:flex;
+  display:grid;
+  grid-auto-flow: column;
+  grid-gap:28px;
+  align-items:center;
   width: 100%;
   justify-content: left;
   opacity: 1;
@@ -753,7 +754,8 @@ h6{font-size:.75rem;line-height:1.25rem}
   z-index: 0;
 }
 .nav_categories_item{
-  margin: auto 14px;
+  /* margin: auto 14px; */
+  line-height: normal;
   font-size: 16px;
   position: relative;
 }
@@ -788,7 +790,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   /* grid-column:1/-1; */
   display:grid;
   grid-gap:1.5rem;
-  /* grid-template-columns:var(--grid_2_3); */
+  /* grid-template-columns:var(--grid_1_2_3); */
   grid-template-columns:1fr 1fr;
   grid-auto-flow: dense;
   /* margin:var(--lateral); */
@@ -803,7 +805,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   grid-column:1/-1;
   display:grid;
   grid-gap:1.5rem;
-  grid-template-columns:var(--grid_2_3);
+  grid-template-columns:var(--grid_1_2_3);
   grid-auto-flow: dense;
   /* margin:var(--lateral); */
 }
@@ -825,7 +827,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 --------------------------------------------------------------------------- */
 .simpla:hover{box-shadow:var(--DP24);color: var(--grey0);}
 .ticon:nth-child(2n) .simpla.featured{grid-column:var(--simpla_featured_GC);}
-.simpla.featured{grid-column:span 2;}
+/* .simpla.featured{grid-column:span 2;} */
 .simpla{
   display: grid;
   grid-gap:.75rem;
@@ -839,7 +841,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   color: var(--grey5);
   position: relative;
   --simpla_aspect_ratio:calc(3/4);
-  --simpla_width:calc((100vw - var(--scrollbar_width) - var(--lateral) * 2 - (var(--num_2_3) - 1) * 1.5rem) / var(--num_2_3));
+  --simpla_width:calc((100vw - var(--scrollbar_width) - var(--lateral) * 2 - (var(--num_1_2_3) - 1) * 1.5rem) / var(--num_1_2_3));
 }
 .simpla_share{
   position: relative;
@@ -895,7 +897,10 @@ h6{font-size:.75rem;line-height:1.25rem}
 }
 .simpla_date_cat{
   display:grid;
-  grid-auto-flow:var(--simpla_date_cat_GAF);
+  /* display:flex; */
+  flex-wrap: wrap;
+  align-items: center;
+  grid-template-columns:var(--simpla_date_cat_GTC);
   font-size: 13px;
   justify-content: space-between;
   grid-gap: .5rem;
@@ -905,7 +910,14 @@ h6{font-size:.75rem;line-height:1.25rem}
 .simpla_author,
 .simpla_foot{color: inherit;font-size:inherit}
 
-.simpla_cat{text-align: right;}
+.simpla_cat{
+  display:flex;
+  flex-wrap: wrap;
+  text-align: right;
+  justify-content: flex-end;
+}
+.simpla_cat a:first-child{margin-left:0}
+.simpla_cat a{margin-left:.5rem}
 
 .simpla_foot{
   display:grid;
@@ -971,6 +983,35 @@ h6{font-size:.75rem;line-height:1.25rem}
 .shiny_title{
 }
 
+
+/* ---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+                          6.4.2) =banin:
+------------------------------------------------------------------------------
+--------------------------------------------------------------------------- */
+.banin{
+  place-content: center;
+  grid-auto-rows:min-content;
+  border-radius:6px;
+  box-shadow:var(--DP2);
+  display:grid;
+  grid-gap:.8rem;
+  background: rgba(255,255,255,.07);
+  padding:1rem .5rem;
+  text-align: center;
+}
+.banin_title{
+  font-size:1.2rem;
+}
+.banin_deco{
+  height:2px;
+  width:50%;
+  margin:auto;
+}
+.banin_short{
+  font-size:.875rem;
+}
+.banin_short *{font-size:inherit}
 
 /* ---------------------------------------------------------------------------
 ------------------------------------------------------------------------------
@@ -1297,6 +1338,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   margin: auto;
   grid-gap: 1.5rem;
   margin-left: var(--lateral);
+  margin-right:var(--feed_caption_margin_right);
 }
 .fead_title{
   font-weight: bolder;
