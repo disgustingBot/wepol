@@ -16,6 +16,11 @@ w.onload=()=>{
   carouselController.setup();
   startMateput();
   d.getElementById("load").style.top="-100vh";
+
+
+  if (readCookie('theme') == 'dark') {
+    theme.select('dark')
+  }
 }
 
 window.CSS.registerProperty({
@@ -165,6 +170,16 @@ const test_API = async () =>{
 
 
 
+function new_cookie(name,value,days){
+  if(days){
+    var date=new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires="; expires="+date.toUTCString();
+  } else var expires="";
+  d.cookie=name+"="+value+expires+"; path=/";
+}
+function readCookie  (n){var m=n+"=",a=d.cookie.split(';');for(var i=0;i<a.length;i++){var c=a[i];while(c.charAt(0)==' ')c=c.substring(1,c.length);if(c.indexOf(m)==0)return c.substring(m.length,c.length);}}
+function delete_cookie (n){new_cookie(n,"",-1)}
 
 
 
@@ -172,26 +187,28 @@ const test_API = async () =>{
 
 
 
-
-
-
-
-
-
-
-async function ajax2(formData, url = lt_data.ajaxurl) {
-	try{
-		let response = await fetch(url, { method: 'POST', body: formData, });
-		return await response.json();
-	} catch ( err ) { console.error(err); }
+const theme = {
+  select: (option)=>{
+    if (option == 'dark') {
+      document.querySelector('body').classList.add('dark_theme')
+      if (readCookie('theme') != 'dark') {
+        delete_cookie('theme');
+        new_cookie('theme', 'dark', 1)
+      }
+    }
+    if (option == 'light') {
+      document.querySelector('body').classList.remove('dark_theme')
+      if (readCookie('theme') != 'light') {
+        delete_cookie('theme');
+        new_cookie('theme', 'light', 1)
+      }
+    }
+  }
 }
 
-async function ajax3(formData, url = lt_data.ajaxurl) {
-	try{
-		let response = await fetch(url, { method: 'POST', body: formData, });
-		return await response.text();
-	} catch ( err ) { console.error(err); }
-}
+
+
+
 
 
 
