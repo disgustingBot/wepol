@@ -1,11 +1,17 @@
 <?php
 // Built by www.lattedev.com
-function lt_new_custom_post($name, $icon = '', $taxonomies = array() ){
-	$last_letter = substr($name, -1);
-	if( in_array( $last_letter, array('a','e','i','o','u') ) ){
-		$name_pl    = $name.'s';
+function lt_new_custom_post($label, $icon = '', $taxonomies = array() ){
+	if(!isset($label['plural'])){
+		$name = $label;
+		$last_letter = substr($name, -1);
+		if( in_array( $last_letter, array('a','e','i','o','u') ) ){
+			$name_pl    = $name.'s';
+		} else {
+			$name_pl    = $name.'es';
+		}
 	} else {
-		$name_pl    = $name.'es';
+		$name = $label['singular'];
+		$name_pl = $label['plural'];
 	}
 	$name_M     = ucfirst($name);
 	$name_M_pl  = ucfirst($name_pl);
@@ -151,4 +157,13 @@ function lt_add_meta_fields_to_taxonomy( $taxonomy_slug , $meta_fields = array()
 add_action( 'init', 'lt_custom_posts' );
 function lt_custom_posts() {
 	// lt_new_custom_post( 'equipo', 'dashicons-groups', array( 'area', 'departamento', 'cargo' ) );
+	lt_new_custom_post( array('singular' => 'banner', 'plural' => 'banners'), 'dashicons-welcome-view-site');
+
+	$lt_meta_banner = array(
+		'label'       => 'Banner',
+		'description' => 'Escribe el slug de un banner para esta categoria, dejalo en blanco para no usar banner en esta categoria.',
+	);
+	lt_add_meta_fields_to_taxonomy( $taxonomy_slug = 'category', $meta_fields = array(
+		'lt_meta_banner'             => $lt_meta_banner,
+	) );
 }

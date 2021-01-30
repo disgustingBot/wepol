@@ -60,7 +60,10 @@ foreach( $categories as $category ) { ?>
 
     <div class="showcase3">
         <?php
+        $cant_normal_posts = 3;
+        $cat_banner = get_term_meta( $category->term_id, 'lt_meta_banner', true);
         $stickies = get_option( 'sticky_posts' );
+
         $args = array(
           'posts_per_page' => 1,
           'post__in'       => $stickies,
@@ -68,20 +71,35 @@ foreach( $categories as $category ) { ?>
           'ignore_sticky_posts' => 1,
         );
         $blog=new WP_Query($args);
-        while($blog->have_posts()){$blog->the_post();
-          $arg = array(
-            // 'image' => "https://picsum.photos/600/40$i",
-            'excerpt' => False,
-            'classes' => 'featured post-'.get_the_ID(),
-            // 'categories' => array($category),
+        if($blog->have_posts()){
+          while($blog->have_posts()){$blog->the_post();
+            $arg = array( 'classes' => 'featured post-'.get_the_ID(), );
+            simpla_card($arg);
+          } wp_reset_query();
+        } else {
+          // if there is no sticky post, load 2 more normal posts
+          $cant_normal_posts += 2;
+        }
+
+
+        if(!$cat_banner){
+          // if there is no banner load one more post
+          $cant_normal_posts += 1;
+        } else {
+          $banner = get_page_by_path( $cat_banner, OBJECT, 'banner' );
+          $args = array(
+            'post_type'      => 'banner',
+            'posts_per_page' => 1,
+            'post__in'       => [$banner->ID],
           );
-          simpla_card($arg);
-          // var_dump(wp_get_post_categories(get_the_ID()));
-          $i+=1;
-        } wp_reset_query();
+          $banner=new WP_Query($args);
+          while($banner->have_posts()){$banner->the_post();
+            banin_card();
+          }
+        }
 
         $args = array(
-          'posts_per_page' => 4,
+          'posts_per_page' => $cant_normal_posts,
           'post__not_in'   => $stickies,
           'category__and' => $category->term_id, //must use category id for this field
           'ignore_sticky_posts' => 1,
@@ -89,10 +107,7 @@ foreach( $categories as $category ) { ?>
         $blog=new WP_Query($args);
         while($blog->have_posts()){$blog->the_post();
           $arg = array(
-            // 'image' => "https://picsum.photos/600/40$i",
-            // 'excerpt' => False,
             'classes' => "post-".get_the_ID(),
-            // 'categories' => array($category),
           );
           simpla_card($arg);
           $i+=1;
