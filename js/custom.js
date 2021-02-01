@@ -156,14 +156,134 @@ for (i = 0; i < acc.length; i++) {
 
 
 
-// http://domain.com/wp-json/wp/v2/posts?filter[category_name]=category-name
-const test_API = async () =>{
-  // let response = await fetch( 'https://ma.tt/wp-json/wp/v2/posts')
-  let response = await fetch( "http://localhost/wepol/wp-json/wp/v2/posts/");
-  let data = await response.json();
-  c.log(data);
+
+
+
+function strip(html){
+   let doc = new DOMParser().parseFromString(html, 'text/html');
+   return doc.body.textContent || "";
 }
-// test_API();
+
+const reading_time = (content) => {
+  let word_count = strip(content).split(' ').length;
+  let words_per_minute = 200;
+  let readingTime = Math.ceil(word_count / words_per_minute)
+  return readingTime
+}
+
+
+// element class
+// se crea el elemento dandole de comer "elementValues", que es un objecto
+class Simpla_post {
+	constructor(post){
+		// Esta parte define las propiedades del elemento como vienen del objeto v
+		for(let property in post){Object.defineProperty(this,property,{enumerable:true,value:post[property]})}
+	}
+	print_UI( parent_query, index ){
+		// Test to see if the browser supports the HTML template element by checking
+		// for the presence of the template element's content attribute.
+		if ('content' in d.createElement('template')) {
+
+			// Instantiate the template
+			// and the nodes you will control
+			let draw     = d.importNode(d.querySelector("#simpla").content, true),
+      simpla       = draw.querySelector(".simpla"),
+			author_name  = draw.querySelector(".simpla_author_name"),
+      title        = draw.querySelector(".simpla_title"),
+      categories   = draw.querySelector(".simpla_cat"),
+      image        = draw.querySelector(".simpla_img"),
+      r_time       = draw.querySelector(".simpla_reading_time"),
+      date         = draw.querySelector(".simpla_date");
+
+
+
+      let the_date = new Date(this.date)
+
+      let day = the_date.getDate()
+      let month = the_date.getMonth() + 1
+      let year = the_date.getFullYear()
+
+      // console.log(this.uagb_featured_image_src.full);
+
+      // Make your changes
+      // console.log(this.title.rendered);
+      title.innerHTML = this.title.rendered;
+			title.setAttribute('href', this.link);
+      image.setAttribute('src', this.uagb_featured_image_src.full[0])
+      date.textContent = `${day}/${month}/${year}`;
+      r_time.innerText = reading_time(this.content.rendered);
+
+      let cates = '';
+      this.categories_data.forEach((item, i) => {
+        cates += `<a href="${item.link}">${item.name}</a>`
+      });
+      categories.innerHTML = cates;
+
+
+      author_name.innerHTML = this.uagb_author_info.display_name;
+
+			// Insert it into the document in the right place
+			let parent = d.querySelector( parent_query );
+			parent.insertBefore(draw, parent.children[ index ]);
+		}
+		else { // Find another way to add the rows to the table because the HTML template element is not supported.
+      // TODO: mejorar este mensaje
+			c.log("ERROR: your browser does not support required features for this website");
+		}
+	}
+}
+
+
+
+// http://domain.com/wp-json/wp/v2/posts?filter[category_name]=category-name
+const ticon_load = async (id) =>{
+  // let response = await fetch( 'https://ma.tt/wp-json/wp/v2/posts')
+  // ?
+  let end_point = "http://localhost/wepol/wp-json/wp/v2/posts?categories="+id+'&per_page=6'
+  // console.log(end_point);
+  let response = await fetch(end_point);
+  let data = await response.json();
+  // let data = response.json();
+  let selector = '.ticon-'+id+' .ticon_grid'
+  data.forEach( post => {
+    simpla = new Simpla_post(post);
+    simpla.print_UI(selector, 0);
+    // c.log(simpla);
+  });
+}
+// ticon_load(101);
+// console.log(categories);
+let categories = JSON.parse(lt_data.categories)
+categories.forEach( async category => {
+  ticon_load(category.term_id)
+});
+
+// my_post = new Simpla_post( );
+// console.log(my_post);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

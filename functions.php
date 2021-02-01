@@ -19,9 +19,15 @@ function lattte_setup(){
   // now the most interesting part
   // we have to pass parameters to myloadmore.js script but we can get the parameters values only in PHP
   // you can define variables directly in your HTML but I decided that the most proper way is wp_localize_script()
+
+  $categories = get_categories( array(
+      'orderby' => 'name',
+      'order'   => 'ASC'
+  ) );
   wp_localize_script( 'main', 'lt_data', array(
     'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
     'homeurl' => site_url(),
+    'categories' => json_encode($categories),
     'front_page' => is_front_page(),
   ) );
 
@@ -139,8 +145,36 @@ function load_admin_styles() {
 
 
 
+function wpse_287931_register_categories_names_field()
+{
+    register_rest_field(
+        array('post'),
+        'categories_data',
+        array(
+            'get_callback'    => 'wpse_287931_get_categories_names',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
 
+add_action('rest_api_init', 'wpse_287931_register_categories_names_field');
 
+function wpse_287931_get_categories_names($object, $field_name, $request)
+{
+    $formatted_categories = array();
+
+    $categories = get_the_category($object['id']);
+
+    foreach ($categories as $category) {
+        $formatted_categories[] = array(
+          'name' => $category->name,
+          'link' => get_term_link($category->term_id),
+        );
+    }
+
+    return $formatted_categories;
+}
 
 
 

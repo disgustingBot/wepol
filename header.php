@@ -13,6 +13,46 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
 
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+
+      <template id="simpla">
+        <article class="simpla">
+          <div class="simpla_share rowcol1" onclick="altClassFromSelector('visible', '.post-<?php // echo get_the_ID(); ?> .social_sharing_container')">
+            <?php // include get_template_directory_uri() . '/inc/social_sharing.php'; ?>
+            <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <use xlink:href="#share_svg"></use>
+            </svg>
+          </div>
+          <a href="" class="simpla_amg rowcol1">
+            <img class="simpla_img" loading="lazy" src="" alt="">
+          </a>
+          <div class="simpla_caption">
+            <div class="simpla_date_cat">
+              <time class="simpla_date"></time>
+              <p class="simpla_cat">
+                <?php // foreach ($args['categories'] as $key => $value) { ?>
+                  <a href=""></a>
+                <?php // } ?>
+              </p>
+
+            </div>
+            <h5>
+              <a class="simpla_title" href=""></a>
+            </h5>
+            <div class="simpla_foot">
+              <author class="simpla_author">Por <span class="simpla_author_name"></span></author>
+              <div class="simpla_r_time">
+                <?php include get_template_directory() . '/assets/clock.svg'; ?>
+                <p><span class="simpla_reading_time"></span>’</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </template>
+
+
+
+
 </head>
 <body <?php body_class(); ?>>
 
@@ -78,8 +118,8 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
     <?php $i += 1; } ?>
     </div>
     <p class="menu-item prenex prenex_next nextButton more_btn">
-      <span>Más categorías</span>
-      <?php echo standard_svg('arrow_right', 'more_btn_svg'); ?>
+      <span>Más categorías →</span>
+      <?php // echo standard_svg('arrow_right', 'more_btn_svg'); ?>
     </p>
   </nav>
 
