@@ -774,6 +774,15 @@ h6{font-size:.75rem;line-height:1.25rem}
   margin:auto;
   grid-gap:.5rem;
 }
+.nav_bar_cat .ticon_title {
+  color: white;
+}
+.nav_bar_cat.onlyMobileG .nav_categories_item, .nav_bar_cat.onlyMobileG .nav_categories_item a{
+  text-align: left;
+}
+.nav_bar_cat.onlyMobileG .nav_categories_item{
+  margin-left:20px;
+}
 
 
 .mobile_menu_active .nav_bar .menu-item{color:white}
