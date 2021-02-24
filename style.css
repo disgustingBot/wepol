@@ -196,12 +196,15 @@ body {
   --logo_size:20px;
 
   /* ?nav_bar */
-  --nav_bar_menu_GTC:1fr 1fr;
+  --nav_bar_menu_GTC:1fr;
   --nav_menu_clip_path:circle(20px at calc(100vw - var(--scrollbar_width) - var(--lateral) - 15px) calc((var(--logo_size) * 3 - 20px) / 2 + 10px));
   --nav_menu_clip_path_open:circle(calc(100vmax * 1.42) at calc(100vw - 16px - 2rem) calc(2rem));
   --nav_menu_height:100vh;
   --nav_menu_width: 100%;
   --nav_bar_font_size:.8rem;
+  --nav_menu_item_font_size: 16px;
+  --nav_bar_cat_margin: 0 auto auto 0;
+  --nav_menu_item_opacity: 1;
 
   --nav_menu_padding: calc(var(--logo_size) * 3) var(--lateral) 1rem var(--lateral);
 
@@ -291,6 +294,11 @@ body {
     --grid_1_2:1fr 1fr;
     --num_1_2_3:2;
     /* ?HEADER */
+
+    /* ?nav_bar */
+    --nav_bar_menu_GTC:1fr 1fr;
+    --nav_bar_cat_margin: auto;
+
     /* ?FOOTER */
     --footer_info_GTC:1fr 1fr 1fr;
   }
@@ -401,6 +409,8 @@ body {
     --nav_menu_width: unset;
     --nav_bar_font_size:.8rem;
     --nav_menu_padding: 0;
+    --nav_menu_item_font_size: 12px !important;
+    --nav_menu_item_opacity:0.55;
 
 
       /* ?fead */
@@ -771,25 +781,31 @@ h6{font-size:.75rem;line-height:1.25rem}
 .mobile_menu_active .burgerBar{background:white;}
 
 .nav_bar_cat{
-  margin:auto;
-  grid-gap:.5rem;
+  margin:var(--nav_bar_cat_margin);
+  grid-gap:1rem;
 }
 .nav_bar_cat .ticon_title {
   color: white;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 600 !important;
 }
-.nav_bar_cat.onlyMobileG .nav_categories_item, .nav_bar_cat.onlyMobileG .nav_categories_item a{
+.nav_bar_cat.onlyMobileG .nav_categories_item a, .nav_bar_cat.onlyMobileG .nav_categories_item{
   text-align: left;
 }
 .nav_bar_cat.onlyMobileG .nav_categories_item{
-  margin-left:20px;
+  margin-left:0;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 600 !important;
 }
 
 
 .mobile_menu_active .nav_bar .menu-item{color:white}
 .nav_bar .menu-item{
-  opacity:0.55;
+  opacity:var(--nav_menu_item_opacity);
   color:black;
-  font-size: 12px !important;
+  font-size: var(--nav_menu_item_font_size);
   /* padding: 0 14px; */
   width: auto;
   font-weight: 600 !important;
