@@ -43,9 +43,16 @@ $categories = get_categories( array(
     'orderby' => 'name',
     'order'   => 'ASC'
 ));
-foreach( $categories as $category ) { ?>
+// el cliente solo quiere 2 categorias
+$two_rands = array_rand($categories, 2);
+$two_cats  = array();
+foreach( $two_rands as $number ) {
+  $two_cats[] = $categories[$number];
+}
+// var_dump($two_cats);
+foreach( $two_cats as $category ) { ?>
   <div class="gliter_car">
-    <h3><?php echo $category->name; ?></h3>
+    <h3 class="gliter_car_title"><?php echo $category->name; ?></h3>
     <?php
     $i=1;
     $args = array(

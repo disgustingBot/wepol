@@ -1,4 +1,4 @@
-<div class="social_sharing_container onlyDesktopF">
+<div class="social_sharing_container">
   <div class="dialogue_pointer"></div>
   <a href="">
     <?php echo standard_svg('facebook_svg', 'social_sharing_svg'); ?>
