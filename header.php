@@ -78,7 +78,7 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       );
       wp_nav_menu($args); ?>
       <nav class="nav_bar_cat onlyMobileG">
-
+        <p class="ticon_title">Explorar categorías:</p>
       <?php
       $categories = get_categories( array(
           'orderby' => 'name',
@@ -86,7 +86,7 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       ));
       foreach( $categories as $category ) { ?>
         <p class="nav_categories_item">
-          <a href="<?php echo get_term_link($category->term_id); ?>">
+          <a href="<?php echo get_term_link($category->term_id); ?>">- 
             <?php echo $category->name; ?>
           </a>
         </p>
