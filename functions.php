@@ -28,7 +28,7 @@ function lattte_setup(){
     'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php', // WordPress AJAX
     'homeurl' => site_url(),
     'categories' => json_encode($categories),
-    'front_page' => is_front_page(),
+    'is_front_page' => is_front_page(),
   ) );
 
   wp_enqueue_script( 'main' );
@@ -126,6 +126,21 @@ function excerpt($charNumber){
 
 
 
+ function get_img_url_by_slug($slug){
+   return wp_get_attachment_url( get_img_id_by_slug($slug));
+ }
+
+ function get_img_id_by_slug( $slug ) {
+   $args = array(
+     'post_type' => 'attachment',
+     'name' => sanitize_title($slug),
+     'posts_per_page' => 1,
+     'post_status' => 'inherit',
+   );
+   $_header = get_posts( $args );
+   $header = $_header ? array_pop($_header) : null;
+   return $header ? $header->ID : '';
+ }
 
 
 
@@ -138,7 +153,7 @@ function excerpt($charNumber){
 // get_stylesheet_directory_uri() instead of get_template_directory_uri()
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 function load_admin_styles() {
-  // wp_enqueue_style( 'admin_css_foo', get_template_directory_uri() . '/css/backoffice.css', false, '1.0.0' );
+  wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/css/admin.css', false, '1.0.0' );
 }
 
 
@@ -193,4 +208,276 @@ function reading_time() {
   $words_per_minute = 200;
   $readingtime = ceil($word_count / $words_per_minute);
   return $readingtime;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Receive the Request post that came from AJAX
+add_action( 'wp_ajax_ticon_category', 'ticon_category' );
+// We allow non-logged in users to access our function
+add_action( 'wp_ajax_nopriv_ticon_category', 'ticon_category' );
+function ticon_category(){
+  // $response = array();
+  $id = $_POST['term_id'];
+  // $response['id'] = $id;
+
+
+  $category = get_category($id);
+  //
+  // echo wp_json_encode($response);
+  // exit();
+  include get_template_directory() . '/inc/multi_cards.php';
+
+  $cant_normal_posts = 3;
+  $cat_banner = get_term_meta( $category->term_id, 'lt_meta_banner', true);
+  $stickies = get_option( 'sticky_posts' );
+
+  $args = array(
+    'posts_per_page' => 1,
+    'category__and'  => $category->term_id, //must use category id for this field
+    // 'meta_key' => 'custom-meta-key'
+    'meta_query' => array(
+       array(
+           'key' => 'featured_post',
+           'value' => 'yes',
+           'compare' => '=',
+       ),
+    ),
+  );
+  $blog=new WP_Query($args);
+  $featured_id = 0;
+  if($blog->have_posts()){
+    while($blog->have_posts()){$blog->the_post();
+      $arg = array(
+        'classes' => 'featured',
+      );
+      $featured_id = get_the_ID();
+      simpla_card($arg);
+    } wp_reset_query();
+  } else {
+    // if there is no sticky post, load 2 more normal posts
+    $cant_normal_posts += 2;
+  }
+
+
+  if(!$cat_banner){
+    // if there is no banner load one more post
+    $cant_normal_posts += 1;
+  } else {
+    $banner = get_page_by_path( $cat_banner, OBJECT, 'banner' );
+    $args = array(
+      'post_type'      => 'banner',
+      'posts_per_page' => 1,
+      'post__in'       => [$banner->ID],
+    );
+    $banner=new WP_Query($args);
+    while($banner->have_posts()){$banner->the_post();
+      banin_card();
+    }
+  }
+
+  $args = array(
+    'posts_per_page' => $cant_normal_posts,
+    'post__not_in'   => array($featured_id),
+    'category__and' => $category->term_id, //must use category id for this field
+    'ignore_sticky_posts' => 1,
+  );
+  $blog=new WP_Query($args);
+  while($blog->have_posts()){$blog->the_post();
+      simpla_card();
+      $i+=1;
+    } wp_reset_query();
+
+  exit();
+
+}
+
+
+
+
+
+
+
+
+
+
+/*
+FUNCTIONALITY: featured post from a column in the general view
+
+thanks to Misha!
+https://rudrastyh.com/woocommerce/columns.html
+*/
+// this part of the code is for creating a column
+add_filter( 'manage_edit-post_columns', 'misha_extra_column', 20 );
+function misha_extra_column( $columns ) {
+	$columns['star'] = '★';
+  unset($columns['comments']);
+	// remember that you can add this column at any place you want with array_slice() function
+	return $columns;
+}
+// this part of the code adds checkbox to our newly created column
+add_action( 'manage_posts_custom_column', 'misha_populate_columns' );
+function misha_populate_columns( $column_name ) {
+	if( $column_name  == 'star' ) {
+		echo '
+      <input
+        type="checkbox"
+        data-productid="' . get_the_ID() .'"
+        class="star_checkbox"
+        ' . checked( 'yes', get_post_meta( get_the_ID(), 'featured_post', true ), false ) . '/>
+      <small style="display:block;color:#7ad03a"></small>';
+	}
+}
+// this code adds jQuery script to website footer that allows to send AJAX request
+add_action( 'admin_footer', 'misha_jquery_event' );
+function misha_jquery_event(){
+	echo "<script>jQuery(function($){
+		$('.star_checkbox').click(function(){
+			var checkbox = $(this),
+			    checkbox_value = (checkbox.is(':checked') ? 'yes' : 'no' );
+			$.ajax({
+				type: 'POST',
+				data: {
+					action: 'productmetasave', // wp_ajax_{action} WordPress hook to process AJAX requests
+					value: checkbox_value,
+					product_id: checkbox.attr('data-productid'),
+					myajaxnonce : '" . wp_create_nonce( "activatingcheckbox" ) . "'
+				},
+				beforeSend: function( xhr ) {
+					checkbox.prop('disabled', true );
+				},
+				url: ajaxurl, // as usual, it is already predefined in /wp-admin
+				success: function(data){
+					checkbox.prop('disabled', false ).next().html(data).show().fadeOut(400);
+				}
+			});
+		});
+	});</script>";
+}
+// this small piece of code can process our AJAX request
+add_action( 'wp_ajax_productmetasave', 'misha_process_ajax' );
+function misha_process_ajax(){
+	check_ajax_referer( 'activatingcheckbox', 'myajaxnonce' );
+	if( update_post_meta( $_POST[ 'product_id'] , 'featured_post', $_POST['value'] ) ) {
+		echo '✓';
+	}
+	die();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Receive the Request post that came from AJAX
+add_action( 'wp_ajax_change_view_count_name', 'change_view_count_name' );
+// We allow non-logged in users to access our function
+add_action( 'wp_ajax_nopriv_change_view_count_name', 'change_view_count_name' );
+function change_view_count_name(){
+  $response = array();
+  $response['cant_posts'] = 0;
+  $response['cant_with_my_count'] = 0;
+  $response['cant_with_filthy_count'] = 0;
+
+  $args = array(
+    'post_type'      => 'post',
+    'posts_per_page' => 10000000,
+  );
+  $blog=new WP_Query($args);
+  if($blog->have_posts()){
+    while($blog->have_posts()){$blog->the_post();
+      $response['cant_posts'] += 1;
+      $view_count = get_post_meta(get_the_ID(), 'tp_view_count', true);
+      if($view_count){
+        $response['cant_with_my_count'] +=1;
+      } else {
+        $filthy_plugin_view_count = get_post_meta(get_the_ID(), 'nectar_blog_post_view_count', true);
+        if ($filthy_plugin_view_count) {
+          $response['cant_with_filthy_count'] +=1;
+          add_post_meta(get_the_ID(), 'tp_view_count', $filthy_plugin_view_count);
+          delete_post_meta(get_the_ID(), 'nectar_blog_post_view_count');
+        }
+      }
+    } wp_reset_query();
+  }
+  echo wp_json_encode($response);
+  exit();
 }

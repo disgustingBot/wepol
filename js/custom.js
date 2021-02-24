@@ -23,23 +23,32 @@ w.onload=()=>{
   }
 }
 
-window.CSS.registerProperty({
-  name: '--logo_size',
-  syntax: '<length>',
-  inherits: false,
-  initialValue: '20px',
-});
-window.CSS.registerProperty({
-  name: '--brand_color_1',
-  syntax: '<color>',
-  inherits: false,
-  initialValue: '#000F41',
-});
+// window.CSS.registerProperty({
+//   name: '--logo_size',
+//   syntax: '<length>',
+//   inherits: false,
+//   initialValue: '20px',
+// });
+// window.CSS.registerProperty({
+//   name: '--brand_color_1',
+//   syntax: '<color>',
+//   inherits: false,
+//   initialValue: '#000F41',
+// });
 
 
 
-
-
+// redirect to search page on the redirecter "enter" key press
+w.addEventListener('keydown', event =>{
+	// enter takes you to search page when you press it in the searchbox
+	if (event.keyCode == 13 && !event.shiftKey) {
+    if(document.activeElement == document.querySelector('.Redirecter')){
+      let keyword = document.activeElement.value;
+      window.location.href = lt_data.homeurl + `/search?filters={"search":"${keyword}"}`;
+    }
+    event.preventDefault();
+  }
+})
 
 
 
@@ -207,20 +216,23 @@ class Simpla_post {
 
       // Make your changes
       // console.log(this.title.rendered);
+      if(this.sticky == true){
+        simpla.classList.add('featured')
+      }
       title.innerHTML = this.title.rendered;
 			title.setAttribute('href', this.link);
-      image.setAttribute('src', this.uagb_featured_image_src.full[0])
+      // image.setAttribute('src', this.uagb_featured_image_src.full[0])
       date.textContent = `${day}/${month}/${year}`;
       r_time.innerText = reading_time(this.content.rendered);
 
-      let cates = '';
-      this.categories_data.forEach((item, i) => {
-        cates += `<a href="${item.link}">${item.name}</a>`
-      });
-      categories.innerHTML = cates;
+      // let cates = '';
+      // this.categories_data.forEach((item, i) => {
+      //   cates += `<a href="${item.link}">${item.name}</a>`
+      // });
+      // categories.innerHTML = cates;
 
 
-      author_name.innerHTML = this.uagb_author_info.display_name;
+      // author_name.innerHTML = this.uagb_author_info.display_name;
 
 			// Insert it into the document in the right place
 			let parent = d.querySelector( parent_query );
@@ -234,32 +246,26 @@ class Simpla_post {
 }
 
 
-
-// http://domain.com/wp-json/wp/v2/posts?filter[category_name]=category-name
 const ticon_load = async (id) =>{
-  // let response = await fetch( 'https://ma.tt/wp-json/wp/v2/posts')
-  // ?
-  let end_point = "http://localhost/wepol/wp-json/wp/v2/posts?categories="+id+'&per_page=6'
-  // console.log(end_point);
+  let parent = '.Culiau',
+  per_page = 10;
+
+  let end_point = "http://localhost/wepol/wp-json/wp/v2/posts?categories="+id+'&per_page='+per_page+'&sticky=1'
+  // let end_point = "https://rollingstones.com/wp-json/wp/v2/posts?per_page="+per_page
   let response = await fetch(end_point);
-  let data = await response.json();
-  // let data = response.json();
-  let selector = '.ticon-'+id+' .ticon_grid'
+  let data     = await response.json( );
+  c.log(data);
+
   data.forEach( post => {
-    simpla = new Simpla_post(post);
-    simpla.print_UI(selector, 0);
-    // c.log(simpla);
+    // if (post.id != featured_id) {
+      simpla = new Simpla_post(post);
+      simpla.print_UI(parent, 0);
+      // c.log(simpla);
+    // }
   });
 }
-// ticon_load(101);
-// console.log(categories);
-let categories = JSON.parse(lt_data.categories)
-categories.forEach( async category => {
-  ticon_load(category.term_id)
-});
 
-// my_post = new Simpla_post( );
-// console.log(my_post);
+// ticon_load()
 
 
 
@@ -270,6 +276,55 @@ categories.forEach( async category => {
 
 
 
+
+const test_ticon_category = async (id)=>{
+  let parent = '.ticon-'+id+' .ticon_grid';
+
+	let formData = new FormData();
+  formData.append('action', 'ticon_category');
+  console.log( id);
+	formData.append('term_id', id);
+
+  let end_point = lt_data.ajaxurl
+  let response = await fetch(end_point, { method: 'POST', body: formData, });
+  let data     = await response.text( );
+  // console.log(data);
+  d.querySelector(parent).innerHTML = data;
+}
+
+
+if( lt_data.is_front_page){
+  let categories = JSON.parse(lt_data.categories)
+  categories.forEach( async (category, i) => {
+    test_ticon_category(category.term_id)
+  });
+}
+
+// if(!lt_data.is_front_page){
+//   const adjust_gliter_height = selector => {
+//     let target_height = d.querySelector(selector).clientHeight
+//     let gliter = d.querySelector('.two_one .gliter')
+//     gliter.style.height = target_height + 'px'
+//   }
+//   adjust_gliter_height('.two_one .Height_measurement');
+//   window.addEventListener('resize', _ => {
+//     adjust_gliter_height('.two_one .Height_measurement');
+//   });
+// }
+
+
+
+
+const change_view_count_name = async () => {
+	let formData = new FormData();
+  formData.append('action', 'change_view_count_name');
+
+  let end_point = lt_data.ajaxurl
+  let response = await fetch(end_point, { method: 'POST', body: formData, });
+  let data     = await response.json( );
+  console.log(data);
+}
+// change_view_count_name();
 
 
 
@@ -308,6 +363,10 @@ function delete_cookie (n){new_cookie(n,"",-1)}
 
 
 const theme = {
+  alternate:()=>{
+    if (readCookie('theme') == 'dark') theme.select('light');
+    else { theme.select('dark') }
+  },
   select: (option)=>{
     if (option == 'dark') {
       document.querySelector('body').classList.add('dark_theme')

@@ -1,11 +1,22 @@
 
 <?php function simpla_card ($args = array()) {
-    if(!isset($args['classes']   )){ $args['classes']     = False; }
+    if(!isset($args['classes']   )){ $args['classes']     = 'post-'.get_the_ID(); }
+    else{ $args['classes'] .= ' post-'.get_the_ID(); }
     if(!isset($args['author']    )){ $args['author']      = get_the_author(); }
     if(!isset($args['date']      )){ $args['date']        = get_the_date('d/m/y'); }
     if(!isset($args['title']     )){ $args['title']       = get_the_title(); }
     if(!isset($args['link']      )){ $args['link']        = get_the_permalink(); }
-    if(!isset($args['image']     )){ $args['image']       = get_the_post_thumbnail_url(); }
+    if(!isset($args['image']     )){
+      if(get_post_meta(get_the_ID(), 'tp_card_image', true)){
+        $args['image'] = get_img_url_by_slug(get_post_meta(get_the_ID(), 'tp_card_image', true));
+      } else {
+        $args['image'] = get_the_post_thumbnail_url();
+      }
+    }
+
+    // if (!$args['image']) {
+    //   $args['test']       = 2;
+    // }
     if (!$args['image']) { $rand_number = rand(0, 9);
       $args['image'] = "https://picsum.photos/600/40$rand_number";
     }
@@ -15,7 +26,7 @@
         'include' => wp_get_post_categories(get_the_ID()),
         'orderby'    => 'count',
         'order'      => 'DESC',
-        'number' => 1, //can be 0, '0', '' too
+        'number'     => 1, //can be 0, '0', '' too
       ));
     }
     ?>
@@ -56,7 +67,7 @@
           <?php } ?>
           <?php if($args['author'] != false or $args['r_time'] != false){ ?>
             <div class="simpla_foot">
-              <author class="simpla_author">Por -<?php echo $args['author']; ?>-</author>
+              <author class="simpla_author">Por <?php echo $args['author']; ?></author>
               <div class="simpla_r_time">
                 <?php include get_template_directory() . '/assets/clock.svg' ?>
                 <p><?php echo $args['r_time']; ?>’</p>
