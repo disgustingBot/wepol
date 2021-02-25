@@ -38,6 +38,29 @@ w.onload=()=>{
 
 
 
+
+
+const my_share = (title, text, url) => {
+  if (navigator.share) {
+    navigator.share({
+        title: title,
+        text: text,
+        url: url,
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  } else {
+    console.log('Share not supported on this browser, do it the old way.');
+  }
+}
+
+
+
+
+
+
+
+
 // redirect to search page on the redirecter "enter" key press
 w.addEventListener('keydown', event =>{
 	// enter takes you to search page when you press it in the searchbox

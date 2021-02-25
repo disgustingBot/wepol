@@ -111,4 +111,13 @@ if($view_count){
 
 </div>
 
+
+<div class="single_share" onclick="my_share('Title', 'Text', 'https://URL.com')">
+  <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+    <use xlink:href="#share_svg"></use>
+  </svg>
+</div>
+
+
+
 <?php get_footer(); ?>
