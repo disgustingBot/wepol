@@ -958,6 +958,22 @@ h6{font-size:.75rem;line-height:1.25rem}
   color: white;
 }
 
+.single_share{
+  --size: 60px;
+  height:var(--size);
+  width: var(--size);
+  position: fixed;
+  background:white;
+  display:grid;
+  bottom:0;
+  right:0;
+  border-radius:calc(var(--size) * .75) 0 0 0;
+}
+
+.single_share .simpla_share_icon{
+  width: 30px;
+  height:30px;
+}
 .simpla_share_icon{
   margin:auto;
   width:15px;
@@ -1842,7 +1858,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 .single_container > .social_sharing_container{
   background: rgba(255,255,255,0.9);
   box-shadow: unset;
-  display:flex;
+  display:var(--onlyDesktopF);
   /* flex-direction: column; */
   flex-direction: var(--social_sharing_container_for_the_main_article_FLEX_DIRECTION);
   grid-column:2;
