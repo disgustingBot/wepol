@@ -220,6 +220,7 @@ body {
 
   /* ?social_sharing_container */
   --social_sharing_container_for_the_main_article_POSITION:fixed;
+  --social_sharing_container_for_the_main_article_OPACITY:0;
   --social_sharing_container_for_the_main_article_FLEX_DIRECTION:row;
   --social_sharing_container_for_the_main_article_TOP:calc(100vh - 4rem);
 
@@ -351,6 +352,7 @@ body {
 
     /* ?social_sharing_container */
     --social_sharing_container_for_the_main_article_POSITION:sticky;
+    --social_sharing_container_for_the_main_article_OPACITY:1;
     --social_sharing_container_for_the_main_article_FLEX_DIRECTION:column;
     --social_sharing_container_for_the_main_article_TOP:9rem;
 
@@ -960,14 +962,16 @@ h6{font-size:.75rem;line-height:1.25rem}
 
 .single_share{
   --size: 60px;
-  height:var(--size);
-  width: var(--size);
-  position: fixed;
   background:white;
-  display:grid;
-  bottom:0;
-  right:0;
   border-radius:calc(var(--size) * .75) 0 0 0;
+  bottom:0;
+  /* display:grid; */
+  /* display:var(--onlyMobileG); */
+  display:var(--only_under_768_G);
+  height:var(--size);
+  position: fixed;
+  right:0;
+  width: var(--size);
 }
 
 .single_share .simpla_share_icon{
@@ -1858,7 +1862,7 @@ h6{font-size:.75rem;line-height:1.25rem}
 .single_container > .social_sharing_container{
   background: rgba(255,255,255,0.9);
   box-shadow: unset;
-  display:var(--onlyDesktopF);
+  display:flex;
   /* flex-direction: column; */
   flex-direction: var(--social_sharing_container_for_the_main_article_FLEX_DIRECTION);
   grid-column:2;
@@ -1866,7 +1870,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   height:min-content;
   left:unset;
   margin:1rem auto auto .2rem;
-  opacity: 1;
+  opacity:var(--social_sharing_container_for_the_main_article_OPACITY);
   padding:.5rem;
   pointer-events: unset;
   position:var(--social_sharing_container_for_the_main_article_POSITION);
