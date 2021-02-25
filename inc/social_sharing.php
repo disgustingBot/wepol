@@ -9,7 +9,7 @@
   <a href="https://twitter.com/share?url=<?php echo get_permalink(); ?>&amp;text=Mira%este%artículo&amp;hashtags=encuestapuntocom" target="_blank">
     <?php echo standard_svg('twitter_svg', 'social_sharing_svg'); ?>
   </a>
-  <a href="">
+  <a href="whatsapp://send?text=Hey! Mira este artículo: <?php echo get_permalink(); ?>">
     <?php echo standard_svg('whatsapp_svg', 'social_sharing_svg'); ?>
   </a>
 </div>
