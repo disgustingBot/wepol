@@ -1212,7 +1212,6 @@ h6{font-size:.75rem;line-height:1.25rem}
   padding:.6rem 1.2rem;
   text-align: center;
   text-transform: uppercase;
-  display: flex;
   transition: .25s;
 }
 .btn:hover{background: var(--brand_color_1);}
@@ -1283,7 +1282,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   opacity:0.55;
 }
 .more_btn_svg {
-  width: 16px;
+  width: 10px;
   height: auto;
   margin-left: 5px;
 }
@@ -1910,7 +1909,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   transform: translateX(calc(-100% - 18px));
 }
 .social_sharing_svg{
-  --size: 25px;
+  --size: 35px;
   width: var(--size);
   height: var(--size);
   display: block;
