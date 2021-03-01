@@ -1,6 +1,6 @@
 
 <?php
-// BANNER __________________________________________________
+// BANNER _____________________________________________________________
 // this part gets the asociated banner, either for a post or a category
 $object_class = get_class( get_queried_object() );
 if( $object_class == "WP_Term" ){
@@ -11,7 +11,7 @@ if( $object_class == "WP_Post" ){
   $my_id = get_the_ID();
   $my_type = 'post';
 }
-$cat_banner = get_metadata( $my_type, $my_id, 'lt_meta_banner', true);
+$cat_banner = get_metadata( $my_type, $my_id, 'tp_meta_banner', true);
 $args = array(
   'post_type' => 'banner',
   'posts_per_page' => 1,
@@ -34,9 +34,15 @@ if(!$cat_banner){
 $banner = new WP_Query($args);
 while ( $banner->have_posts() ){$banner->the_post();
   // we will probably have to change the card here
-  banin_card();
+  // banin_card();
+  ?>
+  <div class="banner_card">
+    <img class="banner_card_img" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
+  </div>
+  <?php
 } wp_reset_postdata();
-// END OF BANNER ___________________________________________
+// END OF BANNER __________________________________________________________
+
 
 // now we show this special layout of categories
 $categories = get_categories( array(
