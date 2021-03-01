@@ -13,11 +13,11 @@ $categories = get_categories( array(
 
 <div class="fead">
   <div class="fead_caption">
-    <h1 class="fead_title">Artículos, información y consejos útiles para crear tus propias encuestas.</h1>
+    <h1 class="fead_title"><?php echo get_post_meta(get_the_ID(), 'ATF_tilte', true) ?></h1>
     <div class="fead_deco"></div>
-    <h2 class="fead_subtitle">Blog de encuesta.com, herramienta para crear encuestas online.</h2>
+    <h2 class="fead_subtitle"><?php echo get_post_meta(get_the_ID(), 'ATF_text', true) ?></h2>
 
-    <a class="fead_btn btn little_cta_link" href="">
+    <a class="fead_btn btn little_cta_link" href="<?php echo get_post_meta(get_the_ID(), 'ATF_link', true) ?>">
       <span>Crear encuesta</span>
       <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
         <use xlink:href="#arrow_right"></use>
@@ -29,11 +29,11 @@ $categories = get_categories( array(
 
 <div class="fead">
   <div class="fead_caption">
-    <h1 class="fead_title">Artículos, información y consejos útiles para crear tus propias encuestas.</h1>
+    <h1 class="fead_title"><?php echo get_post_meta(get_the_ID(), 'ATF_tilte', true) ?></h1>
     <div class="fead_deco"></div>
-    <h2 class="fead_subtitle">Blog de encuesta.com, herramienta para crear encuestas online.</h2>
+    <h2 class="fead_subtitle"><?php echo get_post_meta(get_the_ID(), 'ATF_text', true) ?></h2>
 
-    <a class="fead_btn btn little_cta_link" href="">
+    <a class="fead_btn btn little_cta_link" href="<?php echo get_post_meta(get_the_ID(), 'ATF_link', true) ?>">
       <span>Crear encuesta</span>
       <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
         <use xlink:href="#arrow_right"></use>

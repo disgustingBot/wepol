@@ -10,8 +10,8 @@
     <h1 class="fead_title"><?php echo $term->name; ?></h1>
     <div class="fead_deco"></div>
     <p class="fead_subtitle"><?php echo $term->description; ?></p>
-
-    <a class="fead_btn btn little_cta_link" href="">
+    <?php $frontpage_id = get_option( 'page_on_front' ); ?>
+    <a class="fead_btn btn little_cta_link" href="<?php echo get_post_meta($frontpage_id, 'ATF_link', true) ?>">
       <span>Crear encuesta</span>
       <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
         <use xlink:href="#arrow_right"></use>
@@ -26,8 +26,8 @@
     <h1 class="fead_title"><?php echo $term->name; ?></h1>
     <div class="fead_deco"></div>
     <p class="fead_subtitle"><?php echo $term->description; ?></p>
-
-    <a class="fead_btn btn little_cta_link" href="">
+    
+    <a class="fead_btn btn little_cta_link" href="<?php echo get_post_meta($frontpage_id, 'ATF_link', true) ?>">
       <span>Crear encuesta</span>
       <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
         <use xlink:href="#arrow_right"></use>
