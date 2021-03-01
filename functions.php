@@ -240,7 +240,8 @@ function ticon_category(){
   include get_template_directory() . '/inc/multi_cards.php';
 
   $cant_normal_posts = 3;
-  $cat_banner = get_term_meta( $category->term_id, 'lt_meta_banner', true);
+  $cat_cta = get_term_meta( $category->term_id, 'tp_meta_cta', true);
+  $cat_banner = get_term_meta( $category->term_id, 'tp_meta_banner', true);
   $stickies = get_option( 'sticky_posts' );
 
   $args = array(
@@ -275,9 +276,9 @@ function ticon_category(){
     // if there is no banner load one more post
     $cant_normal_posts += 1;
   } else {
-    $banner = get_page_by_path( $cat_banner, OBJECT, 'banner' );
+    $banner = get_page_by_path( $cat_cta, OBJECT, 'cta' );
     $args = array(
-      'post_type'      => 'banner',
+      'post_type'      => 'CTA',
       'posts_per_page' => 1,
       'post__in'       => [$banner->ID],
     );
