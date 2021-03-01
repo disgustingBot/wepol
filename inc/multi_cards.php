@@ -8,10 +8,14 @@
     if(!isset($args['link']      )){ $args['link']        = get_the_permalink(); }
     if(!isset($args['image']     )){
       if(get_post_meta(get_the_ID(), 'tp_card_image', true)){
-        $args['image'] = get_img_url_by_slug(get_post_meta(get_the_ID(), 'tp_card_image', true));
+        $img_slug = get_post_meta(get_the_ID(), 'tp_card_image', true);
+        $img_id = get_img_id_by_slug($img_slug);
+        $args['image'] = get_img_url_by_slug($img_slug);
       } else {
         $args['image'] = get_the_post_thumbnail_url();
+        $img_id = get_post_thumbnail_id(get_the_ID());
       }
+      $args['image_alt'] = get_post_meta($img_id , '_wp_attachment_image_alt', true);
     }
 
     // if (!$args['image']) {
@@ -33,7 +37,7 @@
 
     <article class="simpla <?php if($args['classes']){echo $args['classes'];} ?>">
         <?php if($args['image'] != false){ ?>
-          <div class="simpla_share rowcol1" onclick="altClassFromSelector('visible', '.post-<?php echo get_the_ID(); ?> .social_sharing_container')">
+          <div class="simpla_share rowcol1" onclick="simpla_car_my_share('<?= get_the_ID(); ?>', '<?= $args['title']; ?>', 'Hey! Mira este artículo', '<?= $args['link']; ?>')" onclick="altClassFromSelector('visible', '.post-<?php echo get_the_ID(); ?> .social_sharing_container')">
             <?php include 'social_sharing.php'; ?>
             <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
               <use xlink:href="#share_svg"></use>
@@ -43,7 +47,7 @@
 
           </div>
           <a href="<?php echo $args['link']; ?>" class="simpla_amg rowcol1">
-            <img class="simpla_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="">
+            <img class="simpla_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="<?php echo $args['image_alt']; ?>">
           </a>
         <?php } ?>
         <div class="simpla_caption">
@@ -87,6 +91,8 @@
     if(!isset($args['title']  )){ $args['title']   = get_the_title(); }
     if(!isset($args['link']   )){ $args['link']    = get_the_permalink(); }
     if(!isset($args['image']  )){ $args['image']   = get_the_post_thumbnail_url(); }
+    $img_id = get_post_thumbnail_id(get_the_ID());
+    $args['image_alt'] = get_post_meta($img_id , '_wp_attachment_image_alt', true);
     if(!isset($args['color']  )){ $args['color']   = get_post_meta(get_the_ID(), 'color', true); }
     ?>
 
@@ -131,11 +137,11 @@
             </a> -->
         <?php } ?>
         <?php if($args['title'] != false){ ?>
-          <h6 class="banin_title">
+          <h5 class="banin_title">
             <a href="<?php echo $args['link']; ?>">
               <?php echo $args['title']; ?>
             </a>
-          </h6>
+          </h5>
         <?php } ?>
         <?php if($args['color'] != false){ ?>
           <div class="banin_deco" style="background:<?php echo $args['color']; ?>"></div>
