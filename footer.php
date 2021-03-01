@@ -12,10 +12,14 @@
     <div class="interfoot_deco"></div>
     <form class="interfoot_element formative">
       <h3 class="formative_title">O contacta con nuestro equipo de analistas.</h3>
-      <input class="formative_input" type="text" placeholder="Nombre*" required>
-      <input class="formative_input" type="text" placeholder="E-mail*" required>
-      <input class="formative_input" type="text" placeholder="Área">
-      <textarea class="formative_input formative_textarea" name="" placeholder="Comentarios"></textarea>
+      <label class="formative_label" for="name"><?= __('Nombre', 'tp_domain'); ?></label>
+      <label class="formative_label" for="mail"><?= __('E-Mail', 'tp_domain'); ?></label>
+      <label class="formative_label" for="area"><?= __('Área',   'tp_domain'); ?></label>
+      <input class="formative_input" type="text" id="name" placeholder="Nombre*" required>
+      <input class="formative_input" type="text" id="mail" placeholder="E-mail*" required>
+      <input class="formative_input" type="text" id="area" placeholder="Área">
+      <label class="formative_label formative_textarea" for="textarea"><?= __('Área',   'tp_domain'); ?></label>
+      <textarea class="formative_input formative_textarea" id="textarea" name="" placeholder="Comentarios"></textarea>
       <div class="formative_foot">
         <div class="formative_check" for="termcond">
           <input id="acceptance_terms" type="checkbox" name="termcond" value="" required>

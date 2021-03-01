@@ -54,6 +54,14 @@ const my_share = (title, text, url) => {
   }
 }
 
+const simpla_car_my_share = (id, title, text, url)=>{
+  // console.log('data: ', id, title, text, url);
+  if( navigator.share ){
+    my_share(title, text, url);
+  } else{
+    altClassFromSelector('visible', '.post-'+id+' .social_sharing_container')
+  }
+}
 
 
 
