@@ -15,10 +15,9 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
 
-      <template id="simpla">
+      <!-- <template id="simpla">
         <article class="simpla">
-          <div class="simpla_share rowcol1" onclick="altClassFromSelector('visible', '.post-<?php // echo get_the_ID(); ?> .social_sharing_container')">
-            <?php // include get_template_directory_uri() . '/inc/social_sharing.php'; ?>
+          <div class="simpla_share rowcol1" onclick="altClassFromSelector('visible', '.post- .social_sharing_container')">
             <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
               <use xlink:href="#share_svg"></use>
             </svg>
@@ -30,9 +29,6 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
             <div class="simpla_date_cat">
               <time class="simpla_date"></time>
               <p class="simpla_cat">
-                <?php // foreach ($args['categories'] as $key => $value) { ?>
-                  <a href=""></a>
-                <?php // } ?>
               </p>
 
             </div>
@@ -48,7 +44,7 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
             </div>
           </div>
         </article>
-      </template>
+      </template> -->
 
 
 
@@ -64,7 +60,7 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
   <!-- <div class="redDot body_activator" data-clase="header_big"></div> -->
   <!-- <div class="redDot body_activator" data-clase="header_deployed"></div> -->
   <header class="header">
-    <a class="logo" href="<?php echo site_url(); ?>">
+    <a class="logo" href="https://www.encuesta.com/">
       <?php include 'assets/logo_horizontal.svg' ?>
     </a>
     <menu class="nav_bar_menu">
@@ -86,7 +82,7 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
       ));
       foreach( $categories as $category ) { ?>
         <p class="nav_categories_item">
-          <a href="<?php echo get_term_link($category->term_id); ?>">- 
+          <a href="<?php echo get_term_link($category->term_id); ?>">-
             <?php echo $category->name; ?>
           </a>
         </p>
