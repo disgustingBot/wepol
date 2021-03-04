@@ -1462,7 +1462,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   grid-row:1;
   padding:2.5rem 0;
   position: relative;
-  min-height:calc(var(--fead_height) - var(--height_modifyer));
+  /* min-height:calc(var(--fead_height) - var(--height_modifyer)); */
   display:grid;
   grid-template-columns:var(--fead_GTC);
   grid-gap:var(--fead_GG_WP);
