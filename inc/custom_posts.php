@@ -160,16 +160,16 @@ function lt_custom_posts() {
 	lt_new_custom_post( array('singular' => 'CTA', 'plural' => 'CTAs'), 'dashicons-welcome-widgets-menus');
 	lt_new_custom_post( array('singular' => 'banner', 'plural' => 'banners'), 'dashicons-welcome-view-site', array( 'posicion' ));
 
-	$lt_meta_banner = array(
+	$tp_meta_banner = array(
 		'label'       => 'Banner',
 		'description' => 'Escribe el slug de un banner para esta categoria, dejalo en blanco para no usar banner (o usar el default) en esta categoria.',
 	);
-	$lt_meta_cta = array(
+	$tp_meta_cta = array(
 		'label'       => 'Call To Action',
 		'description' => 'Escribe el slug de un CTA para esta categoria, dejalo en blanco para no usar CTA en esta categoria.',
 	);
 	lt_add_meta_fields_to_taxonomy( $taxonomy_slug = 'category', $meta_fields = array(
-		'tp_meta_banner'   => $lt_meta_banner,
-		'tp_meta_cta'      => $lt_meta_cta,
+		'tp_meta_banner'   => $tp_meta_banner,
+		'tp_meta_cta'      => $tp_meta_cta,
 	) );
 }
