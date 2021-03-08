@@ -1,4 +1,11 @@
 <?php
+// este si va
+// scp -r /mnt/c/xampp/htdocs/encuesta/wp-content/themes/wepol_original/* lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
+
+// este si va
+// scp -r lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/* /var/www/html/wp-content/themes/wepol
+
+// chmod -R 777 /var/www/html/wp-content/themes/wepol
 
 require_once 'inc/custom_posts.php';
 require_once 'inc/form_handler.php';

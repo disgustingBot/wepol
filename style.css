@@ -1868,8 +1868,8 @@ h6{font-size:.75rem;line-height:1.25rem}
 .single_container > .social_sharing_container{
   background: rgba(255,255,255,0.9);
   box-shadow: unset;
-  /* display:flex; */
-  display:var(--onlyDesktopF);
+  display:flex;
+  /* display:var(--onlyDesktopF); */
   /* flex-direction: column; */
   flex-direction: var(--social_sharing_container_for_the_main_article_FLEX_DIRECTION);
   grid-column:2;
@@ -1895,7 +1895,8 @@ h6{font-size:.75rem;line-height:1.25rem}
   border-radius: 4px;
   box-shadow: var(--DP1);
   cursor: default;
-  display:flex;
+  display:var(--onlyDesktopF);
+  /* display:flex; */
   grid-auto-flow: column;
   grid-gap: 1rem;
   left:0;
