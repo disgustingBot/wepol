@@ -272,7 +272,7 @@ function ticon_category(){
   }
 
 
-  if(!$cat_banner){
+  if(!$cat_cta){
     // if there is no banner load one more post
     $cant_normal_posts += 1;
   } else {

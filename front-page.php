@@ -13,12 +13,12 @@ $categories = get_categories( array(
 
 <div class="fead">
   <div class="fead_caption">
-    <h1 class="fead_title"><?php echo get_post_meta(get_the_ID(), 'ATF_tilte', true) ?></h1>
+    <h1 class="fead_title"><?php echo get_post_meta(get_the_ID(), 'ATF_tilte', true); ?></h1>
     <div class="fead_deco"></div>
-    <h2 class="fead_subtitle"><?php echo get_post_meta(get_the_ID(), 'ATF_text', true) ?></h2>
+    <h2 class="fead_subtitle"><?php echo get_post_meta(get_the_ID(), 'ATF_text', true); ?></h2>
 
-    <a class="fead_btn btn little_cta_link" href="<?php echo get_post_meta(get_the_ID(), 'ATF_link', true) ?>">
-      <span>Crear encuesta</span>
+    <a class="fead_btn btn little_cta_link" href="<?php echo get_post_meta(get_the_ID(), 'ATF_link', true); ?>">
+      <span><?php echo get_post_meta(get_the_ID(), 'ATF_texto_boton', true); ?></span>
       <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
         <use xlink:href="#arrow_right"></use>
       </svg>
@@ -66,7 +66,7 @@ foreach( $categories as $category ) { ?>
 </main>
 
 
-<div class="pop">
+<div class="pop" style="display:none">
   <h3 class="pop_title">Publicaciones populares</h3>
   <?php foreach( $categories as $category ) { ?>
     <div class="pop_song <?php echo "pop_song-" . $category->term_id; ?>">

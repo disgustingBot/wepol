@@ -97,7 +97,8 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
     </button>
   </header>
 
-  <nav class="nav_categories only_over_992_G">
+
+  <nav class="nav_categories only_over_992_G"<?php if (is_front_page()) { ?> style="display:none"<?php } ?>>
     <!-- <nav class="nav_categories Carousel onlyDesktopG"> -->
     <!-- <div class="nav_categories_container rowcol1 Element"> -->
     <?php

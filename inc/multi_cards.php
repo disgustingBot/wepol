@@ -152,7 +152,7 @@
           </div>
         <?php } ?>
         <?php if($args['link'] != false){ ?>
-          <a class="banin_btn btn" href="<?php echo $args['link']; ?>">
+          <a class="banin_btn btn" href="<?php echo $args['link']; ?>" style="background:<?php echo $args['color']; ?>">
             <?php echo $args['button_text']; ?>
           </a>
         <?php } ?>

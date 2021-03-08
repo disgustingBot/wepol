@@ -33,12 +33,10 @@ if(!$cat_banner){
 // then show the banner
 $banner = new WP_Query($args);
 while ( $banner->have_posts() ){$banner->the_post();
-  // we will probably have to change the card here
-  // banin_card();
   ?>
-  <div class="banner_card">
+  <a class="banner_card" href="<?php echo get_post_meta(get_the_ID(), 'link', true); ?>">
     <img class="banner_card_img" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
-  </div>
+  </a>
   <?php
 } wp_reset_postdata();
 // END OF BANNER __________________________________________________________
