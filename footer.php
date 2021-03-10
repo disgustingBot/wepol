@@ -11,6 +11,10 @@
     </div>
     <div class="interfoot_deco"></div>
     <form class="interfoot_element formative">
+      <input type="hidden" name="action"   value="lt_form_handler">
+      <input type="hidden" name="link"     value="<?php echo home_url( $wp->request ); ?>">
+      <input type="text"   name="a00"      value="" placeholder="jeje" hidden>
+      
       <h3 class="formative_title">O contacta con nuestro equipo de analistas.</h3>
       <label class="formative_label" for="name"><?= __('Nombre', 'tp_domain'); ?></label>
       <label class="formative_label" for="mail"><?= __('E-Mail', 'tp_domain'); ?></label>
