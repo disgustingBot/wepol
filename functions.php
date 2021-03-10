@@ -5,7 +5,7 @@
 // este si va
 // scp -r lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/* /var/www/html/wp-content/themes/wepol
 
-// chmod -R 777 /var/www/html/wp-content/themes/wepol
+// chmod -R 775 /var/www/html/wp-content/themes/wepol
 
 require_once 'inc/custom_posts.php';
 require_once 'inc/form_handler.php';
@@ -74,6 +74,40 @@ function standard_svg($id, $class) {
 
 
 
+
+add_action('admin_init', 'my_general_section');
+function my_general_section() {
+
+    add_settings_section(
+      'custom_settings', // Section ID
+      'Custom Settings', // Section Title
+      'my_section_options_callback', // Callback
+      'general' // What Page?  This makes the section show up on the General Settings Page
+    );
+
+    add_settings_field( // Option 1
+      'contact_form_to', // Option ID
+      'Recive messages from contact form here', // Label
+      'my_textbox_callback', // !important - This is where the args go!
+      'general', // Page it will be displayed (General Settings)
+      'custom_settings', // Name of our section
+      array( // The $args
+        'contact_form_to' // Should match Option ID
+      )
+    );
+
+    register_setting('general','contact_form_to', 'esc_attr');
+    // register_setting('general','option_2', 'esc_attr');
+}
+
+function my_section_options_callback() { // Section Callback
+    echo '<p>A little message on editing info</p>';
+}
+
+function my_textbox_callback($args) {  // Textbox Callback
+    $option = get_option($args[0]);
+    echo '<input type="text" id="'. $args[0] .'" name="'. $args[0] .'" value="' . $option . '" />';
+}
 
 
 
