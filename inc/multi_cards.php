@@ -18,9 +18,21 @@
       $args['image_alt'] = get_post_meta($img_id , '_wp_attachment_image_alt', true);
     }
 
-    // if (!$args['image']) {
-    //   $args['test']       = 2;
-    // }
+    $id = get_post_thumbnail_id();
+    // create my own "sizes" attribute
+    $arg = array(
+      ['576' , '90'],
+      ['768' , '50'],
+    );
+    $sizes = array_map(function ($value){ return "(max-width: ".$value[0]."px) ".$value[1]."vw";}, $arg);
+    $sizes = implode(", ", $sizes) . ", 30vw";
+
+    $src = wp_get_attachment_image_src( $id, 'the_perfect_size' );
+    $srcset = wp_get_attachment_image_srcset( $id, 'the_perfect_size' );
+    // $sizes = wp_get_attachment_image_sizes( $id, 'the_perfect_size' );
+    $alt = get_post_meta( $id, '_wp_attachment_image_alt', true);
+
+
     if (!$args['image']) { $rand_number = rand(0, 9);
       $args['image'] = "https://picsum.photos/600/40$rand_number";
     }
@@ -47,7 +59,10 @@
 
           </div>
           <a href="<?php echo $args['link']; ?>" class="simpla_amg rowcol1">
-            <img class="simpla_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="<?php echo $args['image_alt']; ?>">
+            <img  class="simpla_img" loading="lazy"
+                srcset="<?= esc_attr( $srcset ) ?>"
+                sizes="<?= esc_attr( $sizes ) ?>"
+                alt="<?= esc_attr( $alt ) ?>" />
           </a>
         <?php } ?>
         <div class="simpla_caption">
