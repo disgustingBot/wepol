@@ -113,7 +113,7 @@ if($view_count){
 
 
 <div class="single_share" onclick="my_share('<?php the_title(); ?>', '<?php _e('Mira este artículo!', 'lt') ?>', '<?php echo get_permalink(); ?>')">
-  <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 35 35">
     <use xlink:href="#share_svg"></use>
   </svg>
 </div>

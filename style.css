@@ -823,6 +823,7 @@ h6{font-size:.75rem;line-height:1.25rem}
   place-items:center;
   position: relative;
   z-index:2;
+  display: none;
 }
 /* .nav_categories_container {
   display:grid;
