@@ -52,7 +52,69 @@ foreach( $categories as $category ) { ?>
 
     <div class="ticon_deco"></div>
 
-    <div class="showcase3 ticon_grid"></div>
+    <div class="showcase3 ticon_grid">
+      <?php
+        $cant_normal_posts = 3;
+        $cat_cta = get_term_meta( $category->term_id, 'tp_meta_cta', true);
+        $cat_banner = get_term_meta( $category->term_id, 'tp_meta_banner', true);
+        $stickies = get_option( 'sticky_posts' );
+
+        $args = array(
+          'posts_per_page' => 1,
+          'category__and'  => $category->term_id, //must use category id for this field
+          // 'meta_key' => 'custom-meta-key'
+          'meta_query' => array(
+             array(
+                 'key' => 'featured_post',
+                 'value' => 'yes',
+                 'compare' => '=',
+             ),
+          ),
+        );
+        $blog=new WP_Query($args);
+        $featured_id = 0;
+        if($blog->have_posts()){
+          while($blog->have_posts()){$blog->the_post();
+            $arg = array(
+              'classes' => 'featured',
+            );
+            $featured_id = get_the_ID();
+            simpla_card($arg);
+          } wp_reset_query();
+        } else {
+          // if there is no sticky post, load 2 more normal posts
+          $cant_normal_posts += 2;
+        }
+
+
+        if(!$cat_cta){
+          // if there is no banner load one more post
+          $cant_normal_posts += 1;
+        } else {
+          $banner = get_page_by_path( $cat_cta, OBJECT, 'cta' );
+          $args = array(
+            'post_type'      => 'CTA',
+            'posts_per_page' => 1,
+            'post__in'       => [$banner->ID],
+          );
+          $banner=new WP_Query($args);
+          while($banner->have_posts()){$banner->the_post();
+            banin_card();
+          }
+        }
+
+        $args = array(
+          'posts_per_page' => $cant_normal_posts,
+          'post__not_in'   => array($featured_id),
+          'category__and' => $category->term_id, //must use category id for this field
+          'ignore_sticky_posts' => 1,
+        );
+        $blog=new WP_Query($args);
+        while($blog->have_posts()){$blog->the_post();
+          simpla_card();
+          $i+=1;
+        } wp_reset_query(); ?>
+    </div>
     <a class="more_btn_2" href="<?php echo get_term_link($category->term_id); ?>">
       <span>Más artículos</span>
       <svg class="more_btn_svg" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">

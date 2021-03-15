@@ -277,24 +277,24 @@ class Simpla_post {
 }
 
 
-const ticon_load = async (id) =>{
-  let parent = '.Culiau',
-  per_page = 10;
-
-  let end_point = "http://localhost/wepol/wp-json/wp/v2/posts?categories="+id+'&per_page='+per_page+'&sticky=1'
-  // let end_point = "https://rollingstones.com/wp-json/wp/v2/posts?per_page="+per_page
-  let response = await fetch(end_point);
-  let data     = await response.json( );
-  c.log(data);
-
-  data.forEach( post => {
-    // if (post.id != featured_id) {
-      simpla = new Simpla_post(post);
-      simpla.print_UI(parent, 0);
-      // c.log(simpla);
-    // }
-  });
-}
+// const ticon_load = async (id) =>{
+//   let parent = '.Culiau',
+//   per_page = 10;
+//
+//   let end_point = "http://localhost/wepol/wp-json/wp/v2/posts?categories="+id+'&per_page='+per_page+'&sticky=1'
+//   // let end_point = "https://rollingstones.com/wp-json/wp/v2/posts?per_page="+per_page
+//   let response = await fetch(end_point);
+//   let data     = await response.json( );
+//   c.log(data);
+//
+//   data.forEach( post => {
+//     // if (post.id != featured_id) {
+//       simpla = new Simpla_post(post);
+//       simpla.print_UI(parent, 0);
+//       // c.log(simpla);
+//     // }
+//   });
+// }
 
 // ticon_load()
 
@@ -308,28 +308,28 @@ const ticon_load = async (id) =>{
 
 
 
-const test_ticon_category = async (id)=>{
-  let parent = '.ticon-'+id+' .ticon_grid';
-
-	let formData = new FormData();
-  formData.append('action', 'ticon_category');
-  console.log( id);
-	formData.append('term_id', id);
-
-  let end_point = lt_data.ajaxurl
-  let response = await fetch(end_point, { method: 'POST', body: formData, });
-  let data     = await response.text( );
-  // console.log(data);
-  d.querySelector(parent).innerHTML = data;
-}
-
-
-if( lt_data.is_front_page){
-  let categories = JSON.parse(lt_data.categories)
-  categories.forEach( async (category, i) => {
-    test_ticon_category(category.term_id)
-  });
-}
+// const test_ticon_category = async (id)=>{
+//   let parent = '.ticon-'+id+' .ticon_grid';
+//
+// 	let formData = new FormData();
+//   formData.append('action', 'ticon_category');
+//   console.log( id);
+// 	formData.append('term_id', id);
+//
+//   let end_point = lt_data.ajaxurl
+//   let response = await fetch(end_point, { method: 'POST', body: formData, });
+//   let data     = await response.text( );
+//   // console.log(data);
+//   d.querySelector(parent).innerHTML = data;
+// }
+//
+//
+// if( lt_data.is_front_page){
+//   let categories = JSON.parse(lt_data.categories)
+//   categories.forEach( async (category, i) => {
+//     test_ticon_category(category.term_id)
+//   });
+// }
 
 // if(!lt_data.is_front_page){
 //   const adjust_gliter_height = selector => {

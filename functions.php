@@ -54,6 +54,8 @@ function gp_init() {
   // add_theme_support( 'wc-product-gallery-zoom' );
   // add_theme_support( 'wc-product-gallery-lightbox' );
   // add_theme_support( 'wc-product-gallery-slider' );
+
+   add_image_size( 'the_perfect_size', 450, 450 );
 }
 add_action('after_setup_theme', 'gp_init');
 
@@ -337,9 +339,9 @@ function ticon_category(){
   );
   $blog=new WP_Query($args);
   while($blog->have_posts()){$blog->the_post();
-      simpla_card();
-      $i+=1;
-    } wp_reset_query();
+    simpla_card();
+    $i+=1;
+  } wp_reset_query();
 
   exit();
 
