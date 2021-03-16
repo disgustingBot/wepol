@@ -14,7 +14,7 @@
       <input type="hidden" name="action"   value="lt_form_handler">
       <input type="hidden" name="link"     value="<?php echo home_url( $wp->request ); ?>">
       <input type="text"   name="a00"      value="" placeholder="jeje" hidden>
-      
+
       <h3 class="formative_title">O contacta con nuestro equipo de analistas.</h3>
       <label class="formative_label" for="name"><?= __('Nombre', 'tp_domain'); ?></label>
       <label class="formative_label" for="mail"><?= __('E-Mail', 'tp_domain'); ?></label>
@@ -40,7 +40,7 @@
 
   <footer class="footer" id="footer">
 
-    <img class="footer_logo" src="https://www.encuesta.com/wp-content/uploads/2018/01/confianza-online-logo.png" alt="">
+    <img class="footer_logo" width="100px" height="100px" src="https://www.encuesta.com/wp-content/uploads/2018/01/confianza-online-logo.png" alt="">
 
     <div class="footer_info">
       <div class="footer_col">
@@ -79,35 +79,35 @@
           <li class="menu-item">
             <p class="footer_txt">Todos los países</p>
             <div class="footer_tel">
-              <img class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
+              <img width="16px" height="16px" class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
               <p class="footer_txt">0034 91 564 34 18</p>
             </div>
           </li>
           <li class="menu-item">
             <p class="footer_txt">España</p>
             <div class="footer_tel">
-              <img class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
+              <img width="16px" height="16px" class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
               <p class="footer_txt">91 564 34 18</p>
             </div>
           </li>
           <li class="menu-item">
             <p class="footer_txt">México</p>
             <div class="footer_tel">
-              <img class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
+              <img width="16px" height="16px" class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
               <p class="footer_txt">(55) 8421 4155</p>
             </div>
           </li>
           <li class="menu-item">
             <p class="footer_txt">Colombia</p>
             <div class="footer_tel">
-              <img class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
+              <img width="16px" height="16px" class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
               <p class="footer_txt">(57) 300 929 5074</p>
             </div>
           </li>
           <li class="menu-item">
             <p class="footer_txt">Chile</p>
             <div class="footer_tel">
-              <img class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
+              <img width="16px" height="16px" class="footer_tel_icon" src="https://www.encuesta.com/wp-content/uploads/2018/01/telefono-footer.png" alt="">
               <p class="footer_txt">(42) 245 7612</p>
             </div>
           </li>

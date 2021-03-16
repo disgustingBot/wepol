@@ -60,6 +60,7 @@
           </div>
           <a href="<?php echo $args['link']; ?>" class="simpla_amg rowcol1">
             <img  class="simpla_img" loading="lazy"
+                src="<?= $args['image']; ?>"
                 srcset="<?= esc_attr( $srcset ) ?>"
                 sizes="<?= esc_attr( $sizes ) ?>"
                 alt="<?= esc_attr( $alt ) ?>" />
@@ -108,6 +109,17 @@
     if(!isset($args['image']  )){ $args['image']   = get_the_post_thumbnail_url(); }
     $img_id = get_post_thumbnail_id(get_the_ID());
     $args['image_alt'] = get_post_meta($img_id , '_wp_attachment_image_alt', true);
+
+    // create my own "sizes" attribute
+    $arg = array(
+      ['576' , '60'],
+    );
+    $sizes = array_map(function ($value){ return "(max-width: ".$value[0]."px) ".$value[1]."px";}, $arg);
+    $sizes = implode(", ", $sizes) . ", 60px";
+
+    $src = wp_get_attachment_image_src( $img_id, 'the_perfect_size' );
+    $srcset = wp_get_attachment_image_srcset( $img_id, 'the_perfect_size' );
+
     if(!isset($args['color']  )){ $args['color']   = get_post_meta(get_the_ID(), 'color', true); }
     ?>
 
@@ -117,7 +129,11 @@
             <div class="shiny_deco" style="background:<?php echo $args['color']; ?>"></div>
           <?php } ?>
           <?php if($args['image'] != false){ ?>
-            <img class="shiny_img" loading="lazy" src="<?php echo $args['image']; ?>" alt="">
+            <img  class="shiny_img" loading="lazy"
+                src="<?= $args['image']; ?>"
+                srcset="<?= esc_attr( $srcset ) ?>"
+                sizes="<?= esc_attr( $sizes ) ?>"
+                alt="<?= esc_attr( $alt ) ?>" />
           <?php } ?>
         </a>
         <?php if($args['title'] != false){ ?>

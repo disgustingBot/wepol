@@ -62,7 +62,7 @@ add_action('after_setup_theme', 'gp_init');
 
 function standard_svg($id, $class) {
   $html='
-  <svg class="' . $class . ' aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <svg class="' . $class . '" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
     <use xlink:href="#' . $id . '"></use>
   </svg>
   ';
