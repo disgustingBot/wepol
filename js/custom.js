@@ -23,18 +23,14 @@ w.onload=()=>{
   }
 }
 
-// window.CSS.registerProperty({
-//   name: '--logo_size',
-//   syntax: '<length>',
-//   inherits: false,
-//   initialValue: '20px',
-// });
-// window.CSS.registerProperty({
-//   name: '--brand_color_1',
-//   syntax: '<color>',
-//   inherits: false,
-//   initialValue: '#000F41',
-// });
+
+
+const send_contact_mail = async ()=>{
+	let token = await grecaptcha.execute('6LdjfoEaAAAAABvZvcpj1DkuySF5DVeXSQ0mUbjf', {action: 'submit'});
+	token_input = document.querySelector('.token');
+	token_input.setAttribute('value', token)
+	document.querySelector('.contactForm').submit();
+}
 
 
 

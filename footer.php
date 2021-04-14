@@ -1,6 +1,23 @@
 
   <div class="interfoot top_block">
-    <div class="interfoot_element little_cta">
+    <?php
+    $args = array(
+      'post_type' => 'cta',
+      'posts_per_page' => 1,
+      'tax_query' => array(
+        array (
+          'taxonomy' => 'lugar',
+          'field' => 'slug',
+          'terms' => 'footer',
+        ),
+      ),
+    );
+    $cta=new WP_Query($args);
+    while($cta->have_posts()){$cta->the_post();
+      banin_card(['class'=>'interfoot_element little_cta']);
+    }
+    ?>
+    <!-- <div class="interfoot_element little_cta">
       <h3 class="little_cta_title">Crea tu encuesta<br>online ahora</h3>
       <a href="" class="btn little_cta_link">
         <span>Crear encuesta</span>
@@ -8,9 +25,9 @@
           <use xlink:href="#arrow_right"></use>
         </svg>
       </a>
-    </div>
+    </div> -->
     <div class="interfoot_deco"></div>
-    <form class="interfoot_element formative">
+    <form class="interfoot_element formative" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="POST">
       <input type="hidden" name="action"   value="lt_form_handler">
       <input type="hidden" name="link"     value="<?php echo home_url( $wp->request ); ?>">
       <input type="text"   name="a00"      value="" placeholder="jeje" hidden>
@@ -19,20 +36,28 @@
       <label class="formative_label" for="name"><?= __('Nombre', 'tp_domain'); ?></label>
       <label class="formative_label" for="mail"><?= __('E-Mail', 'tp_domain'); ?></label>
       <label class="formative_label" for="area"><?= __('Área',   'tp_domain'); ?></label>
-      <input class="formative_input" type="text" id="name" placeholder="Nombre*" required>
-      <input class="formative_input" type="text" id="mail" placeholder="E-mail*" required>
-      <input class="formative_input" type="text" id="area" placeholder="Área">
-      <label class="formative_label formative_textarea" for="textarea"><?= __('Área',   'tp_domain'); ?></label>
-      <textarea class="formative_input formative_textarea" id="textarea" name="" placeholder="Comentarios"></textarea>
+      <input class="formative_input" type="text" id="name" name="Nombre" placeholder="Nombre*" required>
+      <input class="formative_input" type="text" id="mail" name="Email" placeholder="E-mail*" required>
+      <input class="formative_input" type="text" id="area" name="Area" placeholder="Área">
+      <label class="formative_label formative_textarea" for="textarea"><?= __('Comentarios',   'tp_domain'); ?></label>
+      <textarea class="formative_input formative_textarea" id="textarea" name="Comentarios" placeholder="Comentarios"></textarea>
       <div class="formative_foot">
         <div class="formative_check" for="termcond">
-          <input id="acceptance_terms" type="checkbox" name="termcond" value="" required>
+          <input id="acceptance_terms" type="checkbox" name="terminos" value="" required>
           <label for="acceptance_terms">Acepto <a href="">Términos y condiciones</a> de la web</label>
         </div>
         <div class="formative_check" for="termcond">
-          <input id="acceptance_privacy" type="checkbox" name="termcond" value="" required>
+          <input id="acceptance_privacy" type="checkbox" name="privacidad" value="" required>
           <label for="acceptance_privacy">Acepto la <a href="">Política de Privacidad</a></label>
         </div>
+        <?php
+        $site = '6LdjfoEaAAAAABvZvcpj1DkuySF5DVeXSQ0mUbjf';
+        $scrt = '6LdjfoEaAAAAAPtLYImMO__2eadmy5qj_SBy_amg';
+        ?>
+              <!-- <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
+              <input class="recaptcha" type="text" hidden value=""> -->
+              <input class="token" type="hidden" name="token" value="">
+        <!-- <div class="btn" onclick="send_contact_mail()">Enviar</div> -->
         <input type="submit" class="btn" value="Enviar">
       </div>
     </form>
@@ -118,7 +143,6 @@
 
 
     <div class="telector_cont">
-      <p><?= __('Tambien tenemos un tema oscuro, puebalo!', '3pi') ?></p>
       <div class="telector" onclick="theme.alternate()">
         <div class="telector_circle"></div>
         <svg class="telector_icon  sun" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 143.7c-61.8 0-112 50.3-112 112.1s50.2 112.1 112 112.1 112-50.3 112-112.1-50.2-112.1-112-112.1zm0 192.2c-44.1 0-80-35.9-80-80.1s35.9-80.1 80-80.1 80 35.9 80 80.1-35.9 80.1-80 80.1zm256-80.1c0-5.3-2.7-10.3-7.1-13.3L422 187l19.4-97.9c1-5.2-.6-10.7-4.4-14.4-3.8-3.8-9.1-5.5-14.4-4.4l-97.8 19.4-55.5-83c-6-8.9-20.6-8.9-26.6 0l-55.5 83-97.8-19.5c-5.3-1.1-10.6.6-14.4 4.4-3.8 3.8-5.4 9.2-4.4 14.4L90 187 7.1 242.5c-4.4 3-7.1 8-7.1 13.3 0 5.3 2.7 10.3 7.1 13.3L90 324.6l-19.4 97.9c-1 5.2.6 10.7 4.4 14.4 3.8 3.8 9.1 5.5 14.4 4.4l97.8-19.4 55.5 83c3 4.5 8 7.1 13.3 7.1s10.3-2.7 13.3-7.1l55.5-83 97.8 19.4c5.4 1.2 10.7-.6 14.4-4.4 3.8-3.8 5.4-9.2 4.4-14.4L422 324.6l82.9-55.5c4.4-3 7.1-8 7.1-13.3zm-116.7 48.1c-5.4 3.6-8 10.1-6.8 16.4l16.8 84.9-84.8-16.8c-6.6-1.4-12.8 1.4-16.4 6.8l-48.1 72-48.1-71.9c-3-4.5-8-7.1-13.3-7.1-1 0-2.1.1-3.1.3l-84.8 16.8 16.8-84.9c1.2-6.3-1.4-12.8-6.8-16.4l-71.9-48.1 71.9-48.2c5.4-3.6 8-10.1 6.8-16.4l-16.8-84.9 84.8 16.8c6.5 1.3 12.8-1.4 16.4-6.8l48.1-72 48.1 72c3.6 5.4 9.9 8.1 16.4 6.8l84.8-16.8-16.8 84.9c-1.2 6.3 1.4 12.8 6.8 16.4l71.9 48.2-71.9 48z"></path></svg>

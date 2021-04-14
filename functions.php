@@ -5,7 +5,24 @@
 // este si va
 // scp -r lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/* /var/www/html/wp-content/themes/wepol
 
-// chmod -R 775 /var/www/html/wp-content/themes/wepol
+// chmod -R 777 /var/www/html/wp-content/themes/wepol
+// chmod -R 755 /var/www/html
+
+
+// scp /var/www/html/encuesta_blog.zip lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
+
+
+// activate debug mode, I need wp-config.php
+// scp lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/wp-config.php /var/www/html
+//
+// scp /mnt/c/xampp/htdocs/encuesta/wp-content/themes/wepol_original/wp-config.php lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
+// 144.91.64.164
+// 173.249.15.176
+
+// /mnt/c/xampp/htdocs/e-wally
+// scp -r /mnt/c/xampp/htdocs/e-wally/wp-content/themes/e-wally/* ewally@173.249.15.176:~/web/e-wally.de/public_html/wp-content/themes/e-wally
+// mysql --user=ewally_wordpress --password=7C9AMngqvMCiwtLn ewally_wordpress < tp_ewally.sql
+
 
 require_once 'inc/custom_posts.php';
 require_once 'inc/form_handler.php';
@@ -19,6 +36,7 @@ function lattte_setup(){
   wp_enqueue_style('style', get_stylesheet_uri(), NULL, microtime(), 'all');
 	wp_enqueue_script('modules', get_theme_file_uri('/js/modules.js'), NULL, microtime(), true);
 
+  // wp_enqueue_script('ReCaptcha', 'https://www.google.com/recaptcha/api.js', NULL, microtime(), true);
 
 
   // register our main script but do not enqueue it yet

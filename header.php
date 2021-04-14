@@ -13,41 +13,8 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
 
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-
-
-      <!-- <template id="simpla">
-        <article class="simpla">
-          <div class="simpla_share rowcol1" onclick="altClassFromSelector('visible', '.post- .social_sharing_container')">
-            <svg class="simpla_share_icon" aria-hidden="true" focusable="false" role="img" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 50 50">
-              <use xlink:href="#share_svg"></use>
-            </svg>
-          </div>
-          <a href="" class="simpla_amg rowcol1">
-            <img class="simpla_img" loading="lazy" src="" alt="">
-          </a>
-          <div class="simpla_caption">
-            <div class="simpla_date_cat">
-              <time class="simpla_date"></time>
-              <p class="simpla_cat">
-              </p>
-
-            </div>
-            <h5>
-              <a class="simpla_title" href=""></a>
-            </h5>
-            <div class="simpla_foot">
-              <author class="simpla_author">Por <span class="simpla_author_name"></span></author>
-              <div class="simpla_r_time">
-                <?php include get_template_directory() . '/assets/clock.svg'; ?>
-                <p><span class="simpla_reading_time"></span>’</p>
-              </div>
-            </div>
-          </div>
-        </article>
-      </template> -->
-
-
-
+  
+  <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $site; ?>"></script>
 
 </head>
 <body <?php body_class(); ?>>

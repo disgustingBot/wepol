@@ -79,7 +79,7 @@ function lt_new_custom_post($label, $icon = '', $taxonomies = array() ){
 		);
 
 		/* Registramos la taxonomía y la configuramos como jerárquica (al estilo de las categorías) */
-		register_taxonomy( $tax_name, array( $name ), array(
+		register_taxonomy( $tax_name, array( sanitize_title( $name ) ), array(
 			'labels'             => $labels,
 			'public'             => true,
 			'hierarchical'       => true,
@@ -157,8 +157,8 @@ function lt_add_meta_fields_to_taxonomy( $taxonomy_slug , $meta_fields = array()
 add_action( 'init', 'lt_custom_posts' );
 function lt_custom_posts() {
 	// lt_new_custom_post( 'equipo', 'dashicons-groups', array( 'area', 'departamento', 'cargo' ) );
-	lt_new_custom_post( array('singular' => 'CTA', 'plural' => 'CTAs'), 'dashicons-welcome-widgets-menus');
-	lt_new_custom_post( array('singular' => 'banner', 'plural' => 'banners'), 'dashicons-welcome-view-site', array( 'posicion' ));
+	lt_new_custom_post(array('singular' => 'CTA', 'plural' => 'CTAs'), 'dashicons-welcome-widgets-menus', array( 'lugar' ));
+	lt_new_custom_post(array('singular' => 'banner', 'plural' => 'banners'), 'dashicons-welcome-view-site', array( 'posicion' ));
 
 	$tp_meta_banner = array(
 		'label'       => 'Banner',
