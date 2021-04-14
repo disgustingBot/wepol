@@ -988,7 +988,8 @@ h6{font-size:.75rem;line-height:1.25rem}
 .simpla_amg{
   display:grid;
 }
-.simpla_img{
+.simpla_img,
+.simpla_img img{
   height:calc(var(--simpla_aspect_ratio) * var(--simpla_width));
 }
 .simpla_caption{
@@ -1146,7 +1147,8 @@ h6{font-size:.75rem;line-height:1.25rem}
 .telector_cont{
   grid-column:1/-1;
   display:grid;
-  grid-template-columns: 1fr min-content;
+  /* grid-template-columns: 1fr min-content; */
+  justify-content: flex-end;
   text-align: right;
   grid-gap:1rem;
   align-items:center;

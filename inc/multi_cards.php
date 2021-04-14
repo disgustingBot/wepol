@@ -151,6 +151,8 @@
 <?php function banin_card ($args = array()) {
     if(!isset($args['title']      )){ $args['title']      = get_the_title(); }
     if(!isset($args['excerpt']    )){ $args['excerpt']    = excerpt(120); }
+    if(!isset($args['class']    )){ $args['class']    = ''; }
+
     // if(!isset($args['image']      )){ $args['image']      = get_the_post_thumbnail_url(); }
     if(!isset($args['link']       )){ $args['link']       = get_post_meta(get_the_ID(), 'link', true); }
     if(!isset($args['color']      )){ $args['color']      = get_post_meta(get_the_ID(), 'color', true); }
@@ -158,7 +160,7 @@
 
     ?>
 
-    <div class="banin">
+    <div class="banin <?= $args['class'] ?>">
         <?php if($args['image'] != false){ ?>
             <!-- <a class="banin_amg" href="<?php echo $args['link']; ?>">
               <?php if($args['color'] != false){ ?>
