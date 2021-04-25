@@ -57,8 +57,8 @@
               <!-- <div class="g-recaptcha" data-callback="captchaVerified" data-sitekey="<?php echo $site; ?>"></div>
               <input class="recaptcha" type="text" hidden value=""> -->
               <input class="token" type="hidden" name="token" value="">
-        <!-- <div class="btn" onclick="send_contact_mail()">Enviar</div> -->
-        <input type="submit" class="btn" value="Enviar">
+        <div class="btn" onclick="send_contact_mail()">Enviar</div>
+        <!-- <input type="submit" class="btn" value="Enviar"> -->
       </div>
     </form>
   </div>

@@ -67,11 +67,16 @@ function lt_form_handler() {
 					}
 		    } else {
 					$link = add_query_arg( array( 'status' => 'bot' , ), $link );
+					// $link = add_query_arg( array( 'this_is' => 'test' , ), $link );
+					// $link = add_query_arg( array( 'resp' => wp_json_encode($boring_google_response) , ), $link );
+
 					// foreach ($_POST as $key => $value) {
 					// 	$link = add_query_arg( array( $key => $value , ), $link );
 					// 	// code...
 					// }
 		    }
+
+
 	}
 	wp_redirect($link);
 	// if($debugMode){echo wp_json_encode($respuesta);}

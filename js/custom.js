@@ -29,7 +29,7 @@ const send_contact_mail = async ()=>{
 	let token = await grecaptcha.execute('6LdjfoEaAAAAABvZvcpj1DkuySF5DVeXSQ0mUbjf', {action: 'submit'});
 	token_input = document.querySelector('.token');
 	token_input.setAttribute('value', token)
-	document.querySelector('.contactForm').submit();
+	document.querySelector('.formative').submit();
 }
 
 
