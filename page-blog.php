@@ -1,8 +1,4 @@
-<?php
-header("Location: " . site_url() . "/blog");
-die();
-
-get_header(); ?>
+<?php get_header(); ?>
 
 <?php
 $i = 0;

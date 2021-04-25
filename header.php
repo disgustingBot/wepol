@@ -1,6 +1,6 @@
 <?php
-$site = '6LcRuNAUAAAAADtamJW75fYf8YtNHceSngjKsf-B';
-$scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
+$site = '6LdjfoEaAAAAABvZvcpj1DkuySF5DVeXSQ0mUbjf';
+$scrt = '6LdjfoEaAAAAAPtLYImMO__2eadmy5qj_SBy_amg';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -13,11 +13,22 @@ $scrt = '6LcRuNAUAAAAALBu7Ymh0yxmTXTJmP0rsnkjGyj0';
 
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W57M2ZK');</script>
+  <!-- End Google Tag Manager -->
   <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $site; ?>"></script>
 
 </head>
 <body <?php body_class(); ?>>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W57M2ZK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 	<view id="load" class="load"></view>
 
