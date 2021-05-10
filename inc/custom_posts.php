@@ -168,8 +168,13 @@ function lt_custom_posts() {
 		'label'       => 'Call To Action',
 		'description' => 'Escribe el slug de un CTA para esta categoria, dejalo en blanco para no usar CTA en esta categoria.',
 	);
+	$tp_meta_order = array(
+	 'label'       => 'Orden',
+	 'description' => 'Orden de aparicion',
+	);
 	lt_add_meta_fields_to_taxonomy( $taxonomy_slug = 'category', $meta_fields = array(
 		'tp_meta_banner'   => $tp_meta_banner,
 		'tp_meta_cta'      => $tp_meta_cta,
+		'tp_meta_order'    => $tp_meta_order,
 	) );
 }

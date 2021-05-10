@@ -11,7 +11,8 @@ $value = (isset($filters->search)) ? $filters->search : "";
 <main class="front_main">
 
 <div class="regular_space" style="display: grid;grid-gap:1rem">
-  <h1>Encuentra tu articulo o solo navega por nuestra biblioteca de articulos</h1>
+  <!-- <h1><?= get_the_ID(); ?></h1> -->
+  <h1><?= get_post_meta(get_option( 'page_for_posts' ), 'A_title', true); ?></h1>
 
   <div class="mateput"  data-cycle-container="filters">
     <input class="mateputInput Searcher" id="mateputNombre" value="<?= $value ?>" type="text" name="nombre" autocomplete="off" required>

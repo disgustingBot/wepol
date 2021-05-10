@@ -3,8 +3,10 @@
 <?php
 $i = 0;
 $categories = get_categories( array(
-    'orderby' => 'name',
-    'order'   => 'ASC'
+    // 'orderby' => 'name',
+    // 'order'   => 'ASC',
+    'orderby' => 'meta_value_num',
+    'meta_key'=> 'tp_meta_order',
 ) );
 ?>
 
