@@ -55,8 +55,10 @@ $scrt = '6LdjfoEaAAAAAPtLYImMO__2eadmy5qj_SBy_amg';
         <p class="ticon_title">Explorar categorías:</p>
       <?php
       $categories = get_categories( array(
-          'orderby' => 'name',
-          'order'   => 'ASC'
+          // 'orderby' => 'name',
+          // 'order'   => 'ASC',
+          'orderby' => 'meta_value_num',
+          'meta_key'=> 'tp_meta_order',
       ));
       foreach( $categories as $category ) { ?>
         <p class="nav_categories_item">

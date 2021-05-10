@@ -13,8 +13,8 @@
 
 
 // activate debug mode, I need wp-config.php
-// scp /mnt/c/xampp/htdocs/encuesta/wp-content/themes/wepol_original/header.php lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
-// scp lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/header.php /var/www/html/wp-content/themes/wepol
+// scp /mnt/d/xampp/htdocs/encuesta/wp-content/themes/wepol_original/page-blog.php lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
+// scp lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/page-blog.php /var/www/html/wp-content/themes/wepol
 //
 // 144.91.64.164
 // 173.249.15.176
