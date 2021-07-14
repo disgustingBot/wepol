@@ -1,7 +1,5 @@
 <?php get_header(); ?>
 
-<h1>index.php</h1>
-
 <?php
 $args = array(
   'post_type' => 'post',
