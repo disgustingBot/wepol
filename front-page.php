@@ -1,14 +1,16 @@
 <?php
 header("Location: " . site_url() . "/blog");
 die();
-
+// scp /mnt/d/xampp/htdocs/encuesta/wp-content/themes/wepol_original/home.php ec2-user@54.195.56.171:/var/www/html
 get_header(); ?>
 
 <?php
 $i = 0;
 $categories = get_categories( array(
-    'orderby' => 'name',
-    'order'   => 'ASC'
+    // 'orderby' => 'name',
+    // 'order'   => 'ASC',
+    'orderby' => 'meta_value_num',
+    'meta_key'=> 'tp_meta_order',
 ) );
 ?>
 
