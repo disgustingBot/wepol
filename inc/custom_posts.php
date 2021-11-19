@@ -163,14 +163,17 @@ function lt_custom_posts() {
 	$tp_meta_banner = array(
 		'label'       => 'Banner',
 		'description' => 'Escribe el slug de un banner para esta categoria, dejalo en blanco para no usar banner (o usar el default) en esta categoria.',
+		'type' => 'text',
 	);
 	$tp_meta_cta = array(
 		'label'       => 'Call To Action',
 		'description' => 'Escribe el slug de un CTA para esta categoria, dejalo en blanco para no usar CTA en esta categoria.',
+		'type' => 'text',
 	);
 	$tp_meta_order = array(
 	 'label'       => 'Orden',
 	 'description' => 'Orden de aparicion',
+	 'type' => 'text',
 	);
 	lt_add_meta_fields_to_taxonomy( $taxonomy_slug = 'category', $meta_fields = array(
 		'tp_meta_banner'   => $tp_meta_banner,

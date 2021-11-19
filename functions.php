@@ -1,23 +1,39 @@
 <?php
-// este si va
-// scp -r /mnt/c/xampp/htdocs/encuesta/wp-content/themes/wepol_original/* lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
+// este si va -> Para copiar toda la carpeta
+// scp -r /mnt/d/xampp/htdocs/encuesta/wp-content/themes/wepol_original/* trespi@144.91.64.164:~/temp_for_encuesta
+// scp /mnt/d/xampp/htdocs/encuesta/wp-content/themes/wepol_original/home.php trespi@144.91.64.164:~/temp_for_encuesta
+
+// temp_for_encuesta
+// u4b6C3Ph4cm4dAHd
+
 
 // este si va
-// scp -r lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/* /var/www/html/wp-content/themes/wepol
+// scp -r trespi@144.91.64.164:~/temp_for_encuesta/* /var/www/html/wp-content/themes/wepol_original
+// scp -r trespi@144.91.64.164:~/temp_for_encuesta/* /var/app/current/wp-content/themes/wepol_original
 
-// chmod -R 777 /var/www/html/wp-content/themes/wepol
+// scp trespi@144.91.64.164:~/temp_for_encuesta/home.php /var/www/html/wp-content/themes/wepol_original
+// scp trespi@144.91.64.164:~/temp_for_encuesta/home.php /var/app/current/wp-content/themes/wepol_original
+
+// /var/app/current
+
+
+// chmod -R 777 /var/www/html/wp-content/themes/
 // chmod -R 755 /var/www/html
 
 
-// scp /var/www/html/encuesta_blog.zip lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
+// scp /var/www/html/encuesta_blog.zip trespi@144.91.64.164:~/temp_for_encuesta
 
 
 // activate debug mode, I need wp-config.php
-// scp /mnt/d/xampp/htdocs/encuesta/wp-content/themes/wepol_original/page-blog.php lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol
-// scp lattedev@207.244.249.74:~/web/encuesta/public_html/wp-content/themes/wepol/page-blog.php /var/www/html/wp-content/themes/wepol
+// scp /mnt/d/xampp/htdocs/encuesta/wp-content/themes/wepol_original/page-blog.php trespi@144.91.64.164:~/temp_for_encuesta
+// scp trespi@144.91.64.164:~/temp_for_encuesta/page-blog.php /var/www/html/wp-content/themes/wepol_original
 //
 // 144.91.64.164
 // 173.249.15.176
+
+
+// tp_encuesta
+// x2HGcKBc6TGnRlrc
 
 
 
